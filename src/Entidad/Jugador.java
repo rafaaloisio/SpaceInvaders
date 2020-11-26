@@ -42,11 +42,19 @@ public class Jugador extends Personaje{
 			switch (dir){
 				case KeyEvent.VK_A : //Izquierda
 					this.moverIzq();
-					System.out.println("izq!");
+					System.out.println("izquierda!");
 					break;
 				case KeyEvent.VK_D : //Derecha
 					this.moverDer();
-					System.out.println("der!");
+					System.out.println("derecha!");
+					break;
+				case KeyEvent.VK_W : //Arriba
+					this.moverArr();
+					System.out.println("arriba!");
+					break;
+				case KeyEvent.VK_S : //Abajo
+					this.moverAb();
+					System.out.println("abajo!");
 					break;
 				case KeyEvent.VK_SPACE :
 					//this.disparar();
@@ -58,15 +66,58 @@ public class Jugador extends Personaje{
 	
 	 public void moverIzq() 
 	 {
-		 this.setCelda(miTablero.getCelda(getX()-1, getY()));
-		 miTablero.getLogica().getGrafica().graficarEntidad(this);
+		 
+		//hace esta comprobación para despues en el else, controlar la colisión
+		 if (miTablero.getCelda(x - 1 , y).cantEntidades() == 0) {
+			 	
+			 
+			 	miTablero.getCelda(x, y).eliminarEntidad(this);
+			 	if(x == 0)
+			 		x = miTablero.getColumnas() - 1;
+			 	else
+			 		x = x - 1;
+			 	
+				miTablero.getCelda(x, y).agregarEntidad(this);
+				miCelda = miTablero.getCelda(x, y);
+				imagen.setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);		
+			} 
+		 
 		 
 	 }
 	 
 	 public void moverDer() 
 	 {
-		 this.setCelda(miTablero.getCelda(getX()+1, getY()));
-		 miTablero.getLogica().getGrafica().graficarEntidad(this);
+		 if (miTablero.getCelda(x + 1 , y).cantEntidades() == 0) {
+			 miTablero.getCelda(x, y).eliminarEntidad(this);
+				x = x + 1;
+				miTablero.getCelda(x, y).agregarEntidad(this);
+				miCelda = miTablero.getCelda(x, y);
+				imagen.setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);		
+			} 
+	 }
+	 
+	 public void moverArr() 
+	 {
+		 if (miTablero.getCelda(x  , y - 1).cantEntidades() == 0) {
+			 miTablero.getCelda(x, y).eliminarEntidad(this);
+				y = y - 1;
+				miTablero.getCelda(x, y).agregarEntidad(this);
+				miCelda = miTablero.getCelda(x, y);
+				imagen.setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);		
+			} 
+		 
+	 }
+	 
+	 public void moverAb() 
+	 {
+		 if (miTablero.getCelda(x  , y + 1).cantEntidades() == 0) {
+			 miTablero.getCelda(x, y).eliminarEntidad(this);
+				y = y + 1;
+				miTablero.getCelda(x, y).agregarEntidad(this);
+				miCelda = miTablero.getCelda(x, y);
+				imagen.setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);		
+			} 
+		 
 	 }
 
 	public void disparar(Entidad e) {

@@ -59,7 +59,7 @@ public class Grafica extends JFrame implements KeyListener {
 		
 		setSize(480, 850);
 		setLocationRelativeTo(null);
-		setResizable(false);
+		//setResizable(false);
 		setTitle("Space Invaders");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

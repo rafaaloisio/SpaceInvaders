@@ -32,6 +32,13 @@ public class Tablero
 					this.jugador = new Jugador(this,tablero[i][j],100);
 					logica.agregarEntidad(jugador, jugador.getCelda());
 				}
+				
+				/*
+				if(i== j) {
+					this.jugador = new Jugador(this,tablero[i][j],100);
+					logica.agregarEntidad(jugador, jugador.getCelda());
+				}
+				*/
 			}
 		}
 		
@@ -58,7 +65,7 @@ public class Tablero
 	
 	public Celda getCelda(int x, int y) 
 	{
-		if ((x < this.filas) && (x >= 0) && (y < this.columnas) && (y >= 0))
+		if ((x < this.columnas) && (x >= 0) && (y < this.filas) && (y >= 0))
 			return this.tablero[x][y];
 		else
 			return null;
