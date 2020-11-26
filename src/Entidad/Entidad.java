@@ -26,11 +26,12 @@ public abstract class Entidad {
 		miTablero = tablero;
 	}
 	
+
 	/**
 	 * La entidad muere
 	 */
 	public void morir() {
-		//miTablero.getLogica().eliminarEntidad(this);
+		miTablero.getLogica().eliminarEntidad(this);
 	}
 	/**
 	 * La entidad ejecuta una acción
@@ -40,7 +41,16 @@ public abstract class Entidad {
 	/**
 	 * La entidad se mueve
 	 */
-	public abstract void mover(int dir);
+	public abstract void mover();
+	
+	public abstract void disparar(Entidad e);
+	
+	
+	/*
+	public void aceptar(Visitor visitor) {
+		visitor.visit(this);
+	}
+	*/
 	
 	public void recibirGolpe(int golpe) {
 		vida = vida - golpe;

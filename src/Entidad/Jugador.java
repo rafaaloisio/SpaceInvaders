@@ -31,11 +31,15 @@ public class Jugador extends Personaje{
 	public void ejecutar() 
 	{
 		
-		//mover();
 		
 	} 
 
-	@Override
+	public void mover() 
+	{
+		
+	}
+	
+	
 	public void mover(int dir) 
 	{
 		
@@ -72,15 +76,15 @@ public class Jugador extends Personaje{
 			 	
 			 
 			 	miTablero.getCelda(x, y).eliminarEntidad(this);
-			 	if(x == 0)
-			 		x = miTablero.getColumnas() - 1;
-			 	else
-			 		x = x - 1;
 			 	
+			 	x = x - 1;
 				miTablero.getCelda(x, y).agregarEntidad(this);
 				miCelda = miTablero.getCelda(x, y);
 				imagen.setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);		
-			} 
+			}else { //else aceptar visitor, porque tuvo una colosión
+				System.out.println("Colisionó.");
+			}
+		
 		 
 		 
 	 }
@@ -93,7 +97,9 @@ public class Jugador extends Personaje{
 				miTablero.getCelda(x, y).agregarEntidad(this);
 				miCelda = miTablero.getCelda(x, y);
 				imagen.setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);		
-			} 
+			}else { //else aceptar visitor, porque tuvo una colosión
+				System.out.println("Chocooooooo");
+			}
 	 }
 	 
 	 public void moverArr() 
@@ -104,6 +110,8 @@ public class Jugador extends Personaje{
 				miTablero.getCelda(x, y).agregarEntidad(this);
 				miCelda = miTablero.getCelda(x, y);
 				imagen.setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);		
+			}else { //else aceptar visitor, porque tuvo una colosión
+				System.out.println("Chocooooooo");
 			} 
 		 
 	 }
@@ -116,6 +124,8 @@ public class Jugador extends Personaje{
 				miTablero.getCelda(x, y).agregarEntidad(this);
 				miCelda = miTablero.getCelda(x, y);
 				imagen.setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);		
+			}else { //else aceptar visitor, porque tuvo una colosión
+				System.out.println("Chocooooooo");
 			} 
 		 
 	 }

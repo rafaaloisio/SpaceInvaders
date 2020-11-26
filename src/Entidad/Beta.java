@@ -1,5 +1,8 @@
 package Entidad;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 import Mapa.Celda;
 import Mapa.Tablero;
 
@@ -7,17 +10,15 @@ public class Beta extends Enemigo {
 
 	public Beta(Tablero tablero, Celda celda) {
 		super(tablero, celda);
-		// TODO Auto-generated constructor stub
+		this.vida = 200;
+		imagen = new JLabel();
+		imagen.setIcon(new ImageIcon(getClass().getResource("/Recursos/Enemigos/beta.png")));
+		imagen.setBounds(x, y, PIXEL, PIXEL);
 	}
 
-	@Override
-	public void ejecutar() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
-	public void mover(int dir) {
+	public void disparar(Entidad e) {
 		// TODO Auto-generated method stub
 		
 	}

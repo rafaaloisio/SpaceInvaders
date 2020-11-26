@@ -1,6 +1,8 @@
 package Mapa;
 
-import Entidad.Jugador;
+import java.util.LinkedList;
+
+import Entidad.*;
 import Logica.Logica;
 
 public class Tablero 
@@ -9,6 +11,7 @@ public class Tablero
 	protected int filas;
 	protected int columnas;
 	protected Jugador jugador;
+	protected LinkedList<Enemigo> misEnemigos;
 
 
 	protected Logica logica;
@@ -18,6 +21,7 @@ public class Tablero
 		this.filas = 12;
 		this.columnas = 7;
 		this.logica = logica;
+		misEnemigos = new LinkedList<Enemigo>();
 		
 		this.tablero = new Celda[columnas][filas];
 		
@@ -32,6 +36,26 @@ public class Tablero
 					this.jugador = new Jugador(this,tablero[i][j],100);
 					logica.agregarEntidad(jugador, jugador.getCelda());
 				}
+				
+				if((i==2 && j == 0))
+				{
+					Enemigo al = new Alpha(this,tablero[i][j]);
+					logica.agregarEntidad(al, al.getCelda());
+				}
+				
+				if((i==4 && j == 1))
+				{
+					Enemigo bet = new Beta(this,tablero[i][j]);
+					logica.agregarEntidad(bet, bet.getCelda());
+				}
+				
+				if((i==5 && j == 0))
+				{
+					Enemigo bet = new Beta(this,tablero[i][j]);
+					logica.agregarEntidad(bet, bet.getCelda());
+				}
+				
+				
 				
 				/*
 				if(i== j) {
