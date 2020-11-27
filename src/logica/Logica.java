@@ -1,12 +1,12 @@
-package Logica;
+package logica;
 
 import java.util.Collection;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
-import Entidad.Entidad;
 import GUI.Grafica;
-import Hilos.HiloEntidades;
-import Mapa.*;
+import entidad.Entidad;
+import hilos.HiloEntidades;
+import mapa.*;
 
 public class Logica {
 

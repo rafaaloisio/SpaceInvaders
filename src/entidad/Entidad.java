@@ -1,7 +1,7 @@
-package Entidad;
+package entidad;
 
-import Graficas.EntidadGrafica;
-import Mapa.*;
+import grafica.EntidadGrafica;
+import mapa.*;
 
 
 public abstract class Entidad {

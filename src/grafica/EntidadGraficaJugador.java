@@ -1,8 +1,8 @@
-package Graficas;
+package grafica;
 
 import javax.swing.ImageIcon;
 
-import Mapa.Celda;
+import mapa.Celda;
 
 public class EntidadGraficaJugador extends EntidadGrafica {
 

@@ -1,10 +1,10 @@
-package Entidad;
+package entidad;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import Graficas.EntidadGraficaJugador;
-import Mapa.*;
+import grafica.EntidadGraficaJugador;
+import mapa.*;
 
 
 public class Jugador extends Personaje{

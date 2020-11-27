@@ -1,9 +1,9 @@
-package Entidad;
+package entidad;
 
 
-import Graficas.EntidadGraficaAlpha;
-import Mapa.Celda;
-import Mapa.Tablero;
+import grafica.EntidadGraficaAlpha;
+import mapa.Celda;
+import mapa.Tablero;
 
 public class EnemigoAlpha extends Enemigo {
 

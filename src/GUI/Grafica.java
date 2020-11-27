@@ -10,11 +10,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Entidad.Entidad;
-import Graficas.EntidadGrafica;
-import Logica.Logica;
-//import logica.Logica;
-import Mapa.*;
+import entidad.Entidad;
+import grafica.EntidadGrafica;
+import logica.Logica;
+import mapa.*;
 
 import java.awt.GridLayout;
 import java.awt.event.ComponentAdapter;

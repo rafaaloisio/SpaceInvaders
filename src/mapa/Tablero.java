@@ -1,9 +1,9 @@
-package Mapa;
+package mapa;
 
 import java.util.LinkedList;
 
-import Entidad.*;
-import Logica.Logica;
+import entidad.*;
+import logica.Logica;
 
 public class Tablero 
 {

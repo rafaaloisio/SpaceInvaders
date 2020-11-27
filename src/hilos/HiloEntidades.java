@@ -1,6 +1,6 @@
-package Hilos;
+package hilos;
 
-import Logica.Logica;
+import logica.Logica;
 
 public class HiloEntidades extends Thread {
 	protected Logica miLogica;

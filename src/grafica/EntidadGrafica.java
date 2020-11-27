@@ -1,9 +1,9 @@
-package Graficas;
+package grafica;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-import Mapa.Celda;
+import mapa.Celda;
 
 
 public abstract class EntidadGrafica {

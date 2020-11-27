@@ -1,6 +1,6 @@
-package Entidad;
+package entidad;
 
-import Mapa.*;
+import mapa.*;
 
 public abstract class Personaje extends Entidad {
 

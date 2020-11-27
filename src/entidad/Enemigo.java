@@ -1,7 +1,7 @@
-package Entidad;
+package entidad;
 
-import Mapa.Celda;
-import Mapa.Tablero;
+import mapa.Celda;
+import mapa.Tablero;
 
 public abstract class Enemigo extends Personaje{
 	

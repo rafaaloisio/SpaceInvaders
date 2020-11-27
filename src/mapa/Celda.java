@@ -1,8 +1,8 @@
-package Mapa;
+package mapa;
 
 import java.util.LinkedList;
 
-import Entidad.Entidad;
+import entidad.Entidad;
 
 public class Celda 
 {
