@@ -89,7 +89,7 @@ public class Grafica extends JFrame implements KeyListener {
 	
 	public void crearPanel() 
 	{
-		panelPrincipal = new FondoPanel("/Recursos/Fondos/fondo.jpg");
+		panelPrincipal = new FondoPanel("/recursos/fondos/fondo.jpg");
 		panelPrincipal.setBorder(new EmptyBorder(5, 5, 5, 5));
 		panelPrincipal.setBounds(0, 0, 600, 800);
 		panelPrincipal.setLayout(new BorderLayout(0, 0));
