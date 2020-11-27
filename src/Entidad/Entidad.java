@@ -1,7 +1,6 @@
 package Entidad;
 
-import javax.swing.JLabel;
-
+import Graficas.EntidadGrafica;
 import Mapa.*;
 
 
@@ -11,8 +10,7 @@ public abstract class Entidad {
 	
 	protected Celda miCelda;
 	protected Tablero miTablero;
-	protected JLabel imagen;
-
+	protected EntidadGrafica entidadgrafica;
 	protected int x;
 	protected int y;
 	protected int golpe;
@@ -34,7 +32,7 @@ public abstract class Entidad {
 		miTablero.getLogica().eliminarEntidad(this);
 	}
 	/**
-	 * La entidad ejecuta una acción
+	 * La entidad ejecuta una acciï¿½n
 	 */
 	public abstract void ejecutar();
 
@@ -111,12 +109,12 @@ public abstract class Entidad {
 		this.vida = vida;
 	}
 	
-	public JLabel getImagen() {
-		return imagen;
+	public EntidadGrafica getEntidadGrafica() {
+		return entidadgrafica;
 	}
 
-	public void setImagen(JLabel imagen) {
-		this.imagen = imagen;
+	public void setEntidadGrafica(EntidadGrafica e) {
+		this.entidadgrafica = e;
 	}
 	
 }

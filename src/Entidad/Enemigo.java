@@ -11,7 +11,6 @@ public abstract class Enemigo extends Personaje{
 		super(tablero, celda);
 		seguirMoviendo = true;
 		this.tiempo = 3;
-		// TODO Auto-generated constructor stub
 	}
 
 	
@@ -28,11 +27,11 @@ public abstract class Enemigo extends Personaje{
 				y = y + 1;
 			miTablero.getCelda(x, y).agregarEntidad(this);
 			miCelda = miTablero.getCelda(x, y);
-			imagen.setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);		
+			entidadgrafica.actualizar(miCelda);		
 		}else
 		{ //entonces hay una colision, despues lo programo
 			
-				System.out.println("Colisionó.");
+				System.out.println("ColisionO.");
 		
 			if (seguirMoviendo) {
 				//para que sigan moviendo todos los enemigos
@@ -44,7 +43,7 @@ public abstract class Enemigo extends Personaje{
 				
 				miTablero.getCelda(x, y).agregarEntidad(this);
 				miCelda = miTablero.getCelda(x, y);
-				imagen.setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);		
+				entidadgrafica.actualizar(miCelda);		
 			}
 		}
 		

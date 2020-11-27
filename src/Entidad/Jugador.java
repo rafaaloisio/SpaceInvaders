@@ -3,9 +3,7 @@ package Entidad;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-
+import Graficas.EntidadGraficaJugador;
 import Mapa.*;
 
 
@@ -15,9 +13,8 @@ public class Jugador extends Personaje{
 	public Jugador(Tablero tablero, Celda celda, int vida) {
 		super(tablero, celda);
 		this.vida = vida;
-		imagen = new JLabel();
-		imagen.setIcon(new ImageIcon(getClass().getResource("/Recursos/Jugador/nave.png")));
-		imagen.setBounds(x, y, PIXEL, PIXEL);
+		entidadgrafica = new EntidadGraficaJugador("/Recursos/Jugador/nave.png");
+		entidadgrafica.getImagen().setBounds(x, y, PIXEL, PIXEL);
 		
 	}
 
@@ -71,7 +68,7 @@ public class Jugador extends Personaje{
 	 public void moverIzq() 
 	 {
 		 
-		//hace esta comprobación para despues en el else, controlar la colisión
+		//hace esta comprobaciï¿½n para despues en el else, controlar la colisiï¿½n
 		 if (miTablero.getCelda(x - 1 , y).cantEntidades() == 0) {
 			 	
 			 
@@ -80,9 +77,9 @@ public class Jugador extends Personaje{
 			 	x = x - 1;
 				miTablero.getCelda(x, y).agregarEntidad(this);
 				miCelda = miTablero.getCelda(x, y);
-				imagen.setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);		
-			}else { //else aceptar visitor, porque tuvo una colosión
-				System.out.println("Colisionó.");
+				entidadgrafica.actualizar(miCelda);		
+			}else { //else aceptar visitor, porque tuvo una colosiï¿½n
+				System.out.println("Colisionï¿½.");
 			}
 		
 		 
@@ -96,8 +93,8 @@ public class Jugador extends Personaje{
 				x = x + 1;
 				miTablero.getCelda(x, y).agregarEntidad(this);
 				miCelda = miTablero.getCelda(x, y);
-				imagen.setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);		
-			}else { //else aceptar visitor, porque tuvo una colosión
+				entidadgrafica.actualizar(miCelda);		
+			}else { //else aceptar visitor, porque tuvo una colosiï¿½n
 				System.out.println("Chocooooooo");
 			}
 	 }
@@ -109,8 +106,8 @@ public class Jugador extends Personaje{
 				y = y - 1;
 				miTablero.getCelda(x, y).agregarEntidad(this);
 				miCelda = miTablero.getCelda(x, y);
-				imagen.setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);		
-			}else { //else aceptar visitor, porque tuvo una colosión
+				entidadgrafica.actualizar(miCelda);		
+			}else { //else aceptar visitor, porque tuvo una colosiï¿½n
 				System.out.println("Chocooooooo");
 			} 
 		 
@@ -123,8 +120,8 @@ public class Jugador extends Personaje{
 				y = y + 1;
 				miTablero.getCelda(x, y).agregarEntidad(this);
 				miCelda = miTablero.getCelda(x, y);
-				imagen.setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);		
-			}else { //else aceptar visitor, porque tuvo una colosión
+				entidadgrafica.actualizar(miCelda);		
+			}else { //else aceptar visitor, porque tuvo una colosiï¿½n
 				System.out.println("Chocooooooo");
 			} 
 		 

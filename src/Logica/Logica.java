@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
 import Entidad.Entidad;
-import Grafica.Grafica;
+import GUI.Grafica;
 import Hilos.HiloEntidades;
 import Mapa.*;
 

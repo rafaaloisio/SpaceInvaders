@@ -39,19 +39,19 @@ public class Tablero
 				
 				if((i==2 && j == 0))
 				{
-					Enemigo al = new Alpha(this,tablero[i][j]);
+					Enemigo al = new EnemigoAlpha(this,tablero[i][j]);
 					logica.agregarEntidad(al, al.getCelda());
 				}
 				
 				if((i==4 && j == 1))
 				{
-					Enemigo bet = new Beta(this,tablero[i][j]);
+					Enemigo bet = new EnemigoBeta(this,tablero[i][j]);
 					logica.agregarEntidad(bet, bet.getCelda());
 				}
 				
 				if((i==5 && j == 0))
 				{
-					Enemigo bet = new Beta(this,tablero[i][j]);
+					Enemigo bet = new EnemigoBeta(this,tablero[i][j]);
 					logica.agregarEntidad(bet, bet.getCelda());
 				}
 				
