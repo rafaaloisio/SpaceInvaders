@@ -80,10 +80,7 @@ public class Grafica extends JFrame implements KeyListener {
 		
 		logica = new Logica(this);
 		
-		
-		
-		//cargarTablero(this.logica.getTablero(),panelCentral);
-		
+
 		
 	}
 	
@@ -103,7 +100,7 @@ public class Grafica extends JFrame implements KeyListener {
 		eg.getImagen().setVisible(true);
 		
 		panelCentral.setComponentZOrder(eg.getImagen(), 0);
-		//panelCentral.repaint();
+
 		
 	}
 

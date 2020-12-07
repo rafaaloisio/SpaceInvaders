@@ -1,5 +1,6 @@
 package entidad;
 
+import disparo.*;
 import grafica.EntidadGraficaBeta;
 import mapa.Celda;
 import mapa.Tablero;
@@ -14,10 +15,9 @@ public class EnemigoBeta extends Enemigo {
 	}
 
 
-	@Override
-	public void disparar(Entidad e) {
-		// TODO Auto-generated method stub
+	public Disparo crearDisparo() {
 		
-	}
+		return new DisparoBeta(miTablero,miCelda,this.getGolpe());
+	} 
 
 }

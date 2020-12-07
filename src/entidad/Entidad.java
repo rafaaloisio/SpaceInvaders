@@ -41,7 +41,6 @@ public abstract class Entidad {
 	 */
 	public abstract void mover();
 	
-	public abstract void disparar(Entidad e);
 	
 	
 	/*

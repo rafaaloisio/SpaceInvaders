@@ -80,6 +80,7 @@ public abstract class Enemigo extends Personaje{
 		if (tiempo == 0) {
 			tiempo = 5;
 			mover();
+			disparar(this);
 			this.seguirMoviendo(true);
 		}
 	}

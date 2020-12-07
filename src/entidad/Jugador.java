@@ -3,6 +3,7 @@ package entidad;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import disparo.*;
 import grafica.EntidadGraficaJugador;
 import mapa.*;
 
@@ -10,9 +11,10 @@ import mapa.*;
 public class Jugador extends Personaje{
 	
 
-	public Jugador(Tablero tablero, Celda celda, int vida) {
-		super(tablero, celda);
+	public Jugador(Tablero miTablero, Celda celda, int vida, int golpe) {
+		super(miTablero, celda);
 		this.vida = vida;
+		this.golpe = golpe;
 		entidadgrafica = new EntidadGraficaJugador("/Recursos/Jugador/nave.png");
 		entidadgrafica.getImagen().setBounds(x, y, PIXEL, PIXEL);
 		
@@ -21,13 +23,12 @@ public class Jugador extends Personaje{
 	@Override
 	public void morir() 
 	{
-		
+		//super.morir();
 	}
 
 	@Override
 	public void ejecutar() 
 	{
-		
 		
 	} 
 
@@ -58,7 +59,8 @@ public class Jugador extends Personaje{
 					System.out.println("abajo!");
 					break;
 				case KeyEvent.VK_SPACE :
-					//this.disparar();
+					System.out.println("Disparo!");
+					this.disparar(this);
 					break;
 			}
 	
@@ -79,10 +81,9 @@ public class Jugador extends Personaje{
 				miCelda = miTablero.getCelda(x, y);
 				entidadgrafica.actualizar(miCelda);		
 			}else { //else aceptar visitor, porque tuvo una colosi�n
-				System.out.println("Colision�.");
+				System.out.println("COLISION.");
 			}
 		
-		 
 		 
 	 }
 	 
@@ -127,9 +128,11 @@ public class Jugador extends Personaje{
 		 
 	 }
 
-	public void disparar(Entidad e) {
-		//imagen.setIcon(imagenAtacar);
-		//logica.agregarEntidad(crearDisparo(), miCelda);
-	}
+
+	public Disparo crearDisparo() {
+			
+			return new DisparoJugador(miTablero,miCelda,this.getGolpe());
+	} 
+
 
 }
