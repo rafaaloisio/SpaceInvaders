@@ -1,5 +1,6 @@
-package mapa;
+package tablero;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import entidad.Entidad;
@@ -68,6 +69,13 @@ public class Celda
 		}
 		
 		return entidadesArreglo;
+	}
+	
+	public Iterator<Entidad> getIteratorEntidades()
+	{
+	
+		return entidades.iterator();
+		
 	}
 	
 

@@ -1,11 +1,12 @@
 package entidad;
 
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.util.Iterator;
 
 import disparo.*;
 import grafica.EntidadGraficaJugador;
-import mapa.*;
+import tablero.*;
+import visitor.*;
 
 
 public class Jugador extends Personaje{
@@ -15,6 +16,7 @@ public class Jugador extends Personaje{
 		super(miTablero, celda);
 		this.vida = vida;
 		this.golpe = golpe;
+		this.miVisitor = new VisitorJugador(this);
 		entidadgrafica = new EntidadGraficaJugador("/Recursos/Jugador/nave.png");
 		entidadgrafica.getImagen().setBounds(x, y, PIXEL, PIXEL);
 		
@@ -71,17 +73,48 @@ public class Jugador extends Personaje{
 	 {
 		 
 		//hace esta comprobaci�n para despues en el else, controlar la colisi�n
-		 if (miTablero.getCelda(x - 1 , y).cantEntidades() == 0) {
+		 
+		 
+		 
+		 if(x == 0)
+				x = miTablero.getColumnas();
+
+		 
+		 if ( miTablero.getCelda(x - 1 , y).cantEntidades() == 0) {
 			 	
 			 
-			 	miTablero.getCelda(x, y).eliminarEntidad(this);
+			 	miTablero.getCelda(x-1, y).eliminarEntidad(this);
 			 	
-			 	x = x - 1;
+				if(x == 0)
+					x = miTablero.getColumnas()-1;
+				else
+					x = x - 1;
+			 	
 				miTablero.getCelda(x, y).agregarEntidad(this);
 				miCelda = miTablero.getCelda(x, y);
 				entidadgrafica.actualizar(miCelda);		
-			}else { //else aceptar visitor, porque tuvo una colosi�n
-				System.out.println("COLISION.");
+			}else { //else aceptar visitor, porque tuvo una colision
+				System.out.println("Chocooooooo");
+				
+				Iterator<Entidad> entidadesCelda = miTablero.getCelda(x-1, y).getIteratorEntidades();
+				while(entidadesCelda.hasNext()) {
+					System.out.println("HAY ENTIDADES");
+					entidadesCelda.next().aceptar(miVisitor);		
+				}
+			
+				miTablero.getCelda(x-1, y).eliminarEntidad(this);
+				
+				if(x == 0)
+					x = miTablero.getColumnas()-1;
+				else
+					x = x - 1;
+				
+				miTablero.getCelda(x, y).agregarEntidad(this);
+				miCelda = miTablero.getCelda(x, y);
+				entidadgrafica.getImagen().setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);
+				
+			
+			
 			}
 		
 		 
@@ -89,15 +122,50 @@ public class Jugador extends Personaje{
 	 
 	 public void moverDer() 
 	 {
+		
+		 
+		 if(x == miTablero.getColumnas()-1)
+				x = -1;
+		 
+		 System.out.println("X: "+x);
+
 		 if (miTablero.getCelda(x + 1 , y).cantEntidades() == 0) {
-			 miTablero.getCelda(x, y).eliminarEntidad(this);
-				x = x + 1;
+			 	
+			 	miTablero.getCelda(x+1, y).eliminarEntidad(this);
+				
+			 	if( x + 1 == miTablero.getColumnas() )
+					x = 0;
+				else
+					x = x + 1;
+			 
+			 
 				miTablero.getCelda(x, y).agregarEntidad(this);
 				miCelda = miTablero.getCelda(x, y);
-				entidadgrafica.actualizar(miCelda);		
+				entidadgrafica.actualizar(miCelda);	
+				
 			}else { //else aceptar visitor, porque tuvo una colosi�n
 				System.out.println("Chocooooooo");
+				
+				Iterator<Entidad> entidadesCelda = miTablero.getCelda(x+1, y).getIteratorEntidades();
+				while(entidadesCelda.hasNext()) {
+					System.out.println("HAY ENTIDADES");
+					entidadesCelda.next().aceptar(miVisitor);		
+				}
+				
+				miTablero.getCelda(x+1, y).eliminarEntidad(this);
+				
+				if( x + 1 == miTablero.getColumnas() )
+					x = 0;
+				else
+					x = x + 1;
+				
+				miTablero.getCelda(x, y).agregarEntidad(this);
+				miCelda = miTablero.getCelda(x, y);
+				entidadgrafica.getImagen().setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);
+				
+				
 			}
+		 
 	 }
 	 
 	 public void moverArr() 
@@ -110,6 +178,12 @@ public class Jugador extends Personaje{
 				entidadgrafica.actualizar(miCelda);		
 			}else { //else aceptar visitor, porque tuvo una colosi�n
 				System.out.println("Chocooooooo");
+				
+				Iterator<Entidad> entidadesCelda = miTablero.getCelda(x, y-1).getIteratorEntidades();
+				while(entidadesCelda.hasNext()) {
+					System.out.println("HAY ENTIDADES");
+					entidadesCelda.next().aceptar(miVisitor);		
+				}
 			} 
 		 
 	 }
@@ -124,6 +198,12 @@ public class Jugador extends Personaje{
 				entidadgrafica.actualizar(miCelda);		
 			}else { //else aceptar visitor, porque tuvo una colosi�n
 				System.out.println("Chocooooooo");
+				
+				Iterator<Entidad> entidadesCelda = miTablero.getCelda(x, y+1).getIteratorEntidades();
+				while(entidadesCelda.hasNext()) {
+					System.out.println("HAY ENTIDADES");
+					entidadesCelda.next().aceptar(miVisitor);		
+				}
 			} 
 		 
 	 }
@@ -132,7 +212,11 @@ public class Jugador extends Personaje{
 	public Disparo crearDisparo() {
 			
 			return new DisparoJugador(miTablero,miCelda,this.getGolpe());
-	} 
+	}
+
+	public void aceptar(Visitor visitor) {
+		visitor.visit(this);
+	}
 
 
 }

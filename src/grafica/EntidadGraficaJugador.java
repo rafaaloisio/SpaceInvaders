@@ -2,7 +2,7 @@ package grafica;
 
 import javax.swing.ImageIcon;
 
-import mapa.Celda;
+import tablero.Celda;
 
 public class EntidadGraficaJugador extends EntidadGrafica {
 

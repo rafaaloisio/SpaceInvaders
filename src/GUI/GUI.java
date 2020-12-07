@@ -13,7 +13,7 @@ import javax.swing.border.EmptyBorder;
 import entidad.Entidad;
 import grafica.EntidadGrafica;
 import logica.Logica;
-import mapa.*;
+import tablero.*;
 
 import java.awt.GridLayout;
 import java.awt.event.ComponentAdapter;
@@ -23,7 +23,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Grafica extends JFrame implements KeyListener {
+public class GUI extends JFrame implements KeyListener {
 
 	/**
 	 * 
@@ -42,7 +42,7 @@ public class Grafica extends JFrame implements KeyListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Grafica frame = new Grafica();
+					GUI frame = new GUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,7 +54,7 @@ public class Grafica extends JFrame implements KeyListener {
 	/**
 	 * Create the frame.
 	 */
-	public Grafica() 
+	public GUI() 
 	{
 		
 		setSize(480, 850);

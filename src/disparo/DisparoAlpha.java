@@ -1,7 +1,7 @@
 package disparo;
 
 import grafica.EntidadGraficaBeta;
-import mapa.*;
+import tablero.*;
 
 public class DisparoAlpha extends DisparoEnemigo{
 

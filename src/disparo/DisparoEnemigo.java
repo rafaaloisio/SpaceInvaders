@@ -1,14 +1,17 @@
 package disparo;
 
-import mapa.*;
+import java.util.Iterator;
+
 import entidad.*;
+import tablero.*;
+import visitor.*;
 
 
 public abstract class DisparoEnemigo extends Disparo {
 
 	public DisparoEnemigo(Tablero miTablero, Celda miCelda, int golpe) {
 		super(miTablero, miCelda, golpe);
-		// TODO Auto-generated constructor stub
+		this.miVisitor = new VisitorDisparoEnemigo(this);
 	}
 	
 	public void morir() {
@@ -32,28 +35,30 @@ public abstract class DisparoEnemigo extends Disparo {
 				entidadgrafica.getImagen().setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL,PIXEL,PIXEL);
 			}
 			else {
-				System.out.println("COLISION DISPARO ENEMIGO.");
-				Entidad [] entidadesArreglo = miTablero.getCelda(x, y+1).getArregloEntidades();
-				int pos=0;
-				while(entidadesArreglo[pos]!=null) {
-					//entidadesArreglo[pos].aceptar(miVisitor);
-                    pos++;					
-				}
-				miTablero.getCelda(x, y).eliminarEntidad(this);
-				y = y + 1;
-				miTablero.getCelda(x, y).agregarEntidad(this);
-				miCelda = miTablero.getCelda(x, y);
-				entidadgrafica.getImagen().setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);
 				
+				System.out.println("COLISION DISPARO ENEMIGO.");
+				
+				Iterator<Entidad> entidadesCelda = miTablero.getCelda(x, y+1).getIteratorEntidades();
+				
+				while(entidadesCelda.hasNext()) {
+					entidadesCelda.next().aceptar(miVisitor);		
+				}
+				
+				
+				miTablero.getCelda(x, y).eliminarEntidad(this);
+				if (seguirMoviendo) {	
+					y = y + 1;
+					miTablero.getCelda(x, y).agregarEntidad(this);
+					miCelda = miTablero.getCelda(x, y);
+					entidadgrafica.getImagen().setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);
+				}
 			}
 		}
 	}
 
-	/*
 	public void aceptar(Visitor visitor) {
 		visitor.visit(this);
 	}
-	
-	*/
+
 
 }

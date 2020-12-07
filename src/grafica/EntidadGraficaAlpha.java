@@ -1,6 +1,6 @@
 package grafica;
 
-import mapa.Celda;
+import tablero.Celda;
 
 public class EntidadGraficaAlpha extends EntidadGraficaEnemigo {
 

@@ -3,18 +3,20 @@ package entidad;
 
 import disparo.*;
 import grafica.EntidadGraficaAlpha;
-import mapa.*;
+import tablero.*;
 
 public class EnemigoAlpha extends Enemigo {
 
 	
 	
 	//agregar strategy
-	public EnemigoAlpha(Tablero tablero, Celda celda) {
-		super(tablero, celda);
-		this.vida = 150;
+	public EnemigoAlpha(Tablero tablero, Celda celda, int vida, int golpe) {
+		super(tablero, celda,vida,golpe);
 		entidadgrafica = new EntidadGraficaAlpha("/recursos/enemigos/alpha.png");
 		entidadgrafica.getImagen().setBounds(x, y, PIXEL, PIXEL);
+		this.vida = vida;
+		this.golpe = golpe;
+		
 	}
 
 

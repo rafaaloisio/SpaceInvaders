@@ -2,16 +2,18 @@ package entidad;
 
 import disparo.*;
 import grafica.EntidadGraficaBeta;
-import mapa.Celda;
-import mapa.Tablero;
+import tablero.Celda;
+import tablero.Tablero;
 
 public class EnemigoBeta extends Enemigo {
 
-	public EnemigoBeta(Tablero tablero, Celda celda) {
-		super(tablero, celda);
+	public EnemigoBeta(Tablero tablero, Celda celda,int vida,int golpe) {
+		super(tablero, celda,vida,golpe);
 		entidadgrafica = new EntidadGraficaBeta("/recursos/enemigos/beta.png");
-		this.vida = 200;
 		entidadgrafica.getImagen().setBounds(x, y, PIXEL, PIXEL);
+		this.vida = vida;
+		this.golpe = golpe;
+		
 	}
 
 

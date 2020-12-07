@@ -3,23 +3,23 @@ package logica;
 import java.util.Collection;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
-import GUI.Grafica;
+import GUI.GUI;
 import entidad.Entidad;
 import hilos.HiloEntidades;
-import mapa.*;
+import tablero.*;
 
 public class Logica {
 
 	protected Collection<Entidad> misEntidades;
+	
 	protected HiloEntidades hiloEntidades;
-	protected Grafica grafica;
+	protected GUI grafica;
 
 	protected Tablero tablero;
 	
-	
 
-
-	public Logica(Grafica grafica) {
+	public Logica(GUI grafica) 
+	{
 		this.grafica = grafica;
 		misEntidades = new ConcurrentLinkedDeque<Entidad>();
 
@@ -28,46 +28,59 @@ public class Logica {
 		crearHilos();
 	}
 	
-	public void crearHilos() {
+	
+	public void crearHilos() 
+	{
 		hiloEntidades = new HiloEntidades(this);
 		hiloEntidades.start();
 	}
 	
-	public void ejecutarEntidades() {
+	
+	public void ejecutarEntidades() 
+	{
 		for (Entidad e : misEntidades) {
 			e.ejecutar();
 		}
 	}
 	
-	public void agregarEntidad(Entidad e, Celda celda) {
+	
+	public void agregarEntidad(Entidad e, Celda celda) 
+	{
 		misEntidades.add(e);
 		celda.agregarEntidad(e);
 		e.setCelda(celda);
 		grafica.graficarEntidad(e);
 	}
 
-	public void eliminarEntidad(Entidad e) {
-		Celda celda = e.getCelda();
+	
+	public void eliminarEntidad(Entidad e) 
+	{
 		grafica.eliminarEntidad(e);
-		celda.eliminarEntidad(e);
+		e.getCelda().eliminarEntidad(e);
 		misEntidades.remove(e);
 	}
 
-	public Grafica getGrafica() {
+	
+	public GUI getGrafica() 
+	{
 		return grafica;
 	}
 	
-	public void setGrafica(Grafica grafica) {
+	
+	public void setGrafica(GUI grafica) 
+	{
 		this.grafica = grafica;
 	}
 	
 	
-	
-	public Tablero getTablero() {
+	public Tablero getTablero() 
+	{
 		return tablero;
 	}
 
-	public void setTablero(Tablero tablero) {
+	
+	public void setTablero(Tablero tablero) 
+	{
 		this.tablero = tablero;
 	}
 	

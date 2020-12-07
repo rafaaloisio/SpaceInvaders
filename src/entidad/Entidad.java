@@ -1,7 +1,8 @@
 package entidad;
 
 import grafica.EntidadGrafica;
-import mapa.*;
+import tablero.*;
+import visitor.*;
 
 
 public abstract class Entidad {
@@ -15,6 +16,8 @@ public abstract class Entidad {
 	protected int y;
 	protected int golpe;
 	protected int vida;
+	
+	protected Visitor miVisitor;
 	
 	public Entidad(Tablero tablero, Celda celda)
 	{
@@ -41,20 +44,7 @@ public abstract class Entidad {
 	 */
 	public abstract void mover();
 	
-	
-	
-	/*
-	public void aceptar(Visitor visitor) {
-		visitor.visit(this);
-	}
-	*/
-	
-	public void recibirGolpe(int golpe) {
-		vida = vida - golpe;
-		if (vida <= 0) {
-			morir();
-		}
-	}
+	public abstract void aceptar(Visitor visitor);
 
 	public void setCelda(Celda c) 
 	{

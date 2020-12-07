@@ -1,4 +1,4 @@
-package mapa;
+package tablero;
 
 import java.util.LinkedList;
 
@@ -32,26 +32,26 @@ public class Tablero
 				tablero[i][j] = new Celda(this,i,j);
 				System.out.println("X: "+i+" Y: "+j);
 				
-				if(i==3 && j == 11) {
-					this.jugador = new Jugador(this,tablero[i][j],100,5);
+				if(i==3 && j == 10) {
+					this.jugador = new Jugador(this,tablero[i][j],100,50);
 					logica.agregarEntidad(jugador, jugador.getCelda());
 				}
 				
 				if((i==2 && j == 0))
 				{
-					Enemigo al = new EnemigoAlpha(this,tablero[i][j]);
+					Enemigo al = new EnemigoAlpha(this,tablero[i][j],150,60);
 					logica.agregarEntidad(al, al.getCelda());
 				}
 				
 				if((i==4 && j == 1))
 				{
-					Enemigo bet = new EnemigoBeta(this,tablero[i][j]);
+					Enemigo bet = new EnemigoBeta(this,tablero[i][j],300,30);
 					logica.agregarEntidad(bet, bet.getCelda());
 				}
 				
 				if((i==5 && j == 0))
 				{
-					Enemigo bet = new EnemigoBeta(this,tablero[i][j]);
+					Enemigo bet = new EnemigoBeta(this,tablero[i][j],300,30);
 					logica.agregarEntidad(bet, bet.getCelda());
 				}
 				

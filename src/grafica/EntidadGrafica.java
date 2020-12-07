@@ -3,7 +3,7 @@ package grafica;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-import mapa.Celda;
+import tablero.Celda;
 
 
 public abstract class EntidadGrafica {

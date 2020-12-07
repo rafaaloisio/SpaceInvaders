@@ -1,21 +1,21 @@
 package disparo;
 
 
+import java.util.Iterator;
+
 import entidad.*;
 import grafica.EntidadGraficaJugador;
-import mapa.*;
-//import Visitor.*;
+import tablero.*;
+import visitor.*;
 
 public class DisparoJugador extends Disparo {
 	
-	protected boolean seguirMoviendo;
-
 	public DisparoJugador(Tablero miTablero, Celda miCelda, int golpe) {
 		super(miTablero, miCelda, golpe);
-		//miVisitor = new VisitorDisparoAliado(this);
+		this.miVisitor = new VisitorDisparoJugador(this);
 		entidadgrafica = new EntidadGraficaJugador("/Recursos/Jugador/disparo.png");
 		entidadgrafica.getImagen().setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);
-		seguirMoviendo = true;
+
 	}
 
 	public void ejecutar() {
@@ -34,46 +34,38 @@ public class DisparoJugador extends Disparo {
 				miCelda = miTablero.getCelda(x, y);
 				entidadgrafica.getImagen().setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);
 			} else {
-				
+					
 					System.out.println("COLISION DISPARO JUGADOR.");
-					Entidad [] entidadesArreglo = miTablero.getCelda(x, y-1).getArregloEntidades();
-					int pos=0;
-					while(entidadesArreglo[pos]!=null) {
-						//entidadesArreglo[pos].aceptar(miVisitor);
-	                    pos++;					
-				}
-				miTablero.getCelda(x, y).eliminarEntidad(this);
-				if (seguirMoviendo) {
-					//System.out.println("entre seguir mo");
-					y = y - 1;
-					miTablero.getCelda(x, y).agregarEntidad(this);
-					miCelda = miTablero.getCelda(x, y);
-					entidadgrafica.getImagen().setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);
+					
+					Iterator<Entidad> entidadesCelda = miTablero.getCelda(x, y-1).getIteratorEntidades();
+					while(entidadesCelda.hasNext()) {
+						System.out.println("HAY ENTIDADES");
+
+						entidadesCelda.next().aceptar(miVisitor);		
+					}
+					
+					miTablero.getCelda(x, y).eliminarEntidad(this);
+				
+					if (seguirMoviendo) {
+						y = y - 1;
+						miTablero.getCelda(x, y).agregarEntidad(this);
+						miCelda = miTablero.getCelda(x, y);
+						entidadgrafica.getImagen().setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);
 				}
 			}
 		}
 	}
 	
-	/*
-	public void aceptar(Visitor visitor) {
-		visitor.visit(this);
-	}
-
-	 */
 	
-	public void morir() {
-		miTablero.getLogica().eliminarEntidad(this);
-	}
 
 	public void setSeguirMoviendo(boolean b) {
 		seguirMoviendo = b;
 	}
 	
 	
-	public Disparo crearDisparo() {
-		
-		return new DisparoJugador(miTablero,miCelda,this.getGolpe());
-	} 
+	public void aceptar(Visitor visitor) {
+		visitor.visit(this);
+	}
 
 	
 
