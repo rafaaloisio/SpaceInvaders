@@ -3,6 +3,7 @@ package visitor;
 import disparo.*;
 import entidad.Enemigo;
 import entidad.Jugador;
+import entidad.Premio;
 
 public class VisitorDisparoJugador implements Visitor {
 
@@ -40,6 +41,11 @@ public class VisitorDisparoJugador implements Visitor {
 		//miDisparo.morir();
 		System.out.println("YO DISPARO JUGADOR CHOQUE CONTRA DISPARO ENEMIGO");
 		
+		
+	}
+	
+	public void visit(Premio p) {
+		System.out.println("YO DISPARO JUGADOR CHOQUE CONTRA PREMIO");
 		
 	}
 

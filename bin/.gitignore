@@ -1,15 +1,4 @@
-/Entidad/
-/Grafica/
-/Hilos/
-/Logica/
-/Mapa/
-/Recursos/
-/grafica/
 /entidad/
-/hilos/
-/logica/
-/mapa/
-/recursos/
 /disparo/
+/hilos/
 /tablero/
-/visitor/

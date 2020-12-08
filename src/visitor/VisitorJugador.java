@@ -4,6 +4,7 @@ import disparo.DisparoEnemigo;
 import disparo.DisparoJugador;
 import entidad.Enemigo;
 import entidad.Jugador;
+import entidad.Premio;
 
 public class VisitorJugador implements Visitor {
 
@@ -34,6 +35,13 @@ public class VisitorJugador implements Visitor {
 	@Override
 	public void visit(DisparoEnemigo de) {
 		System.out.println("YO JUGADOR CHOQUE CONTRA DISPARO ENEMIGO");				
+		
+	}
+	
+	public void visit(Premio p) {
+		
+		System.out.println("YO JUGADOR CHOQUE CONTRA PREMIO");
+		//consumo del efecto del premio
 		
 	}
 

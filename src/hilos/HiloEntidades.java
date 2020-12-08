@@ -22,7 +22,7 @@ public class HiloEntidades extends Thread {
 	public void run() {
 		while (!perder) {
 			try {
-				Thread.sleep(400);
+				Thread.sleep(100);
 				miLogica.ejecutarEntidades();
 			} catch (InterruptedException e) {
 				e.printStackTrace();

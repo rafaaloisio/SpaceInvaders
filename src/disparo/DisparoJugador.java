@@ -13,7 +13,7 @@ public class DisparoJugador extends Disparo {
 	public DisparoJugador(Tablero miTablero, Celda miCelda, int golpe) {
 		super(miTablero, miCelda, golpe);
 		this.miVisitor = new VisitorDisparoJugador(this);
-		entidadgrafica = new EntidadGraficaJugador("/Recursos/Jugador/disparo.png");
+		entidadgrafica = new EntidadGraficaJugador("/recursos/jugador/disparo.png");
 		entidadgrafica.getImagen().setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);
 
 	}

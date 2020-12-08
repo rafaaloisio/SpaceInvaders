@@ -13,15 +13,15 @@ public abstract class DisparoEnemigo extends Disparo {
 		super(miTablero, miCelda, golpe);
 		this.miVisitor = new VisitorDisparoEnemigo(this);
 	}
-	
+
 	public void morir() {
 		miTablero.getLogica().eliminarEntidad(this);
 	}
-	
+
 	public void ejecutar() {
-			mover();
+		mover();
 	}
-	
+
 	public void mover() {
 		if(y == 11) {
 			morir();
@@ -35,16 +35,16 @@ public abstract class DisparoEnemigo extends Disparo {
 				entidadgrafica.getImagen().setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL,PIXEL,PIXEL);
 			}
 			else {
-				
+
 				System.out.println("COLISION DISPARO ENEMIGO.");
-				
+
 				Iterator<Entidad> entidadesCelda = miTablero.getCelda(x, y+1).getIteratorEntidades();
-				
+
 				while(entidadesCelda.hasNext()) {
 					entidadesCelda.next().aceptar(miVisitor);		
 				}
-				
-				
+
+
 				miTablero.getCelda(x, y).eliminarEntidad(this);
 				if (seguirMoviendo) {	
 					y = y + 1;

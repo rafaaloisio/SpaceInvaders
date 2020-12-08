@@ -3,6 +3,7 @@ package visitor;
 import disparo.*;
 import entidad.Enemigo;
 import entidad.Jugador;
+import entidad.Premio;
 
 public class VisitorDisparoEnemigo implements Visitor {
 
@@ -36,6 +37,11 @@ public class VisitorDisparoEnemigo implements Visitor {
 	@Override
 	public void visit(DisparoEnemigo de) {
 		System.out.println("YO DISPARO ENEMIGO CHOQUE CONTRA DISPARO ENEMIGO");
+		
+	}
+	
+	public void visit(Premio p) {
+		System.out.println("YO DISPARO ENEMIGO CHOQUE CONTRA PREMIO");
 		
 	}
 
