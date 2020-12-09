@@ -12,7 +12,7 @@ public abstract class PremioTemporal extends Premio {
 	}
 
 	@Override
-	protected abstract void hacerEfecto();
+	protected abstract void hacerEfecto(Jugador j);
 
 
 

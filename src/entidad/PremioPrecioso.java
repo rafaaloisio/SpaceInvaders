@@ -11,6 +11,6 @@ public abstract class PremioPrecioso extends Premio {
 	}
 
 	@Override
-	protected abstract void hacerEfecto();
+	protected abstract void hacerEfecto(Jugador j);
 
 }

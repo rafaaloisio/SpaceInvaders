@@ -67,7 +67,8 @@ public abstract class Enemigo extends Personaje{
 	
 	public void ejecutar()
 	{
-		if (tiempo == 5) {/*
+		if (tiempo == 5) {
+			/*
 			
 			
 			if (x < miTablero.getColumnas()) {

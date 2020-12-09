@@ -14,11 +14,11 @@ public abstract class Premio extends Entidad {
 		super(tablero, celda);
 	}
 
-	protected abstract void hacerEfecto();
+	protected abstract void hacerEfecto(Jugador j);
 	
 	@Override
 	public void ejecutar() {
-		hacerEfecto();
+//		hacerEfecto();
 	}
 
 	@Override

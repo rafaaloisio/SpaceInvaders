@@ -170,41 +170,47 @@ public class Jugador extends Personaje{
 
 	public void moverArr() 
 	{
-		if (miTablero.getCelda(x  , y - 1).cantEntidades() == 0) {
-			miTablero.getCelda(x, y).eliminarEntidad(this);
-			y = y - 1;
-			miTablero.getCelda(x, y).agregarEntidad(this);
-			miCelda = miTablero.getCelda(x, y);
-			entidadgrafica.actualizar(miCelda);		
-		}else { //else aceptar visitor, porque tuvo una colosi�n
-			System.out.println("Chocooooooo");
+		if (miTablero.getCelda(x  , y - 1) != null) {
+			if (miTablero.getCelda(x  , y - 1).cantEntidades() == 0) {
+				miTablero.getCelda(x, y).eliminarEntidad(this);
+				y = y - 1;
+				miTablero.getCelda(x, y).agregarEntidad(this);
+				miCelda = miTablero.getCelda(x, y);
+				entidadgrafica.actualizar(miCelda);		
+			}else { //else aceptar visitor, porque tuvo una colosi�n
+				System.out.println("Chocooooooo");
 
-			Iterator<Entidad> entidadesCelda = miTablero.getCelda(x, y-1).getIteratorEntidades();
-			while(entidadesCelda.hasNext()) {
-				System.out.println("HAY ENTIDADES");
-				entidadesCelda.next().aceptar(miVisitor);		
-			}
-		} 
+				Iterator<Entidad> entidadesCelda = miTablero.getCelda(x, y-1).getIteratorEntidades();
+				while(entidadesCelda.hasNext()) {
+					System.out.println("HAY ENTIDADES");
+					entidadesCelda.next().aceptar(miVisitor);		
+				}
+			} 
+		}
 
 	}
 
 	public void moverAb() 
 	{
-		if (miTablero.getCelda(x  , y + 1).cantEntidades() == 0) {
-			miTablero.getCelda(x, y).eliminarEntidad(this);
-			y = y + 1;
-			miTablero.getCelda(x, y).agregarEntidad(this);
-			miCelda = miTablero.getCelda(x, y);
-			entidadgrafica.actualizar(miCelda);		
-		}else { //else aceptar visitor, porque tuvo una colosi�n
-			System.out.println("Chocooooooo");
+		if (miTablero.getCelda(x  , y + 1) != null) {
+			if (miTablero.getCelda(x  , y + 1).cantEntidades() == 0) {
+				miTablero.getCelda(x, y).eliminarEntidad(this);
+				y = y + 1;
+				miTablero.getCelda(x, y).agregarEntidad(this);
+				miCelda = miTablero.getCelda(x, y);
+				entidadgrafica.actualizar(miCelda);		
+			}else { //else aceptar visitor, porque tuvo una colosi�n
+				System.out.println("Chocooooooo");
 
-			Iterator<Entidad> entidadesCelda = miTablero.getCelda(x, y+1).getIteratorEntidades();
-			while(entidadesCelda.hasNext()) {
-				System.out.println("HAY ENTIDADES");
-				entidadesCelda.next().aceptar(miVisitor);		
-			}
-		} 
+				Iterator<Entidad> entidadesCelda = miTablero.getCelda(x, y+1).getIteratorEntidades();
+				while(entidadesCelda.hasNext()) {
+					System.out.println("HAY ENTIDADES");
+					entidadesCelda.next().aceptar(miVisitor);
+
+				}
+
+			} 
+		}
 
 	}
 
