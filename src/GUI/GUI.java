@@ -107,7 +107,7 @@ public class GUI extends JFrame implements KeyListener {
 	public void eliminarEntidad(Entidad e) {
 		EntidadGrafica eg = e.getEntidadGrafica();
 		JLabel label = eg.getImagen();
-//		panelCentral.remove(label);
+		panelCentral.remove(label);
 		panelCentral.repaint();
 	}
 
