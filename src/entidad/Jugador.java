@@ -67,7 +67,6 @@ public class Jugador extends Personaje{
 			break;
 		}
 
-
 	}
 
 	public void moverIzq() 
@@ -181,11 +180,17 @@ public class Jugador extends Personaje{
 			}else { //else aceptar visitor, porque tuvo una colosi�n
 				System.out.println("Chocooooooo");
 
-				Iterator<Entidad> entidadesCelda = miTablero.getCelda(x, y-1).getIteratorEntidades();
-				while(entidadesCelda.hasNext()) {
-					System.out.println("HAY ENTIDADES");
-					entidadesCelda.next().aceptar(miVisitor);		
+				Entidad[] entidadesCelda = miTablero.getCelda(x, y-1).getArregloEntidades();
+				
+				for (int i=0; i < entidadesCelda.length; i++) {
+					if (entidadesCelda[i] != null) {
+						entidadesCelda[i].aceptar(miVisitor);
+					}
 				}
+//				while(entidadesCelda.hasNext()) {
+//					System.out.println("HAY ENTIDADES");
+//					entidadesCelda.next().aceptar(miVisitor);		
+//				}
 			} 
 		}
 

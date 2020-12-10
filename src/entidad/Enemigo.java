@@ -1,6 +1,6 @@
 package entidad;
 
-import java.util.Iterator;
+import java.util.Random;
 
 import tablero.Celda;
 import tablero.Tablero;
@@ -13,6 +13,8 @@ public abstract class Enemigo extends Personaje{
 	
 	public Enemigo(Tablero tablero, Celda celda,int vida,int golpe) {
 		super(tablero, celda);
+		this.vida = vida;
+		this.golpe = golpe;
 		seguirMoviendo = true;
 		this.tiempo = 3;
 		this.miVisitor = new VisitorEnemigo(this);
@@ -55,7 +57,7 @@ public abstract class Enemigo extends Personaje{
 			}
 			*/
 		
-			if (seguirMoviendo) {
+			if (true) {
 				//para que sigan moviendo todos los enemigos
 				miTablero.getCelda(x, y).eliminarEntidad(this);	
 				if( y + 1 == miTablero.getFilas()-1 )
@@ -113,6 +115,19 @@ public abstract class Enemigo extends Personaje{
 	
 	public void aceptar(Visitor visitor) {
 		visitor.visitEnemigo(this);
+	}
+	
+	public void morir() {
+		super.morir();
+		
+		Random r = new Random();
+		int n = r.nextInt(2);
+		
+		if (n == 1) {
+			Premio p = new PremioPocion(this.miTablero, this.miCelda);
+			miTablero.getLogica().agregarEntidad(p, miCelda);
+			p.mover();
+		}
 	}
 
 	

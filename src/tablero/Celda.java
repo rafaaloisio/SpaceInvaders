@@ -4,6 +4,8 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 import entidad.Entidad;
+import entidad.Premio;
+import entidad.PremioPocion;
 
 public class Celda 
 {
@@ -51,6 +53,7 @@ public class Celda
 	{
 		entidades.remove(entidad);
 		cantEntidades--;
+
 	}
 	
 	public LinkedList<Entidad> getEntidades()

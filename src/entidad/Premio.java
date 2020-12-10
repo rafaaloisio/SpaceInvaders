@@ -1,10 +1,9 @@
 package entidad;
 
-import java.util.Iterator;
-
 import tablero.Celda;
 import tablero.Tablero;
 import visitor.Visitor;
+import visitor.VisitorPremioPocion;
 
 public abstract class Premio extends Entidad {
 	
@@ -12,6 +11,9 @@ public abstract class Premio extends Entidad {
 
 	public Premio(Tablero tablero, Celda celda) {
 		super(tablero, celda);
+		seguirMoviendo = true;
+		this.miVisitor = new VisitorPremioPocion(this);
+		
 	}
 
 	protected abstract void hacerEfecto(Jugador j);
@@ -36,13 +38,19 @@ public abstract class Premio extends Entidad {
 				miCelda = miTablero.getCelda(x, y);
 				entidadgrafica.actualizar(miCelda);
 			}
+			else {
+				morir();
+			}
+			
 		}
 		else {
 			//colision
-			Iterator<Entidad> entidadesCelda = miTablero.getCelda(x, y+1).getIteratorEntidades();
-			while(entidadesCelda.hasNext()) {
-				System.out.println("HAY ENTIDADES");
-				entidadesCelda.next().aceptar(miVisitor);
+			Entidad[] entidadesCelda = miTablero.getCelda(x, y+1).getArregloEntidades();
+			
+			for (int i=0; i < entidadesCelda.length; i++) {
+				if (entidadesCelda[i] != null) {
+					entidadesCelda[i].aceptar(miVisitor);
+				}
 			}
 			
 			if (seguirMoviendo) {
