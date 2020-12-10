@@ -36,12 +36,20 @@ public class DisparoJugador extends Disparo {
 
 				System.out.println("COLISION DISPARO JUGADOR.");
 
-				Iterator<Entidad> entidadesCelda = miTablero.getCelda(x, y-1).getIteratorEntidades();
-				while(entidadesCelda.hasNext()) {
-					System.out.println("HAY ENTIDADES");
+				Entidad[] entidadesCelda = miTablero.getCelda(x, y-1).getArregloEntidades();
+				for (int i=0; i < entidadesCelda.length; i++) {
 
-					entidadesCelda.next().aceptar(miVisitor);		
+					if (entidadesCelda[i] != null) {
+						System.out.println("HAY ENTIDADES");
+						entidadesCelda[i].aceptar(miVisitor);
+					}
 				}
+				//esto tiraba la excepcion de concurrentmodification, lo otro aparentemente no
+//				while(entidadesCelda.hasNext()) {
+//					System.out.println("HAY ENTIDADES");
+//
+//					entidadesCelda.next().aceptar(miVisitor);		
+//				}
 
 				miTablero.getCelda(x, y).eliminarEntidad(this);
 

@@ -54,6 +54,10 @@ public class Tablero
 					Enemigo bet = new EnemigoBeta(this,tablero[i][j],300,30);
 					logica.agregarEntidad(bet, bet.getCelda());
 				}
+				if ((i==1 && j== 1)) {
+					Enemigo bet = new EnemigoBeta(this,tablero[i][j],300,30);
+					logica.agregarEntidad(bet, bet.getCelda());
+				}
 				
 				
 			}

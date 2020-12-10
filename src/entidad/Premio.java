@@ -46,7 +46,7 @@ public abstract class Premio extends Entidad {
 			}
 			
 			if (seguirMoviendo) {
-				//para que sigan moviendo todos los enemigos
+				//para que sigan moviendo todos los premios
 				miTablero.getCelda(x, y).eliminarEntidad(this);	
 				if (y+1 != miTablero.getFilas()-1) {
 					y= y+1;
