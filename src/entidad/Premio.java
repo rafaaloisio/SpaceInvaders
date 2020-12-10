@@ -20,13 +20,12 @@ public abstract class Premio extends Entidad {
 	
 	@Override
 	public void ejecutar() {
-//		hacerEfecto();
+		mover();
 	}
 
 	@Override
 	//el premio se va a mover hacia abajo hasta desaparecer por debajo del mapa
 	// o bien cuando colisione con el jugador (y ahi el jugador consume su efecto q va a depender del tipo de premio)
-	//para hacer este metodo me basé en el de Enemigo
 	public void mover() {
 		if (miTablero.getCelda(x, y+1).cantEntidades() == 0) {
 			

@@ -57,7 +57,7 @@ public abstract class Enemigo extends Personaje{
 			}
 			*/
 		
-			if (true) {
+			if (seguirMoviendo) {
 				//para que sigan moviendo todos los enemigos
 				miTablero.getCelda(x, y).eliminarEntidad(this);	
 				if( y + 1 == miTablero.getFilas()-1 )
