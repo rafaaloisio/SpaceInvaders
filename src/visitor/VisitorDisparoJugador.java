@@ -2,12 +2,13 @@ package visitor;
 
 import disparo.*;
 import entidad.Enemigo;
+import entidad.Entidad;
 import entidad.Jugador;
 import entidad.Premio;
 
 public class VisitorDisparoJugador implements Visitor {
 
-	protected Disparo miDisparo;
+	protected Entidad miDisparo;
 	
 	public VisitorDisparoJugador(Disparo d)
 	{
@@ -16,35 +17,36 @@ public class VisitorDisparoJugador implements Visitor {
 	
 	
 	@Override
-	public void visit(Enemigo e) {
+	public void visitEnemigo(Enemigo e) {
 		System.out.println("YO DISPARO JUGADOR CHOQUE CONTRA ENEMIGO, VIDA ENEMIGO: "+e.getVida());
-
-		e.recibirGolpe(miDisparo.getGolpe());
+		DisparoJugador dj = (DisparoJugador) miDisparo;
+		e.recibirGolpe(dj.getGolpe());
 		miDisparo.morir();
 			
 		System.out.println("VIDA ENEMIGO: "+e.getVida());
 	}
 
 	@Override
-	public void visit(Jugador j) {
+	public void visitJugador(Jugador j) {
+		j.morir();
 		System.out.println("YO DISPARO JUGADOR CHOQUE CONTRA JUGADOR");
 		
 	}
 
 	@Override
-	public void visit(DisparoJugador dj) {
+	public void visitDisparoJugador(DisparoJugador dj) {
 		System.out.println("YO DISPARO JUGADOR CHOQUE CONTRA DISPARO JUGADOR");		
 	}
 
 	@Override
-	public void visit(DisparoEnemigo de) {
-		//miDisparo.morir();
+	public void visitDisparoEnemigo(DisparoEnemigo de) {
+		miDisparo.morir();
 		System.out.println("YO DISPARO JUGADOR CHOQUE CONTRA DISPARO ENEMIGO");
 		
 		
 	}
 	
-	public void visit(Premio p) {
+	public void visitPremio(Premio p) {
 		System.out.println("YO DISPARO JUGADOR CHOQUE CONTRA PREMIO");
 		
 	}

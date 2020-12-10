@@ -1,42 +1,44 @@
 package visitor;
 
-import disparo.*;
+import disparo.DisparoEnemigo;
+import disparo.DisparoJugador;
 import entidad.Enemigo;
 import entidad.Entidad;
 import entidad.Jugador;
 import entidad.Premio;
 
-public class VisitorDisparoEnemigo implements Visitor {
+public class VisitorPremioPocion implements Visitor {
 
-	protected Entidad miDisparo;
+	protected Entidad miPremio;
 	
-	public VisitorDisparoEnemigo(Disparo d)
-	{
-		this.miDisparo = d;
+	public VisitorPremioPocion(Premio p) {
+		miPremio = p;
 	}
-	
 	
 	@Override
 	public void visitEnemigo(Enemigo e) {
+		
 	}
 
 	@Override
 	public void visitJugador(Jugador j) {
-		System.out.println("YO DISPARO ENEMIGO CHOQUE CONTRA JUGADOR");
-		DisparoEnemigo d = (DisparoEnemigo) miDisparo;
-		System.out.println("DAÑO CAUSADO: "+ d.getGolpe());
-		j.recibirGolpe(d.getGolpe());
+		//Premio choca con jugador, por ende se aplica el efecto
+		Premio p = (Premio) this.miPremio;
+		j.setVida(p.getGolpe());
+		
 	}
 
 	@Override
 	public void visitDisparoJugador(DisparoJugador dj) {
+		
 	}
 
 	@Override
 	public void visitDisparoEnemigo(DisparoEnemigo de) {
 		
 	}
-	
+
+	@Override
 	public void visitPremio(Premio p) {
 		
 	}

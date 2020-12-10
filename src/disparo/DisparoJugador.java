@@ -1,8 +1,5 @@
 package disparo;
 
-
-import java.util.Iterator;
-
 import entidad.*;
 import grafica.EntidadGraficaJugador;
 import tablero.*;
@@ -71,7 +68,7 @@ public class DisparoJugador extends Disparo {
 
 
 	public void aceptar(Visitor visitor) {
-		visitor.visit(this);
+		visitor.visitDisparoJugador(this);
 	}
 
 

@@ -57,7 +57,7 @@ public abstract class DisparoEnemigo extends Disparo {
 	}
 
 	public void aceptar(Visitor visitor) {
-		visitor.visit(this);
+		visitor.visitDisparoEnemigo(this);
 	}
 
 

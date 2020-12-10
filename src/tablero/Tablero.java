@@ -12,8 +12,6 @@ public class Tablero
 	protected int columnas;
 	protected Jugador jugador;
 	protected LinkedList<Enemigo> misEnemigos;
-
-
 	protected Logica logica;
 	
 	public Tablero(Logica logica)

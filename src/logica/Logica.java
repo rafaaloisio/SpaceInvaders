@@ -5,6 +5,7 @@ import java.util.concurrent.ConcurrentLinkedDeque;
 
 import GUI.GUI;
 import entidad.Entidad;
+import entidad.*;
 import hilos.HiloEntidades;
 import tablero.*;
 
@@ -57,7 +58,12 @@ public class Logica {
 	{
 		grafica.eliminarEntidad(e);
 		e.getCelda().eliminarEntidad(e);
-		misEntidades.remove(e);
+		Collection<Entidad> aremover = new ConcurrentLinkedDeque<Entidad>();
+		aremover.add(e);
+		misEntidades.removeAll(aremover);
+		
+//		Premio p = new PremioPocion(tablero, e.getCelda());
+//		grafica.graficarEntidad(p);
 	}
 
 	

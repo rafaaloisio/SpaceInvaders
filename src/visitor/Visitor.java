@@ -1,15 +1,16 @@
 package visitor;
 
-import disparo.*;
+import disparo.DisparoEnemigo;
+import disparo.DisparoJugador;
 import entidad.Enemigo;
 import entidad.Jugador;
 import entidad.Premio;
 
 public interface Visitor {
-
-	public void visit(Enemigo e);
-	public void visit(Jugador j);
-	public void visit(DisparoJugador dj);
-	public void visit(DisparoEnemigo de);
-	public void visit(Premio p);
+	
+	public void visitEnemigo(Enemigo e);
+	public void visitJugador(Jugador j);
+	public void visitDisparoJugador(DisparoJugador dj);
+	public void visitDisparoEnemigo(DisparoEnemigo de);
+	public void visitPremio(Premio p);
 }

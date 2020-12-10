@@ -8,9 +8,8 @@ import visitor.*;
 
 public abstract class Enemigo extends Personaje{
 	
-	
-	boolean seguirMoviendo;
-	int tiempo;
+	private boolean seguirMoviendo;
+	private int tiempo;
 	
 	public Enemigo(Tablero tablero, Celda celda,int vida,int golpe) {
 		super(tablero, celda);
@@ -39,11 +38,22 @@ public abstract class Enemigo extends Personaje{
 		}else
 		{ //entonces hay una colision
 			
-			Iterator<Entidad> entidadesCelda = miTablero.getCelda(x, y+1).getIteratorEntidades();
+			
+			Entidad[] entidadesCelda = miTablero.getCelda(x, y+1).getArregloEntidades();
+			
+			for (int i=0; i < entidadesCelda.length; i++) {
+				if (entidadesCelda[i] != null) {
+					System.out.println("HAY ENTIDADES");
+					entidadesCelda[i].aceptar(miVisitor);
+				}
+			}
+			
+			/*
 			while(entidadesCelda.hasNext()) {
 				System.out.println("HAY ENTIDADES");
 				entidadesCelda.next().aceptar(miVisitor);		
 			}
+			*/
 		
 			if (seguirMoviendo) {
 				//para que sigan moviendo todos los enemigos
@@ -102,7 +112,7 @@ public abstract class Enemigo extends Personaje{
 	}
 	
 	public void aceptar(Visitor visitor) {
-		visitor.visit(this);
+		visitor.visitEnemigo(this);
 	}
 
 	

@@ -11,7 +11,7 @@ import visitor.*;
 
 public class Jugador extends Personaje{
 
-
+	
 	public Jugador(Tablero miTablero, Celda celda, int vida, int golpe) {
 		super(miTablero, celda);
 		this.vida = vida;
@@ -25,7 +25,8 @@ public class Jugador extends Personaje{
 	@Override
 	public void morir() 
 	{
-		//super.morir();
+//		super.morir();
+//		System.err.println("EL AVIONCITO SE MURIO");
 	}
 
 	@Override
@@ -214,14 +215,13 @@ public class Jugador extends Personaje{
 
 	}
 
-
 	public Disparo crearDisparo() {
 
 		return new DisparoJugador(miTablero,miCelda,this.getGolpe());
 	}
 
 	public void aceptar(Visitor visitor) {
-		visitor.visit(this);
+		visitor.visitJugador(this);
 	}
 
 

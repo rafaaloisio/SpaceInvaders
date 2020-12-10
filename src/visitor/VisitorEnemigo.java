@@ -3,12 +3,13 @@ package visitor;
 import disparo.DisparoEnemigo;
 import disparo.DisparoJugador;
 import entidad.Enemigo;
+import entidad.Entidad;
 import entidad.Jugador;
 import entidad.Premio;
 
 public class VisitorEnemigo implements Visitor {
 
-	protected Enemigo miEnemigo;
+	protected Entidad miEnemigo;
 	
 	public VisitorEnemigo(Enemigo e)
 	{
@@ -16,27 +17,30 @@ public class VisitorEnemigo implements Visitor {
 	}
 	
 	@Override
-	public void visit(Enemigo e) {
+	public void visitEnemigo(Enemigo e) {
 		System.out.println("YO ENEMIGO CHOQUE CONTRA ENEMIGO");		
 	}
 
 	@Override
-	public void visit(Jugador j) {
+	public void visitJugador(Jugador j) {
 		System.out.println("YO ENEMIGO CHOQUE CONTRA JUGADOR");				
 	}
 
 	@Override
-	public void visit(DisparoJugador dj) {
+	public void visitDisparoJugador(DisparoJugador dj) {
+		Enemigo e = (Enemigo) miEnemigo;
+		e.recibirGolpe(dj.getGolpe());
+		dj.morir();
 		System.out.println("YO ENEMIGO CHOQUE CONTRA DISPARO JUGADOR");				
 	}
 
 	@Override
-	public void visit(DisparoEnemigo de) {
+	public void visitDisparoEnemigo(DisparoEnemigo de) {
 		System.out.println("YO ENEMIGO CHOQUE CONTRA DISPARO ENEMIGO");				
 	}
 
 	@Override
-	public void visit(Premio p) {
+	public void visitPremio(Premio p) {
 		System.out.println("YO ENEMIGO CHOQUE CONTRA PREMIO");
 		
 	}

@@ -4,10 +4,11 @@ import grafica.EntidadGraficaPremio;
 import tablero.Celda;
 import tablero.Tablero;
 
-public class RecuperarVida extends PremioPrecioso {
+public class PremioPocion extends PremioPrecioso {
 
-	public RecuperarVida(Tablero tablero, Celda celda) {
+	public PremioPocion(Tablero tablero, Celda celda) {
 		super(tablero, celda);
+		this.golpe = 100;
 		this.entidadgrafica = new EntidadGraficaPremio("/recursos/premios/cruz.png");
 		entidadgrafica.getImagen().setBounds(x, y, PIXEL, PIXEL);
 	}

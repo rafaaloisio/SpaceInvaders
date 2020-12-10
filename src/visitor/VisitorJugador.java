@@ -16,32 +16,37 @@ public class VisitorJugador implements Visitor {
 	}
 	
 	@Override
-	public void visit(Enemigo e) {
-		System.out.println("YO JUGADOR CHOQUE CONTRA ENEMIGO");				
+	public void visitEnemigo(Enemigo e) {
+		Jugador j = (Jugador) miJugador;
+		j.recibirGolpe(100);
+		j.morir();
+		System.err.println("YO JUGADOR CHOQUE CONTRA ENEMIGO");
 	}
 
 	@Override
-	public void visit(Jugador j) {
+	public void visitJugador(Jugador j) {
+		j.morir();
 		System.out.println("YO JUGADOR CHOQUE CONTRA JUGADOR");				
 		
 	}
 
 	@Override
-	public void visit(DisparoJugador dj) {
+	public void visitDisparoJugador(DisparoJugador dj) {
 		System.out.println("YO JUGADOR CHOQUE CONTRA DISPARO JUGADOR");				
 		
 	}
 
 	@Override
-	public void visit(DisparoEnemigo de) {
+	public void visitDisparoEnemigo(DisparoEnemigo de) {
 		System.out.println("YO JUGADOR CHOQUE CONTRA DISPARO ENEMIGO");				
 		
 	}
 	
-	public void visit(Premio p) {
+	public void visitPremio(Premio p) {
 		
 		System.out.println("YO JUGADOR CHOQUE CONTRA PREMIO");
 		//consumo del efecto del premio
+		//depende de si es un premio temporal o instantaneo
 		
 	}
 
