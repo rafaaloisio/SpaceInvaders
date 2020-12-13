@@ -1,8 +1,7 @@
 package logica;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.concurrent.ConcurrentLinkedDeque;
+
 
 import GUI.GUI;
 import entidad.Entidad;

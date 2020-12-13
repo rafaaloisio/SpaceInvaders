@@ -1,13 +1,13 @@
 package disparo;
 
-import grafica.EntidadGraficaBeta;
+import grafica.EntidadGraficaAlpha;
 import tablero.*;
 
 public class DisparoAlpha extends DisparoEnemigo{
 
 	public DisparoAlpha(Tablero miTablero, Celda miCelda, int golpe) {
 		super(miTablero, miCelda, golpe);
-		entidadgrafica = new EntidadGraficaBeta("/recursos/enemigos/disparo_alpha.png");
+		entidadgrafica = new EntidadGraficaAlpha("/recursos/enemigos/disparo_alpha.png");
 	
 	}
 
