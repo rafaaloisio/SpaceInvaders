@@ -2,6 +2,7 @@ package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -9,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 
 import entidad.Entidad;
@@ -17,6 +19,8 @@ import logica.Logica;
 import tablero.*;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
@@ -35,6 +39,7 @@ public class GUI extends JFrame implements KeyListener {
 	private FondoPanel panelPrincipal;
 	private JPanel panelCentral;
 	private Logica logica;
+	private JLabel texto,vida;
 
 	/**
 	 * Launch the application.
@@ -73,7 +78,15 @@ public class GUI extends JFrame implements KeyListener {
 		
 		JPanel panelSuperior = new JPanel();
 		panelSuperior.setBounds(0, 0, 100, 50);
-		panelSuperior.add(new JLabel("Vida: 100"));
+		
+		texto = new JLabel("Vida:");
+		texto.setFont(new Font("DejaVu Sans", Font.PLAIN, 20));
+		panelSuperior.add(texto);
+		
+		vida = new JLabel("500");
+		vida.setFont(new Font("DejaVu Sans", Font.PLAIN, 20));
+		panelSuperior.add(vida);
+		
 		panelSuperior.setOpaque(false);
 		panelPrincipal.add(panelSuperior, BorderLayout.NORTH);
 		
@@ -83,11 +96,7 @@ public class GUI extends JFrame implements KeyListener {
 		panelPrincipal.add(panelCentral);
 		
 		logica = new Logica(this);
-	
-		if(logica.isPerdi()) {
-			JOptionPane.showMessageDialog(panelPrincipal, "El jugador perdió por malo.", "La nave hizo boom", JOptionPane.ERROR_MESSAGE);
-
-		}
+		actualizarVida(vida);
 		
 	}
 	
@@ -143,6 +152,30 @@ public class GUI extends JFrame implements KeyListener {
 		
 	}
 	
-
 	
+	private void actualizarVida(JLabel v) {
+		
+		Timer timer = new Timer(250, new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				v.setText(""+logica.getTablero().getJugador().getVida());
+			}
+			
+			
+		});
+		
+		timer.start();
+		
+		if(logica.isPerdi()) {
+			
+			timer.stop();
+			
+			JOptionPane.showMessageDialog(panelPrincipal, "El jugador perdió por malo.", "La nave hizo boom", JOptionPane.ERROR_MESSAGE);
+
+		}
+		
+	}
 }
