@@ -31,7 +31,7 @@ public class Tablero
 				System.out.println("X: "+i+" Y: "+j);
 				
 				if(i==3 && j == 10) {
-					this.jugador = new Jugador(this,tablero[i][j],100,50);
+					this.jugador = new Jugador(this,tablero[i][j],500,50);
 					logica.agregarEntidad(jugador, jugador.getCelda());
 				}
 				
@@ -41,11 +41,13 @@ public class Tablero
 					logica.agregarEntidad(al, al.getCelda());
 				}
 				
+				
 				if((i==4 && j == 1))
 				{
 					Enemigo bet = new EnemigoBeta(this,tablero[i][j],300,30);
 					logica.agregarEntidad(bet, bet.getCelda());
 				}
+				
 				
 				if((i==5 && j == 0))
 				{
@@ -56,6 +58,7 @@ public class Tablero
 					Enemigo bet = new EnemigoBeta(this,tablero[i][j],300,30);
 					logica.agregarEntidad(bet, bet.getCelda());
 				}
+				
 				
 				
 			}

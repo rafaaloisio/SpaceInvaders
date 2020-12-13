@@ -8,14 +8,14 @@ import visitor.*;
 
 public abstract class Enemigo extends Personaje{
 	
-	private boolean seguirMoviendo;
+	
 	private int tiempo;
 	
 	public Enemigo(Tablero tablero, Celda celda,int vida,int golpe) {
 		super(tablero, celda);
 		this.vida = vida;
 		this.golpe = golpe;
-		seguirMoviendo = true;
+		
 		this.tiempo = 3;
 		this.miVisitor = new VisitorEnemigo(this);
 	}
@@ -38,69 +38,39 @@ public abstract class Enemigo extends Personaje{
 			miCelda = miTablero.getCelda(x, y);
 			entidadgrafica.actualizar(miCelda);		
 		}else
-		{ //entonces hay una colision
+			{ 
+				Entidad[] entidadesCelda = miTablero.getCelda(x, y+1).getArregloEntidades();
+				
+				for (int i=0; i < entidadesCelda.length; i++) {
+					if (entidadesCelda[i] != null) {
+						entidadesCelda[i].aceptar(miVisitor);
+					}
+				}
+				
 			
-			
-			Entidad[] entidadesCelda = miTablero.getCelda(x, y+1).getArregloEntidades();
-			
-			for (int i=0; i < entidadesCelda.length; i++) {
-				if (entidadesCelda[i] != null) {
-					System.out.println("HAY ENTIDADES");
-					entidadesCelda[i].aceptar(miVisitor);
+				if (seguirMoviendo) {
+	
+					miTablero.getCelda(x, y).eliminarEntidad(this);	
+					
+					if( y + 1 == miTablero.getFilas()-1 )
+						y = 0;
+					else
+						y = y + 1;
+					
+					miTablero.getCelda(x, y).agregarEntidad(this);
+					miCelda = miTablero.getCelda(x, y);
+					entidadgrafica.actualizar(miCelda);		
+					
 				}
 			}
-			
-			/*
-			while(entidadesCelda.hasNext()) {
-				System.out.println("HAY ENTIDADES");
-				entidadesCelda.next().aceptar(miVisitor);		
-			}
-			*/
-		
-			if (seguirMoviendo) {
-				//para que sigan moviendo todos los enemigos
-				miTablero.getCelda(x, y).eliminarEntidad(this);	
-				if( y + 1 == miTablero.getFilas()-1 )
-					y = 0;
-				else
-					y = y + 1;
-				
-				miTablero.getCelda(x, y).agregarEntidad(this);
-				miCelda = miTablero.getCelda(x, y);
-				entidadgrafica.actualizar(miCelda);		
-			}
-		}
 		
 	}
 	
-	public void seguirMoviendo(boolean seguirMoviendo) {
-		this.seguirMoviendo = seguirMoviendo;
-	}
 	
 	public void ejecutar()
 	{
 		if (tiempo == 5) {
-			/*
-			
-			
-			if (x < miTablero.getColumnas()) {
-				
-				for (int i = 0; i < miTablero.getFilas() ; i++) {
-					Entidad [] entidadesArreglo = miTablero.getCelda(miTablero.getColumnas() - i, y).getArregloEntidades();
-					int pos=0;
-					
-					
-					
-					while(entidadesArreglo[pos]!=null) {
-						entidadesArreglo[pos].aceptar(miVisitor);
-		                pos++;					
-					}
-					
-					
-				}
-			
-			
-			} */
+
 		}
 		
 		tiempo--;
@@ -109,7 +79,7 @@ public abstract class Enemigo extends Personaje{
 			tiempo = 5;
 			mover();
 			disparar(this);
-			this.seguirMoviendo(true);
+			setSeguirMoviendo(true);
 		}
 	}
 	
@@ -118,6 +88,7 @@ public abstract class Enemigo extends Personaje{
 	}
 	
 	public void morir() {
+		
 		super.morir();
 		
 		Random r = new Random();

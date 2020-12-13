@@ -25,14 +25,30 @@ public class Jugador extends Personaje{
 	@Override
 	public void morir() 
 	{
-//		super.morir();
-//		System.err.println("EL AVIONCITO SE MURIO");
+		super.morir();
+		
+		System.err.println("EL JUGADOR PERDIÓ.");
+		
+		//detengo el hilo al perder
+		miTablero.getLogica().setPerdi(true);
+		
 	}
 
 	@Override
 	public void ejecutar() 
 	{
-
+		if(miTablero.getCelda(x, y).cantEntidades()>1)
+		{	
+			System.out.println("ME FIJE.");
+			
+			Entidad[] entidadesCelda = miTablero.getCelda(x, y).getArregloEntidades();
+			
+			for (int i=0; i < entidadesCelda.length; i++) {
+				if (entidadesCelda[i] != null) {
+					entidadesCelda[i].aceptar(miVisitor);
+				}
+			}
+		}	
 	} 
 
 	public void mover() 
@@ -93,15 +109,16 @@ public class Jugador extends Personaje{
 			miTablero.getCelda(x, y).agregarEntidad(this);
 			miCelda = miTablero.getCelda(x, y);
 			entidadgrafica.actualizar(miCelda);		
-		}else { //else aceptar visitor, porque tuvo una colision
-			System.out.println("Chocooooooo");
-
-			Iterator<Entidad> entidadesCelda = miTablero.getCelda(x-1, y).getIteratorEntidades();
-			while(entidadesCelda.hasNext()) {
-				System.out.println("HAY ENTIDADES");
-				entidadesCelda.next().aceptar(miVisitor);		
+		}else { 
+			
+			Entidad[] entidadesCelda = miTablero.getCelda(x-1, y).getArregloEntidades();
+			
+			for (int i=0; i < entidadesCelda.length; i++) {
+				if (entidadesCelda[i] != null) {
+					entidadesCelda[i].aceptar(miVisitor);
+				}
 			}
-
+			
 			miTablero.getCelda(x-1, y).eliminarEntidad(this);
 
 			if(x == 0)
@@ -127,8 +144,6 @@ public class Jugador extends Personaje{
 		if(x == miTablero.getColumnas()-1)
 			x = -1;
 
-		System.out.println("X: "+x);
-
 		if (miTablero.getCelda(x + 1 , y).cantEntidades() == 0) {
 
 			miTablero.getCelda(x+1, y).eliminarEntidad(this);
@@ -143,13 +158,14 @@ public class Jugador extends Personaje{
 			miCelda = miTablero.getCelda(x, y);
 			entidadgrafica.actualizar(miCelda);	
 
-		}else { //else aceptar visitor, porque tuvo una colosi�n
-			System.out.println("Chocooooooo");
+		}else { 
 
-			Iterator<Entidad> entidadesCelda = miTablero.getCelda(x+1, y).getIteratorEntidades();
-			while(entidadesCelda.hasNext()) {
-				System.out.println("HAY ENTIDADES");
-				entidadesCelda.next().aceptar(miVisitor);		
+			Entidad[] entidadesCelda = miTablero.getCelda(x+1, y).getArregloEntidades();
+			
+			for (int i=0; i < entidadesCelda.length; i++) {
+				if (entidadesCelda[i] != null) {
+					entidadesCelda[i].aceptar(miVisitor);
+				}
 			}
 
 			miTablero.getCelda(x+1, y).eliminarEntidad(this);
@@ -177,8 +193,7 @@ public class Jugador extends Personaje{
 				miTablero.getCelda(x, y).agregarEntidad(this);
 				miCelda = miTablero.getCelda(x, y);
 				entidadgrafica.actualizar(miCelda);		
-			}else { //else aceptar visitor, porque tuvo una colosi�n
-				System.out.println("Chocooooooo");
+			}else { 
 
 				Entidad[] entidadesCelda = miTablero.getCelda(x, y-1).getArregloEntidades();
 				
@@ -187,10 +202,7 @@ public class Jugador extends Personaje{
 						entidadesCelda[i].aceptar(miVisitor);
 					}
 				}
-//				while(entidadesCelda.hasNext()) {
-//					System.out.println("HAY ENTIDADES");
-//					entidadesCelda.next().aceptar(miVisitor);		
-//				}
+				
 			} 
 		}
 
@@ -205,14 +217,14 @@ public class Jugador extends Personaje{
 				miTablero.getCelda(x, y).agregarEntidad(this);
 				miCelda = miTablero.getCelda(x, y);
 				entidadgrafica.actualizar(miCelda);		
-			}else { //else aceptar visitor, porque tuvo una colosi�n
-				System.out.println("Chocooooooo");
-
-				Iterator<Entidad> entidadesCelda = miTablero.getCelda(x, y+1).getIteratorEntidades();
-				while(entidadesCelda.hasNext()) {
-					System.out.println("HAY ENTIDADES");
-					entidadesCelda.next().aceptar(miVisitor);
-
+			}else {
+				
+				Entidad[] entidadesCelda = miTablero.getCelda(x, y-1).getArregloEntidades();
+				
+				for (int i=0; i < entidadesCelda.length; i++) {
+					if (entidadesCelda[i] != null) {
+						entidadesCelda[i].aceptar(miVisitor);
+					}
 				}
 
 			} 
@@ -220,9 +232,12 @@ public class Jugador extends Personaje{
 
 	}
 
+	//crea disparo en la siguiente celda
 	public Disparo crearDisparo() {
 
-		return new DisparoJugador(miTablero,miCelda,this.getGolpe());
+		return new DisparoJugador(miTablero,miTablero.getCelda(miCelda.getX(),miCelda.getY()-1),this.getGolpe());
+		
+		
 	}
 
 	public void aceptar(Visitor visitor) {

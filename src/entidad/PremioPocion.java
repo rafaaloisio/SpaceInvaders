@@ -9,7 +9,7 @@ public class PremioPocion extends PremioPrecioso {
 	public PremioPocion(Tablero tablero, Celda celda) {
 		super(tablero, celda);
 		this.golpe = 100;
-		this.entidadgrafica = new EntidadGraficaPremio("/recursos/premios/cruz.png");
+		this.entidadgrafica = new EntidadGraficaPremio("/recursos/premios/pocion_vida.png");
 		entidadgrafica.getImagen().setBounds(x, y, PIXEL, PIXEL);
 	}
 

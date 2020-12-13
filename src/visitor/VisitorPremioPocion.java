@@ -9,7 +9,7 @@ import entidad.Premio;
 
 public class VisitorPremioPocion implements Visitor {
 
-	protected Entidad miPremio;
+	protected Premio miPremio;
 	
 	public VisitorPremioPocion(Premio p) {
 		miPremio = p;
@@ -22,9 +22,7 @@ public class VisitorPremioPocion implements Visitor {
 
 	@Override
 	public void visitJugador(Jugador j) {
-		//Premio choca con jugador, por ende se aplica el efecto
-		Premio p = (Premio) this.miPremio;
-		j.setVida(p.getGolpe());
+
 		
 	}
 

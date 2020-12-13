@@ -25,6 +25,10 @@ public abstract class EntidadGrafica {
 		this.imagen = imagen;
 	}
 	
-	public abstract void actualizar(Celda miCelda);
+	public void actualizar(Celda miCelda)
+	{
+		this.getImagen().setLocation(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL );
+
+	}
 
 }

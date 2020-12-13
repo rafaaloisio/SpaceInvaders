@@ -8,7 +8,7 @@ import entidad.Premio;
 
 public class VisitorDisparoJugador implements Visitor {
 
-	protected Entidad miDisparo;
+	protected Disparo miDisparo;
 	
 	public VisitorDisparoJugador(Disparo d)
 	{
@@ -18,36 +18,46 @@ public class VisitorDisparoJugador implements Visitor {
 	
 	@Override
 	public void visitEnemigo(Enemigo e) {
-		System.out.println("YO DISPARO JUGADOR CHOQUE CONTRA ENEMIGO, VIDA ENEMIGO: "+e.getVida());
-		DisparoJugador dj = (DisparoJugador) miDisparo;
-		e.recibirGolpe(dj.getGolpe());
+		
+		System.out.println("YO DISPARO JUGADOR - ENEMIGO");
+		e.recibirGolpe(miDisparo.getGolpe());
+		
+		if(e.getVida()<=0)
+		{
+			e.getCelda().eliminarEntidad(e);
+			System.err.println("ENEMIGO MUERTO: "+e.getVida());
+		}
+
+		miDisparo.getCelda().eliminarEntidad(miDisparo);
+
 		miDisparo.morir();
-			
-		System.out.println("VIDA ENEMIGO: "+e.getVida());
+		
+		System.out.println("Vida enemigo: "+e.getVida());
+
+		
 	}
 
 	@Override
 	public void visitJugador(Jugador j) {
-		j.morir();
-		System.out.println("YO DISPARO JUGADOR CHOQUE CONTRA JUGADOR");
+		
+		//sin interacción
 		
 	}
 
 	@Override
 	public void visitDisparoJugador(DisparoJugador dj) {
-		System.out.println("YO DISPARO JUGADOR CHOQUE CONTRA DISPARO JUGADOR");		
+		//sin interacción
 	}
 
 	@Override
 	public void visitDisparoEnemigo(DisparoEnemigo de) {
-		miDisparo.morir();
-		System.out.println("YO DISPARO JUGADOR CHOQUE CONTRA DISPARO ENEMIGO");
-		
+		//sin interacción
+
 		
 	}
 	
 	public void visitPremio(Premio p) {
-		System.out.println("YO DISPARO JUGADOR CHOQUE CONTRA PREMIO");
+		//sin interacción
 		
 	}
 

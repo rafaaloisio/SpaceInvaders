@@ -11,7 +11,6 @@ public class DisparoJugador extends Disparo {
 		super(miTablero, miCelda, golpe);
 		this.miVisitor = new VisitorDisparoJugador(this);
 		entidadgrafica = new EntidadGraficaJugador("/recursos/jugador/disparo.png");
-		entidadgrafica.getImagen().setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);
 	}
 
 	public void ejecutar() {
@@ -21,14 +20,16 @@ public class DisparoJugador extends Disparo {
 	public void mover() {
 
 		if (y == 0) {
+			miTablero.getCelda(x, y).eliminarEntidad(this);
 			morir();
 		} else {
 			if (miTablero.getCelda(x, y-1).cantEntidades() == 0) {
+				
 				miTablero.getCelda(x, y).eliminarEntidad(this);
 				y = y - 1;
 				miTablero.getCelda(x, y).agregarEntidad(this);
-				miCelda = miTablero.getCelda(x, y);
-				entidadgrafica.getImagen().setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);
+				entidadgrafica.actualizar(miTablero.getCelda(x, y));
+				
 			} else {
 
 				System.out.println("COLISION DISPARO JUGADOR.");
@@ -41,20 +42,14 @@ public class DisparoJugador extends Disparo {
 						entidadesCelda[i].aceptar(miVisitor);
 					}
 				}
-				//esto tiraba la excepcion de concurrentmodification, lo otro aparentemente no
-//				while(entidadesCelda.hasNext()) {
-//					System.out.println("HAY ENTIDADES");
-//
-//					entidadesCelda.next().aceptar(miVisitor);		
-//				}
+			
 
 				miTablero.getCelda(x, y).eliminarEntidad(this);
 
 				if (seguirMoviendo) {
 					y = y - 1;
 					miTablero.getCelda(x, y).agregarEntidad(this);
-					miCelda = miTablero.getCelda(x, y);
-					entidadgrafica.getImagen().setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);
+					entidadgrafica.actualizar(miTablero.getCelda(x, y));
 				}
 			}
 		}

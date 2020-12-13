@@ -9,7 +9,7 @@ import entidad.Premio;
 
 public class VisitorEnemigo implements Visitor {
 
-	protected Entidad miEnemigo;
+	protected Enemigo miEnemigo;
 	
 	public VisitorEnemigo(Enemigo e)
 	{
@@ -28,10 +28,9 @@ public class VisitorEnemigo implements Visitor {
 
 	@Override
 	public void visitDisparoJugador(DisparoJugador dj) {
-		Enemigo e = (Enemigo) miEnemigo;
-		e.recibirGolpe(dj.getGolpe());
+		miEnemigo.recibirGolpe(dj.getGolpe());
 		dj.morir();
-		System.out.println("YO ENEMIGO CHOQUE CONTRA DISPARO JUGADOR");				
+		System.out.println("**YO ENEMIGO CHOQUE CONTRA DISPARO JUGADOR");				
 	}
 
 	@Override

@@ -8,7 +8,7 @@ import entidad.Premio;
 
 public class VisitorDisparoEnemigo implements Visitor {
 
-	protected Entidad miDisparo;
+	protected Disparo miDisparo;
 	
 	public VisitorDisparoEnemigo(Disparo d)
 	{
@@ -18,26 +18,39 @@ public class VisitorDisparoEnemigo implements Visitor {
 	
 	@Override
 	public void visitEnemigo(Enemigo e) {
+		System.out.println("YO DISPARO ENEMIGO - ENEMIGO");
+
 	}
 
 	@Override
 	public void visitJugador(Jugador j) {
-		System.out.println("YO DISPARO ENEMIGO CHOQUE CONTRA JUGADOR");
-		DisparoEnemigo d = (DisparoEnemigo) miDisparo;
-		System.out.println("DAÑO CAUSADO: "+ d.getGolpe());
-		j.recibirGolpe(d.getGolpe());
+		
+		System.out.println("YO DISPARO ENEMIGO - JUGADOR");
+		/*
+		j.recibirGolpe(miDisparo.getGolpe());
+		miDisparo.morir();
+		
+		System.out.println("Vida JUGADOR: "+j.getVida());
+	*/
+	
 	}
 
 	@Override
 	public void visitDisparoJugador(DisparoJugador dj) {
+		//System.out.println("YO DISPARO ENEMIGO - DISPARO JUGADOR");
+
 	}
 
 	@Override
 	public void visitDisparoEnemigo(DisparoEnemigo de) {
+		System.out.println("YO DISPARO ENEMIGO - DISPARO ENEMIGO");
+
 		
 	}
 	
 	public void visitPremio(Premio p) {
+		System.out.println("YO DISPARO ENEMIGO - PREMIO");
+
 		
 	}
 

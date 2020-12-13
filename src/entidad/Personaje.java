@@ -11,9 +11,9 @@ public abstract class Personaje extends Entidad {
 	
 
 	public void recibirGolpe(int golpe) {
-		vida = vida - golpe;
+		this.vida = vida - golpe;
 		if (vida <= 0) {
-			morir();
+			this.morir();
 		}
 	}
 	

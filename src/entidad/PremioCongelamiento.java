@@ -9,7 +9,7 @@ public class PremioCongelamiento extends PremioTemporal {
 	public PremioCongelamiento(Tablero tablero, Celda celda) {
 		super(tablero, celda);
 		//falta ponerle un nuevo sprite
-		this.entidadgrafica = new EntidadGraficaPremio("/recursos/premios/cruz.png");
+		this.entidadgrafica = new EntidadGraficaPremio("/recursos/premios/pocion_hielo.png");
 		entidadgrafica.getImagen().setBounds(x, y, PIXEL, PIXEL);
 	}
 

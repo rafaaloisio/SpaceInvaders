@@ -16,7 +16,10 @@ public abstract class Entidad {
 	protected int y;
 	protected int golpe;
 	protected int vida;
+	protected boolean seguirMoviendo;
 	
+
+
 	protected Visitor miVisitor;
 	
 	public Entidad(Tablero tablero, Celda celda)
@@ -25,13 +28,19 @@ public abstract class Entidad {
 		this.y = celda.getY();
 		miCelda = celda;
 		miTablero = tablero;
+		seguirMoviendo = true;
+		
 	}
 	
+	public void setSeguirMoviendo(boolean b) {
+		seguirMoviendo = b;
+	}
 
 	/**
 	 * La entidad muere
 	 */
 	public void morir() {
+		
 		miTablero.getLogica().eliminarEntidad(this);
 	}
 	/**
@@ -105,5 +114,7 @@ public abstract class Entidad {
 	public void setEntidadGrafica(EntidadGrafica e) {
 		this.entidadgrafica = e;
 	}
+	
+
 	
 }

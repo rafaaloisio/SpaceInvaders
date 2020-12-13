@@ -1,5 +1,6 @@
 package tablero;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -16,6 +17,7 @@ public class Celda
 	protected Tablero tablero;
 	
 	protected LinkedList<Entidad> entidades;
+
 	protected int cantEntidades;
 	
 	public Celda (Tablero tablero, int x, int y) 
@@ -25,6 +27,7 @@ public class Celda
 		this.y = y;
 		
 		entidades = new LinkedList<Entidad>();
+	
 		cantEntidades=0;
 		
 	}
@@ -45,16 +48,32 @@ public class Celda
 	
 	public void agregarEntidad(Entidad e) 
 	{
-	  entidades.add(e);
-	  cantEntidades++;
+		
+
+	  boolean agrego = entidades.add(e);
+		
+	  if(agrego){
+			cantEntidades++;
+			System.out.println("AGREGUE: Entidades en celda ("+x+","+y+") :"+cantEntidades);
+		}
+		
+	
 	}
 	
 	public void eliminarEntidad(Entidad entidad) 
 	{
-		entidades.remove(entidad);
-		cantEntidades--;
-
+		
+		boolean elimino = entidades.remove(entidad);
+		
+		if(elimino) {
+			cantEntidades--;
+			System.out.println("ELIMINE: Entidades en celda ("+x+","+y+") :"+cantEntidades);
+		}
+		else
+			System.out.println("NO ELIMINO.ELEMENTOS: "+cantEntidades);
+		
 	}
+	
 	
 	public LinkedList<Entidad> getEntidades()
 	{
@@ -70,6 +89,7 @@ public class Celda
 		  entidadesArreglo[pos]=e;
 		  pos++;
 		}
+		
 		
 		return entidadesArreglo;
 	}

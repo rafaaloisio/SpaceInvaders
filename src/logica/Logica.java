@@ -1,5 +1,6 @@
 package logica;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
@@ -11,21 +12,26 @@ import tablero.*;
 
 public class Logica {
 
-	protected Collection<Entidad> misEntidades;
+	protected ArrayList<Entidad> misEntidades;
 	
 	protected HiloEntidades hiloEntidades;
 	protected GUI grafica;
 
 	protected Tablero tablero;
 	
+	protected boolean perdi;
 
 	public Logica(GUI grafica) 
 	{
 		this.grafica = grafica;
-		misEntidades = new ConcurrentLinkedDeque<Entidad>();
+		misEntidades = new ArrayList<Entidad>();
 
 		this.tablero = new Tablero(this);
+		
+		perdi = false;
+		
 		//cargarOleada();
+		
 		crearHilos();
 	}
 	
@@ -39,28 +45,36 @@ public class Logica {
 	
 	public void ejecutarEntidades() 
 	{
-		for (Entidad e : misEntidades) {
-			e.ejecutar();
+		
+		for (int i = 0; i<misEntidades.size();i++) {
+			misEntidades.get(i).ejecutar();
 		}
+		
+	
 	}
 	
 	
 	public void agregarEntidad(Entidad e, Celda celda) 
 	{
-		misEntidades.add(e);
+		grafica.graficarEntidad(e);
+		
 		celda.agregarEntidad(e);
 		e.setCelda(celda);
-		grafica.graficarEntidad(e);
+		
+		misEntidades.add(e);
 	}
 
 	
 	public void eliminarEntidad(Entidad e) 
 	{
+		//cuando anden las oleadas, hay que eliminar de misEnemigos de tablero tambien
+		
 		grafica.eliminarEntidad(e);
+		
 		e.getCelda().eliminarEntidad(e);
-		Collection<Entidad> aremover = new ConcurrentLinkedDeque<Entidad>();
-		aremover.add(e);
-		misEntidades.removeAll(aremover);
+		
+		misEntidades.remove(e);
+		
 		
 //		Premio p = new PremioPocion(tablero, e.getCelda());
 //		grafica.graficarEntidad(p);
@@ -88,6 +102,15 @@ public class Logica {
 	public void setTablero(Tablero tablero) 
 	{
 		this.tablero = tablero;
+	}
+	
+	public boolean isPerdi() {
+		return perdi;
+	}
+
+
+	public void setPerdi(boolean perdi) {
+		this.perdi = perdi;
 	}
 	
 }

@@ -7,6 +7,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -44,9 +45,12 @@ public class GUI extends JFrame implements KeyListener {
 				try {
 					GUI frame = new GUI();
 					frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				
+				
 			}
 		});
 	}
@@ -79,8 +83,11 @@ public class GUI extends JFrame implements KeyListener {
 		panelPrincipal.add(panelCentral);
 		
 		logica = new Logica(this);
-		
+	
+		if(logica.isPerdi()) {
+			JOptionPane.showMessageDialog(panelPrincipal, "El jugador perdió por malo.", "La nave hizo boom", JOptionPane.ERROR_MESSAGE);
 
+		}
 		
 	}
 	
@@ -109,6 +116,9 @@ public class GUI extends JFrame implements KeyListener {
 		JLabel label = eg.getImagen();
 		panelCentral.remove(label);
 		panelCentral.repaint();
+		
+
+		
 	}
 
 	@Override
@@ -119,9 +129,12 @@ public class GUI extends JFrame implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		logica.getTablero().getJugador().mover(e.getKeyCode());
-		System.out.println(e.getKeyCode());
-    	
+		
+		if(!logica.isPerdi())
+		{
+			logica.getTablero().getJugador().mover(e.getKeyCode());
+			System.out.println(e.getKeyCode());
+		}
 	}
 
 	@Override

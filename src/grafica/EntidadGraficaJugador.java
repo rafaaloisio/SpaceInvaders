@@ -9,7 +9,5 @@ public class EntidadGraficaJugador extends EntidadGrafica {
 		
 	}
 
-	public void actualizar(Celda miCelda) {
-		this.imagen.setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);
-	}
+
 }
