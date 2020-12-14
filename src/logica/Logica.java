@@ -55,12 +55,11 @@ public class Logica {
 	
 	public void agregarEntidad(Entidad e, Celda celda) 
 	{
-		grafica.graficarEntidad(e);
-		
+		misEntidades.add(e);
 		celda.agregarEntidad(e);
 		e.setCelda(celda);
+		grafica.graficarEntidad(e);
 		
-		misEntidades.add(e);
 	}
 
 	
@@ -69,14 +68,10 @@ public class Logica {
 		//cuando anden las oleadas, hay que eliminar de misEnemigos de tablero tambien
 		
 		grafica.eliminarEntidad(e);
-		
 		e.getCelda().eliminarEntidad(e);
 		
+		
 		misEntidades.remove(e);
-		
-		
-//		Premio p = new PremioPocion(tablero, e.getCelda());
-//		grafica.graficarEntidad(p);
 	}
 
 	

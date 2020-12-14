@@ -54,7 +54,7 @@ public class Celda
 		
 	  if(agrego){
 			cantEntidades++;
-			System.out.println("AGREGUE: Entidades en celda ("+x+","+y+") :"+cantEntidades);
+//			System.out.println("AGREGUE: Entidades en celda ("+x+","+y+") :"+cantEntidades);
 		}
 		
 	
@@ -67,11 +67,13 @@ public class Celda
 		
 		if(elimino) {
 			cantEntidades--;
-			System.out.println("ELIMINE: Entidades en celda ("+x+","+y+") :"+cantEntidades);
+//			System.out.println("ELIMINE: Entidades en celda ("+x+","+y+") :"+cantEntidades);
 		}
-		else
-			System.out.println("NO ELIMINO.ELEMENTOS: "+cantEntidades);
-		
+//		else
+//			System.out.println("NO ELIMINO.ELEMENTOS: "+cantEntidades);
+		if (cantEntidades<0) {
+			this.cantEntidades = 0;
+		}
 	}
 	
 	
@@ -82,7 +84,7 @@ public class Celda
 	
 	public Entidad[] getArregloEntidades()
 	{
-		Entidad [] entidadesArreglo = new Entidad[100];
+		Entidad [] entidadesArreglo = new Entidad[10];
 		int pos=0;
 		
 		for(Entidad e: entidades) {

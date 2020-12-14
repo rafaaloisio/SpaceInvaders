@@ -1,9 +1,3 @@
-/entidad/
-/logica/
-/tablero/
 /disparo/
+/entidad/
 /visitor/
-/grafica/
-/hilos/
-/recursos/
-/GUI/

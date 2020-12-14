@@ -5,6 +5,7 @@ import entidad.Enemigo;
 import entidad.Entidad;
 import entidad.Jugador;
 import entidad.Premio;
+import entidad.PremioPocion;
 
 public class VisitorDisparoEnemigo implements Visitor {
 
@@ -48,10 +49,8 @@ public class VisitorDisparoEnemigo implements Visitor {
 		
 	}
 	
-	public void visitPremio(Premio p) {
+	public void visitPremioPocion(Premio p) {
 		System.out.println("YO DISPARO ENEMIGO - PREMIO");
-
-		
 	}
 
 }

@@ -16,6 +16,6 @@ public class PremioPocion extends PremioPrecioso {
 	@Override
 	protected void hacerEfecto(Jugador j) {
 
-		//j.setVida(MAXIMA_VIDA);
+		this.aceptar(this.miVisitor);
 	}
 }

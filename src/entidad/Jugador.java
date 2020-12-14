@@ -37,18 +37,18 @@ public class Jugador extends Personaje{
 	@Override
 	public void ejecutar() 
 	{
-		if(miTablero.getCelda(x, y).cantEntidades()>1)
-		{	
-			System.out.println("ME FIJE.");
-			
-			Entidad[] entidadesCelda = miTablero.getCelda(x, y).getArregloEntidades();
-			
-			for (int i=0; i < entidadesCelda.length; i++) {
-				if (entidadesCelda[i] != null) {
-					entidadesCelda[i].aceptar(miVisitor);
-				}
-			}
-		}	
+//		if(miTablero.getCelda(x, y).cantEntidades()>1)
+//		{	
+//			System.out.println("ME FIJE.");
+//			
+//			Entidad[] entidadesCelda = miTablero.getCelda(x, y).getArregloEntidades();
+//			
+//			for (int i=0; i < entidadesCelda.length; i++) {
+//				if (entidadesCelda[i] != null) {
+//					entidadesCelda[i].aceptar(miVisitor);
+//				}
+//			}
+//		}	
 	} 
 
 	public void mover() 
@@ -87,99 +87,46 @@ public class Jugador extends Personaje{
 
 	public void moverIzq() 
 	{
-
-		//hace esta comprobaci�n para despues en el else, controlar la colisi�n
-
-
-
-		if(x == 0)
-			x = miTablero.getColumnas();
-
-
-		if ( miTablero.getCelda(x - 1 , y).cantEntidades() == 0) {
-
-
-			miTablero.getCelda(x-1, y).eliminarEntidad(this);
-
-			if(x == 0)
-				x = miTablero.getColumnas()-1;
-			else
+		if (miTablero.getCelda(x-1, y) != null) {
+			if (miTablero.getCelda(x-1, y).cantEntidades() == 0) {
+				miTablero.getCelda(x, y).eliminarEntidad(this);
 				x = x - 1;
+				miTablero.getCelda(x, y).agregarEntidad(this);
+				miCelda = miTablero.getCelda(x, y);
+				entidadgrafica.actualizar(miCelda);		
+			}else { //else aceptar visitor, porque tuvo una colosi�n
 
-			miTablero.getCelda(x, y).agregarEntidad(this);
-			miCelda = miTablero.getCelda(x, y);
-			entidadgrafica.actualizar(miCelda);		
-		}else { 
-			
-			Entidad[] entidadesCelda = miTablero.getCelda(x-1, y).getArregloEntidades();
-			
-			for (int i=0; i < entidadesCelda.length; i++) {
-				if (entidadesCelda[i] != null) {
-					entidadesCelda[i].aceptar(miVisitor);
+				Entidad[] entidadesCelda = miTablero.getCelda(x-1, y).getArregloEntidades();
+				for (int i=0; i < entidadesCelda.length; i++) {
+					if (entidadesCelda[i] != null) {
+						System.err.println(entidadesCelda[i].toString());
+						entidadesCelda[i].aceptar(miVisitor);
+					}
 				}
-			}
-			
-			miTablero.getCelda(x-1, y).eliminarEntidad(this);
-
-			if(x == 0)
-				x = miTablero.getColumnas()-1;
-			else
-				x = x - 1;
-
-			miTablero.getCelda(x, y).agregarEntidad(this);
-			miCelda = miTablero.getCelda(x, y);
-			entidadgrafica.getImagen().setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);
-
-
-
+			} 
 		}
-
-
 	}
 
 	public void moverDer() 
 	{
-
-
-		if(x == miTablero.getColumnas()-1)
-			x = -1;
-
-		if (miTablero.getCelda(x + 1 , y).cantEntidades() == 0) {
-
-			miTablero.getCelda(x+1, y).eliminarEntidad(this);
-
-			if( x + 1 == miTablero.getColumnas() )
-				x = 0;
-			else
+		if (miTablero.getCelda(x+1, y) != null) {
+			if (miTablero.getCelda(x+1, y).cantEntidades() == 0) {
+				miTablero.getCelda(x, y).eliminarEntidad(this);
 				x = x + 1;
+				miTablero.getCelda(x, y).agregarEntidad(this);
+				miCelda = miTablero.getCelda(x, y);
+				entidadgrafica.actualizar(miCelda);		
+			}else { //else aceptar visitor, porque tuvo una colosi�n
 
+				Entidad[] entidadesCelda = miTablero.getCelda(x+1, y).getArregloEntidades();
 
-			miTablero.getCelda(x, y).agregarEntidad(this);
-			miCelda = miTablero.getCelda(x, y);
-			entidadgrafica.actualizar(miCelda);	
-
-		}else { 
-
-			Entidad[] entidadesCelda = miTablero.getCelda(x+1, y).getArregloEntidades();
-			
-			for (int i=0; i < entidadesCelda.length; i++) {
-				if (entidadesCelda[i] != null) {
-					entidadesCelda[i].aceptar(miVisitor);
+				for (int i=0; i < entidadesCelda.length; i++) {
+					if (entidadesCelda[i] != null) {
+						System.err.println(entidadesCelda[i].toString());
+						entidadesCelda[i].aceptar(miVisitor);
+					}
 				}
-			}
-
-			miTablero.getCelda(x+1, y).eliminarEntidad(this);
-
-			if( x + 1 == miTablero.getColumnas() )
-				x = 0;
-			else
-				x = x + 1;
-
-			miTablero.getCelda(x, y).agregarEntidad(this);
-			miCelda = miTablero.getCelda(x, y);
-			entidadgrafica.getImagen().setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);
-
-
+			} 
 		}
 
 	}
@@ -193,16 +140,16 @@ public class Jugador extends Personaje{
 				miTablero.getCelda(x, y).agregarEntidad(this);
 				miCelda = miTablero.getCelda(x, y);
 				entidadgrafica.actualizar(miCelda);		
-			}else { 
+			}else { //else aceptar visitor, porque tuvo una colosi�n
 
 				Entidad[] entidadesCelda = miTablero.getCelda(x, y-1).getArregloEntidades();
-				
+
 				for (int i=0; i < entidadesCelda.length; i++) {
 					if (entidadesCelda[i] != null) {
+						System.err.println(entidadesCelda[i].toString());
 						entidadesCelda[i].aceptar(miVisitor);
 					}
 				}
-				
 			} 
 		}
 
@@ -217,26 +164,25 @@ public class Jugador extends Personaje{
 				miTablero.getCelda(x, y).agregarEntidad(this);
 				miCelda = miTablero.getCelda(x, y);
 				entidadgrafica.actualizar(miCelda);		
-			}else {
-				
-				Entidad[] entidadesCelda = miTablero.getCelda(x, y-1).getArregloEntidades();
-				
+			}else { //else aceptar visitor, porque tuvo una colosi�n
+				Entidad[] entidadesCelda = miTablero.getCelda(x, y+1).getArregloEntidades();
+
 				for (int i=0; i < entidadesCelda.length; i++) {
 					if (entidadesCelda[i] != null) {
+						System.err.println(entidadesCelda[i].toString());
 						entidadesCelda[i].aceptar(miVisitor);
 					}
 				}
-
 			} 
 		}
-
 	}
-
+	
 	//crea disparo en la siguiente celda
 	public Disparo crearDisparo() {
 
-		return new DisparoJugador(miTablero,miTablero.getCelda(miCelda.getX(),miCelda.getY()-1),this.getGolpe());
-		
+		//esto genera disparos fantasma cuando se disparan
+//		return new DisparoJugador(miTablero,miTablero.getCelda(miCelda.getX(), miCelda.getY()-1),this.getGolpe());
+		return new DisparoJugador(miTablero,miTablero.getCelda(miCelda.getX(), miCelda.getY()),this.getGolpe());
 		
 	}
 

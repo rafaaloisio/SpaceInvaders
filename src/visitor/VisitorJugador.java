@@ -5,6 +5,7 @@ import disparo.DisparoJugador;
 import entidad.Enemigo;
 import entidad.Jugador;
 import entidad.Premio;
+import entidad.PremioPocion;
 
 public class VisitorJugador implements Visitor {
 
@@ -30,21 +31,21 @@ public class VisitorJugador implements Visitor {
 	@Override
 	public void visitJugador(Jugador j) {
 		
-		//sin interacción		
+		System.out.println(j.toString());		
 	}
 
 	@Override
 	public void visitDisparoJugador(DisparoJugador dj) {
 		
-		//sin interacción		
+		System.out.println(dj.toString());
 		
+		//sin interacción		
 	}
 
 	@Override
 	public void visitDisparoEnemigo(DisparoEnemigo de) {
 		
-		System.err.println("**YO JUGADOR - DISPARO ENEMIGO");		
-		
+		System.out.println(de.toString());		
 		
 		miJugador.recibirGolpe(de.getGolpe());
 		
@@ -63,14 +64,15 @@ public class VisitorJugador implements Visitor {
 		
 	}
 	
-	public void visitPremio(Premio p) {
+	public void visitPremioPocion(Premio p) {
 		
-		System.err.println("YO JUGADOR - PREMIO VIDA:"+miJugador.getVida() );
+		System.out.println(p.toString());
 		//consumo del efecto del premio
 		//depende de si es un premio temporal o instantaneo
 		
 		miJugador.setVida(miJugador.getVida() + p.getGolpe());
-	
+		p.getCelda().eliminarEntidad(p);
+		p.morir();
 		System.err.println("VIDA:"+miJugador.getVida() );	
 		
 	}

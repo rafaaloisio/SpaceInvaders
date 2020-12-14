@@ -20,37 +20,25 @@ public class DisparoJugador extends Disparo {
 	public void mover() {
 
 		if (y == 0) {
-			miTablero.getCelda(x, y).eliminarEntidad(this);
 			morir();
 		} else {
 			if (miTablero.getCelda(x, y-1).cantEntidades() == 0) {
-				
 				miTablero.getCelda(x, y).eliminarEntidad(this);
 				y = y - 1;
 				miTablero.getCelda(x, y).agregarEntidad(this);
-				entidadgrafica.actualizar(miTablero.getCelda(x, y));
-				
+				miCelda = miTablero.getCelda(x, y);
+				entidadgrafica.getImagen().setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);
 			} else {
-
-				System.out.println("COLISION DISPARO JUGADOR.");
 
 				Entidad[] entidadesCelda = miTablero.getCelda(x, y-1).getArregloEntidades();
 				for (int i=0; i < entidadesCelda.length; i++) {
 
 					if (entidadesCelda[i] != null) {
-						System.out.println("HAY ENTIDADES");
 						entidadesCelda[i].aceptar(miVisitor);
 					}
 				}
-			
 
 				miTablero.getCelda(x, y).eliminarEntidad(this);
-
-				if (seguirMoviendo) {
-					y = y - 1;
-					miTablero.getCelda(x, y).agregarEntidad(this);
-					entidadgrafica.actualizar(miTablero.getCelda(x, y));
-				}
 			}
 		}
 	}

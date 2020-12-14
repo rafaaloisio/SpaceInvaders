@@ -91,8 +91,11 @@ public abstract class Enemigo extends Personaje{
 		
 		super.morir();
 		
+		//hay que ver bien como hacer para que no haya que poner muchos if's a la hora
+		//de añadir mas premios
+		//imagina que queres agregar un premio nuevo, habria que hacer otro if aca
 		Random r = new Random();
-		int n = r.nextInt(2);
+		int n = 1; //r.nextInt(2);
 		
 		if (n == 1) {
 			Premio p = new PremioPocion(this.miTablero, this.miCelda);

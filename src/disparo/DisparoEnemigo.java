@@ -18,7 +18,6 @@ public abstract class DisparoEnemigo extends Disparo {
 		
 		seguirMoviendo = false;
 		miTablero.getCelda(x, y).eliminarEntidad(this);
-		
 		miTablero.getLogica().eliminarEntidad(this);
 	}
 
@@ -27,46 +26,37 @@ public abstract class DisparoEnemigo extends Disparo {
 	}
 
 	public void mover() {
-		if(y == 11) {
-			
-			miTablero.getCelda(x, y).eliminarEntidad(this);
+		if(y == miTablero.getFilas()-1) {
 			morir();
 		}
 		else {
 			if(miTablero.getCelda(x , y+1).cantEntidades()==0 ) {
-				
 				miTablero.getCelda(x, y).eliminarEntidad(this);
-				
 				y = y + 1;
-				
 				miTablero.getCelda(x, y).agregarEntidad(this);
-				
-				entidadgrafica.actualizar(miTablero.getCelda(x, y));
-				
+				miCelda = miTablero.getCelda(x, y);
+				entidadgrafica.getImagen().setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL,PIXEL,PIXEL);
 			}
 			else {
-
-
 				Entidad[] entidadesCelda = miTablero.getCelda(x, y+1).getArregloEntidades();
-				
 				for (int i=0; i < entidadesCelda.length; i++) {
 					if (entidadesCelda[i] != null) {
+						System.err.println(entidadesCelda[i].toString());
 						entidadesCelda[i].aceptar(miVisitor);
 					}
 				}
 
-
 				miTablero.getCelda(x, y).eliminarEntidad(this);
-				
 				if (seguirMoviendo) {	
 					y = y + 1;
 					miTablero.getCelda(x, y).agregarEntidad(this);
-					
-					entidadgrafica.actualizar(miTablero.getCelda(x, y));
+					miCelda = miTablero.getCelda(x, y);
+					entidadgrafica.getImagen().setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);
 				}
 			}
 		}
 	}
+
 
 	public void aceptar(Visitor visitor) {
 		visitor.visitDisparoEnemigo(this);

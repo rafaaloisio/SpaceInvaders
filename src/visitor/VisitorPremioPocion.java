@@ -6,6 +6,7 @@ import entidad.Enemigo;
 import entidad.Entidad;
 import entidad.Jugador;
 import entidad.Premio;
+import entidad.PremioPocion;
 
 public class VisitorPremioPocion implements Visitor {
 
@@ -14,7 +15,7 @@ public class VisitorPremioPocion implements Visitor {
 	public VisitorPremioPocion(Premio p) {
 		miPremio = p;
 	}
-	
+
 	@Override
 	public void visitEnemigo(Enemigo e) {
 		
@@ -22,8 +23,9 @@ public class VisitorPremioPocion implements Visitor {
 
 	@Override
 	public void visitJugador(Jugador j) {
-
-		
+		j.setVida(j.getVida() + miPremio.getGolpe());
+		this.miPremio.getCelda().eliminarEntidad(this.miPremio);
+		this.miPremio.morir();
 	}
 
 	@Override
@@ -37,8 +39,7 @@ public class VisitorPremioPocion implements Visitor {
 	}
 
 	@Override
-	public void visitPremio(Premio p) {
-		
+	public void visitPremioPocion(Premio p) {
 	}
 
 }
