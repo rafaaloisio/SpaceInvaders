@@ -11,6 +11,7 @@ public abstract class Entidad {
 	
 	protected Celda miCelda;
 	protected Tablero miTablero;
+
 	protected EntidadGrafica entidadgrafica;
 	protected int x;
 	protected int y;
@@ -30,6 +31,10 @@ public abstract class Entidad {
 		miTablero = tablero;
 		seguirMoviendo = true;
 		
+	}
+	
+	public Tablero getTablero() {
+		return miTablero;
 	}
 	
 	public void setSeguirMoviendo(boolean b) {

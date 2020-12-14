@@ -51,7 +51,7 @@ public class VisitorDisparoJugador implements Visitor {
 		
 	}
 	
-	public void visitPremioPocion(Premio p) {
+	public void visitPremio(Premio p) {
 	}
 
 }

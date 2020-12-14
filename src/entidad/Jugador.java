@@ -19,7 +19,7 @@ public class Jugador extends Personaje{
 		this.miVisitor = new VisitorJugador(this);
 		entidadgrafica = new EntidadGraficaJugador("/recursos/jugador/nave.png");
 		entidadgrafica.getImagen().setBounds(x, y, PIXEL, PIXEL);
-
+		
 	}
 
 	@Override

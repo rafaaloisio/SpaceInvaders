@@ -39,7 +39,7 @@ public class VisitorEnemigo implements Visitor {
 	}
 
 	@Override
-	public void visitPremioPocion(Premio p) {
+	public void visitPremio(Premio p) {
 		System.out.println("YO ENEMIGO CHOQUE CONTRA PREMIO");
 		
 	}

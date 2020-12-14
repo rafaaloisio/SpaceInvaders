@@ -11,6 +11,7 @@ public class DisparoJugador extends Disparo {
 		super(miTablero, miCelda, golpe);
 		this.miVisitor = new VisitorDisparoJugador(this);
 		entidadgrafica = new EntidadGraficaJugador("/recursos/jugador/disparo.png");
+		
 	}
 
 	public void ejecutar() {

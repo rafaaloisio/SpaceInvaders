@@ -1,19 +1,18 @@
 package visitor;
 
+import java.util.LinkedList;
+
 import disparo.DisparoEnemigo;
 import disparo.DisparoJugador;
 import entidad.Enemigo;
-import entidad.Entidad;
 import entidad.Jugador;
 import entidad.Premio;
-import entidad.PremioPocion;
+import entidad.PremioCongelamiento;
 
-public class VisitorPremioPocion implements Visitor {
+public class VisitorPremioCongelamiento extends VisitorPremio implements Visitor {
 
-	protected Premio miPremio;
-	
-	public VisitorPremioPocion(Premio p) {
-		miPremio = p;
+	public VisitorPremioCongelamiento(PremioCongelamiento p) {
+		super(p);
 	}
 
 	@Override
@@ -23,7 +22,11 @@ public class VisitorPremioPocion implements Visitor {
 
 	@Override
 	public void visitJugador(Jugador j) {
-		j.setVida(j.getVida() + miPremio.getGolpe());
+		LinkedList<Enemigo> l = j.getTablero().getEnemigos();
+		
+		for (Enemigo e: l) {
+			e.setTiempo(20);
+		}
 		this.miPremio.getCelda().eliminarEntidad(this.miPremio);
 		this.miPremio.morir();
 	}

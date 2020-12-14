@@ -39,6 +39,7 @@ public class Tablero
 				{
 					Enemigo al = new EnemigoAlpha(this,tablero[i][j],150,60);
 					logica.agregarEntidad(al, al.getCelda());
+					this.misEnemigos.add(al);
 				}
 				
 				
@@ -46,6 +47,7 @@ public class Tablero
 				{
 					Enemigo bet = new EnemigoBeta(this,tablero[i][j],300,30);
 					logica.agregarEntidad(bet, bet.getCelda());
+					this.misEnemigos.add(bet);
 				}
 				
 				
@@ -53,10 +55,13 @@ public class Tablero
 				{
 					Enemigo bet = new EnemigoBeta(this,tablero[i][j],300,30);
 					logica.agregarEntidad(bet, bet.getCelda());
+					this.misEnemigos.add(bet);
 				}
+				
 				if ((i==1 && j== 1)) {
 					Enemigo bet = new EnemigoBeta(this,tablero[i][j],300,30);
 					logica.agregarEntidad(bet, bet.getCelda());
+					this.misEnemigos.add(bet);
 				}
 				
 				
@@ -100,6 +105,10 @@ public class Tablero
 
 	public void setJugador(Jugador jugador) {
 		this.jugador = jugador;
+	}
+
+	public LinkedList<Enemigo> getEnemigos() {
+		return misEnemigos;
 	}
 	
 

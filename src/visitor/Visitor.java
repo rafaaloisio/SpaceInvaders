@@ -13,5 +13,5 @@ public interface Visitor {
 	public void visitJugador(Jugador j);
 	public void visitDisparoJugador(DisparoJugador dj);
 	public void visitDisparoEnemigo(DisparoEnemigo de);
-	public void visitPremioPocion(Premio p);
+	public void visitPremio(Premio p);
 }

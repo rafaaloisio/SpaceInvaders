@@ -3,15 +3,12 @@ package entidad;
 import tablero.Celda;
 import tablero.Tablero;
 import visitor.Visitor;
-import visitor.VisitorPremioPocion;
 
 public abstract class Premio extends Entidad {
 	
 
 	public Premio(Tablero tablero, Celda celda) {
 		super(tablero, celda);
-		this.miVisitor = new VisitorPremioPocion(this);
-		
 	}
 
 	protected abstract void hacerEfecto(Jugador j);
@@ -56,6 +53,6 @@ public abstract class Premio extends Entidad {
 
 	@Override
 	public void aceptar(Visitor visitor) {
-		visitor.visitPremioPocion(this);
+		visitor.visitPremio(this);
 	}
 }

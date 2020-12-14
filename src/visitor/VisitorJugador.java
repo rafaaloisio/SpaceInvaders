@@ -64,7 +64,7 @@ public class VisitorJugador implements Visitor {
 		
 	}
 	
-	public void visitPremioPocion(Premio p) {
+	public void visitPremio(Premio p) {
 		
 		System.out.println(p.toString());
 		//consumo del efecto del premio

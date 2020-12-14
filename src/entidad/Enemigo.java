@@ -70,7 +70,7 @@ public abstract class Enemigo extends Personaje{
 	public void ejecutar()
 	{
 		if (tiempo == 5) {
-
+			disparar(this);
 		}
 		
 		tiempo--;
@@ -78,7 +78,7 @@ public abstract class Enemigo extends Personaje{
 		if (tiempo == 0) {
 			tiempo = 5;
 			mover();
-			disparar(this);
+//			disparar(this);
 			setSeguirMoviendo(true);
 		}
 	}
@@ -94,14 +94,30 @@ public abstract class Enemigo extends Personaje{
 		//hay que ver bien como hacer para que no haya que poner muchos if's a la hora
 		//de añadir mas premios
 		//imagina que queres agregar un premio nuevo, habria que hacer otro if aca
+		//asi que creo que hay que usar un patron de diseño
 		Random r = new Random();
-		int n = 1; //r.nextInt(2);
+		int n = r.nextInt(2);
 		
 		if (n == 1) {
 			Premio p = new PremioPocion(this.miTablero, this.miCelda);
 			miTablero.getLogica().agregarEntidad(p, miCelda);
 			p.mover();
 		}
+		if (n == 0) {
+			Premio p = new PremioCongelamiento(this.miTablero, this.miCelda);
+			miTablero.getLogica().agregarEntidad(p, miCelda);
+			p.mover();
+		}
+	}
+
+
+	public int getTiempo() {
+		return tiempo;
+	}
+
+
+	public void setTiempo(int tiempo) {
+		this.tiempo = tiempo;
 	}
 
 	

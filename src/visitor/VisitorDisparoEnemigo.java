@@ -27,12 +27,11 @@ public class VisitorDisparoEnemigo implements Visitor {
 	public void visitJugador(Jugador j) {
 		
 		System.out.println("YO DISPARO ENEMIGO - JUGADOR");
-		/*
+		
 		j.recibirGolpe(miDisparo.getGolpe());
 		miDisparo.morir();
 		
 		System.out.println("Vida JUGADOR: "+j.getVida());
-	*/
 	
 	}
 
@@ -49,7 +48,7 @@ public class VisitorDisparoEnemigo implements Visitor {
 		
 	}
 	
-	public void visitPremioPocion(Premio p) {
+	public void visitPremio(Premio p) {
 		System.out.println("YO DISPARO ENEMIGO - PREMIO");
 	}
 
