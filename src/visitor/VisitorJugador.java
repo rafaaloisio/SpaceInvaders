@@ -65,16 +65,8 @@ public class VisitorJugador implements Visitor {
 	}
 	
 	public void visitPremio(Premio p) {
-		
-		System.out.println(p.toString());
-		//consumo del efecto del premio
-		//depende de si es un premio temporal o instantaneo
-		
-		miJugador.setVida(miJugador.getVida() + p.getGolpe());
-		p.getCelda().eliminarEntidad(p);
-		p.morir();
-		System.err.println("VIDA:"+miJugador.getVida() );	
-		
+		System.out.println("YO JUGADOR CHOQUE CONTRA PREMIO");
+		this.miJugador.consumirPremio(p);
 	}
 
 }

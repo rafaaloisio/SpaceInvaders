@@ -20,7 +20,6 @@ public class VisitorDisparoJugador implements Visitor {
 	@Override
 	public void visitEnemigo(Enemigo e) {
 		
-		System.out.println("YO DISPARO JUGADOR - ENEMIGO");
 		e.recibirGolpe(miDisparo.getGolpe());
 		
 		miDisparo.getCelda().eliminarEntidad(miDisparo);
@@ -35,7 +34,7 @@ public class VisitorDisparoJugador implements Visitor {
 	@Override
 	public void visitJugador(Jugador j) {
 		
-		//sin interacción
+		this.miDisparo.morir();
 		
 	}
 

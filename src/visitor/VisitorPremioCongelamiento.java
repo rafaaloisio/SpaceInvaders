@@ -9,10 +9,12 @@ import entidad.Jugador;
 import entidad.Premio;
 import entidad.PremioCongelamiento;
 
-public class VisitorPremioCongelamiento extends VisitorPremio implements Visitor {
+public class VisitorPremioCongelamiento implements Visitor {
 
+	private PremioCongelamiento miPremio;
+	
 	public VisitorPremioCongelamiento(PremioCongelamiento p) {
-		super(p);
+		this.miPremio = p;
 	}
 
 	@Override

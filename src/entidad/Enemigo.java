@@ -16,8 +16,22 @@ public abstract class Enemigo extends Personaje{
 		this.vida = vida;
 		this.golpe = golpe;
 		
-		this.tiempo = 3;
+		this.tiempo = 4;
 		this.miVisitor = new VisitorEnemigo(this);
+	}
+
+	public void ejecutar()
+	{
+		if (tiempo == 4) {
+			disparar(this);
+		}
+		
+		tiempo--;
+		
+		if (tiempo == 0) {
+			tiempo = 4;
+			mover();
+		}
 	}
 
 	
@@ -67,21 +81,6 @@ public abstract class Enemigo extends Personaje{
 	}
 	
 	
-	public void ejecutar()
-	{
-		if (tiempo == 5) {
-			disparar(this);
-		}
-		
-		tiempo--;
-		
-		if (tiempo == 0) {
-			tiempo = 5;
-			mover();
-//			disparar(this);
-			setSeguirMoviendo(true);
-		}
-	}
 	
 	public void aceptar(Visitor visitor) {
 		visitor.visitEnemigo(this);
