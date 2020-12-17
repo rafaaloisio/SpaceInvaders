@@ -19,8 +19,6 @@ public abstract class Premio extends Entidad {
 	}
 
 	@Override
-	//el premio se va a mover hacia abajo hasta desaparecer por debajo del mapa
-	// o bien cuando colisione con el jugador (y ahi el jugador consume su efecto q va a depender del tipo de premio)
 	public void mover() {
 		
 		if(y == miTablero.getFilas()-1) {

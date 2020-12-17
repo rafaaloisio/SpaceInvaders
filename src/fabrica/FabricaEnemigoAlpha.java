@@ -5,9 +5,9 @@ import java.util.Random;
 import entidad.*;
 import tablero.*;
 
-public class fabricaEnemigoAlpha extends fabricaEnemigo{
+public class FabricaEnemigoAlpha extends FabricaEnemigo{
 
-	public fabricaEnemigoAlpha(Tablero miTablero) {
+	public FabricaEnemigoAlpha(Tablero miTablero) {
 		super(miTablero);
 	}
 

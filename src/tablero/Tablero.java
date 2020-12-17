@@ -33,7 +33,7 @@ public class Tablero
 				System.out.println("X: "+i+" Y: "+j);
 				
 				if(i==3 && j == 10) {
-					this.jugador = new Jugador(this,tablero[i][j],500,50);
+					this.jugador = new Jugador(this,tablero[i][j]);
 					logica.agregarEntidad(jugador, jugador.getCelda());
 				}
 			/*	if((i==2 && j == 0))
@@ -71,8 +71,8 @@ public class Tablero
 			}
 		}
 		
-		fabricaEnemigo fa = new fabricaEnemigoAlpha(this);
-		fabricaEnemigo fb = new fabricaEnemigoBeta(this);
+		FabricaEnemigo fa = new FabricaEnemigoAlpha(this);
+		FabricaEnemigo fb = new FabricaEnemigoBeta(this);
 		
 		
 		Enemigo alpha = fa.crearEnemigo();

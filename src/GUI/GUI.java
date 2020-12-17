@@ -151,7 +151,6 @@ public class GUI extends JFrame implements KeyListener {
 		if(!logica.isPerdi())
 		{
 			logica.getTablero().getJugador().mover(e.getKeyCode());
-			System.out.println(e.getKeyCode());
 		}
 	}
 

@@ -25,7 +25,6 @@ public class PremioSuperArma extends PremioTemporal {
 
 	@Override
 	public void aceptar(Visitor visitor) {
-		// TODO Auto-generated method stub
 		visitor.visitPremioSuperArma(this);
 	}
 }

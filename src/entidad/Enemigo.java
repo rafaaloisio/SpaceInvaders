@@ -3,6 +3,10 @@ package entidad;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
+import fabrica.FabricaPocionCongelamiento;
+import fabrica.FabricaPremio;
+import fabrica.FabricaPremioPocion;
+import fabrica.FabricaPremioSuperArma;
 import tablero.Celda;
 import tablero.Tablero;
 import visitor.*;
@@ -85,41 +89,34 @@ public abstract class Enemigo extends Personaje{
 		
 		super.morir();
 		
-		//hay que ver bien como hacer para que no haya que poner muchos if's a la hora
-		//de añadir mas premios
-		//imagina que queres agregar un premio nuevo, habria que hacer otro if aca
-		//asi que creo que hay que usar un patron de diseño
-		
-		
-		//creo que con este switch se solucina lo descripto arriba
-		int n = new Random().nextInt(10)+1;
+		//suelta premios al morir
+		int n = new Random().nextInt(4);
 		
 		switch (n){
 		
 		case 1 : //premio pocion vida
-			
+			FabricaPremioPocion fpp = new FabricaPremioPocion(this.miTablero, this.miCelda);
 			System.out.println("SOLTE PREMIO VIDA.");		
-			Premio pv = new PremioPocion(this.miTablero, this.miCelda);
+			Premio pv = fpp.crearPremio();
 			miTablero.getLogica().agregarEntidad(pv, miCelda);
 			pv.mover();
 			break;
 			
 		case 2 : //premio pocion congelar
-			
+			FabricaPocionCongelamiento fpc = new FabricaPocionCongelamiento(miTablero, miCelda);
 			System.out.println("SOLTE PREMIO CONGELAR.");		
-			Premio pc = new PremioCongelamiento(this.miTablero, this.miCelda);
+			Premio pc = fpc.crearPremio();
 			miTablero.getLogica().agregarEntidad(pc, miCelda);
 			pc.mover();
 			break;
 
 		case 3 : //premio pocion fuerza
-			
+			FabricaPremioSuperArma fpsa = new FabricaPremioSuperArma(miTablero, miCelda);
 			System.out.println("SOLTE PREMIO FUERZA.");		
-			Premio pf = new PremioSuperArma(this.miTablero, this.miCelda);
+			Premio pf = fpsa.crearPremio();
 			miTablero.getLogica().agregarEntidad(pf, miCelda);
 			pf.mover();
 			break;
-			
 		}
 		
 	}

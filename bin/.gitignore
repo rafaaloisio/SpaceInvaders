@@ -1,10 +1,4 @@
-/GUI/
-/disparo/
 /entidad/
-/grafica/
-/hilos/
-/logica/
-/recursos/
 /tablero/
-/visitor/
 /fabrica/
+/GUI/

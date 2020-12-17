@@ -26,8 +26,8 @@ public abstract class Nivel
 		Enemigo e;
 		Random ran = new Random();
 		int valor;
-		fabricaEnemigo fa = new fabricaEnemigoAlpha(miTablero);
-		fabricaEnemigo fb = new fabricaEnemigoBeta(miTablero);
+		FabricaEnemigo fa = new FabricaEnemigoAlpha(miTablero);
+		FabricaEnemigo fb = new FabricaEnemigoBeta(miTablero);
 		for(int i = 0; i < cantEnemigos; i++) 
 		{
 			valor = ran.nextInt(2);

@@ -11,13 +11,13 @@ import visitor.*;
 
 public class Jugador extends Personaje{
 
-	private final int MAXIMA_VIDA = 500;
+	private final int MAXIMA_VIDA = 50000;
 	private final int MAXIMO_GOLPE = 50;
 	
-	public Jugador(Tablero miTablero, Celda celda, int vida, int golpe) {
+	public Jugador(Tablero miTablero, Celda celda) {
 		super(miTablero, celda);
-		this.vida = vida;
-		this.golpe = golpe;
+		this.vida = MAXIMA_VIDA;
+		this.golpe = MAXIMO_GOLPE;
 		this.miVisitor = new VisitorJugador(this);
 		entidadgrafica = new EntidadGraficaJugador("/recursos/jugador/nave.png");
 		entidadgrafica.getImagen().setBounds(x, y, PIXEL, PIXEL);
