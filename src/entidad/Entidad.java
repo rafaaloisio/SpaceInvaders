@@ -19,7 +19,7 @@ public abstract class Entidad {
 	protected boolean seguirMoviendo;
 	protected Visitor miVisitor;
 	
-	public Entidad(Tablero tablero, Celda celda)
+	protected Entidad(Tablero tablero, Celda celda)
 	{
 		this.x = celda.getX();
 		this.y = celda.getY();

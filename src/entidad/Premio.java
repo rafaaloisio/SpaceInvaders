@@ -7,7 +7,7 @@ import visitor.Visitor;
 public abstract class Premio extends Entidad {
 	
 
-	public Premio(Tablero tablero, Celda celda) {
+	protected Premio(Tablero tablero, Celda celda) {
 		super(tablero, celda);
 	}
 

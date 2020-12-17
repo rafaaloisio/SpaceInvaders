@@ -29,7 +29,7 @@ public class Logica {
 		
 		perdi = false;
 		
-		//cargarOleada();
+//		cargarOleada();
 		
 		crearHilos();
 	}

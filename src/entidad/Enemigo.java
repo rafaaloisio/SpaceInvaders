@@ -16,7 +16,7 @@ public abstract class Enemigo extends Personaje{
 	
 	private int tiempo;
 	
-	public Enemigo(Tablero tablero, Celda celda,int vida,int golpe) {
+	protected Enemigo(Tablero tablero, Celda celda,int vida,int golpe) {
 		super(tablero, celda);
 		this.vida = vida;
 		this.golpe = golpe;

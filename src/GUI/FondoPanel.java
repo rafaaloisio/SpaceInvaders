@@ -18,9 +18,7 @@ public class FondoPanel extends JPanel {
 
     public FondoPanel(String nombreImagen) {
         if (nombreImagen != null) {
-            imagen = new ImageIcon(
-                           getClass().getResource(nombreImagen)
-                           ).getImage();
+            imagen = new ImageIcon(getClass().getResource(nombreImagen)).getImage();
         }
     }
 
@@ -33,8 +31,7 @@ public class FondoPanel extends JPanel {
     public void setImagen(String nombreImagen) {
         if (nombreImagen != null) {
             imagen = new ImageIcon(
-                   getClass().getResource(nombreImagen)
-                   ).getImage();
+                   getClass().getResource(nombreImagen)).getImage();
         } else {
             imagen = null;
         }
@@ -51,8 +48,7 @@ public class FondoPanel extends JPanel {
     @Override
     public void paint(Graphics g) {
         if (imagen != null) {
-            g.drawImage(imagen, 0, 0, getWidth(), getHeight(),
-                              this);
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
 
             setOpaque(false);
         } else {

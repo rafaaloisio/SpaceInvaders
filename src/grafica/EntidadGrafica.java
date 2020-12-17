@@ -12,7 +12,7 @@ public abstract class EntidadGrafica {
 	
 	protected JLabel imagen;
 	
-	public EntidadGrafica(String path) {
+	protected EntidadGrafica(String path) {
 		imagen = new JLabel();
 		imagen.setIcon(new ImageIcon(getClass().getResource(path)));
 	}

@@ -15,11 +15,11 @@ public abstract class Nivel
 	protected Stack<Entidad> segundaOleada = new Stack<Entidad>();;
 
 
-	public Nivel(Tablero miTablero) 
+	protected Nivel(Tablero miTablero) 
 	{
 		this.miTablero = miTablero;
 	}
-	
+
 
 	protected void crearOleada(int cantEnemigos, Stack<Entidad> oleada) 
 	{
@@ -35,17 +35,18 @@ public abstract class Nivel
 			{
 				e = fa.crearEnemigo();
 				oleada.push(e);
-			}else 
-				{
-					e = fb.crearEnemigo();
-					oleada.push(e);
-				}			
+			}
+			else
+			{
+				e = fb.crearEnemigo();
+				oleada.push(e);
+			}			
 		}
 	}
-	
+
 
 	public abstract Enemigo getEnemigo(int oleada);
-	
+
 	public Stack<Entidad> getPrimeraOleada() 
 	{
 		return primeraOleada;
@@ -56,6 +57,6 @@ public abstract class Nivel
 	{
 		return segundaOleada;
 	}
-	
+
 
 }

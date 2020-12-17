@@ -9,7 +9,7 @@ public abstract class FabricaPremio {
 	protected Tablero miTablero;
 	protected Celda miCelda;
 	
-	public FabricaPremio(Tablero miTablero, Celda miCelda)
+	protected FabricaPremio(Tablero miTablero, Celda miCelda)
 	{
 		this.miTablero = miTablero;
 		this.miCelda = miCelda;

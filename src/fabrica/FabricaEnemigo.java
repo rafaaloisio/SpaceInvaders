@@ -7,7 +7,7 @@ public abstract class FabricaEnemigo {
 
 	protected Tablero miTablero;
 	
-	public FabricaEnemigo(Tablero miTablero)
+	protected FabricaEnemigo(Tablero miTablero)
 	{
 		this.miTablero = miTablero;
 	}
