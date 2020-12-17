@@ -24,11 +24,9 @@ public class Tablero
 
 		this.tablero = new Celda[columnas][filas];
 
-		for (int i = 0; i < columnas;i++)
-		{
-
-			for (int j = 0; j < filas ; j++)
-			{
+		for (int i = 0; i < columnas;i++) {
+			for (int j = 0; j < filas ; j++) {
+				
 				tablero[i][j] = new Celda(this,i,j);
 				System.out.println("X: "+i+" Y: "+j);
 

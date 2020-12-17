@@ -1,8 +1,9 @@
 package entidad;
 
-import java.awt.event.KeyEvent;
 import java.util.Random;
 
+import estrategia.Movimiento;
+import estrategia.MovimientoEnemigo;
 import fabrica.FabricaPocionCongelamiento;
 import fabrica.FabricaPremio;
 import fabrica.FabricaPremioPocion;
@@ -12,8 +13,8 @@ import tablero.Tablero;
 import visitor.*;
 
 public abstract class Enemigo extends Personaje{
-	
-	
+
+
 	private int tiempo;
 	
 	protected Enemigo(Tablero tablero, Celda celda,int vida,int golpe) {
@@ -28,72 +29,74 @@ public abstract class Enemigo extends Personaje{
 		if (tiempo == 4) {
 			disparar(this);
 		}
-		
+
 		tiempo--;
-		
+
 		if (tiempo == 0) {
 			tiempo = 4;
-			mover();
+			movimiento.desplazar();
 		}
 	}
 
-	
+
 	@Override
 	public void mover()
 	{
-		if (miTablero.getCelda(x , y + 1).cantEntidades() == 0) {
-		 	
-			 
-		 	miTablero.getCelda(x, y).eliminarEntidad(this);	
-		 	
-		 	if( y + 1 == miTablero.getFilas()-1 )
-				y = 0;
-			else
-				y = y + 1;
-		 	
-			miTablero.getCelda(x, y).agregarEntidad(this);
-			miCelda = miTablero.getCelda(x, y);
-			entidadgrafica.actualizar(miCelda);		
-		}else
-			{ 
-				Entidad[] entidadesCelda = miTablero.getCelda(x, y+1).getArregloEntidades();
-				
-				for (int i=0; i < entidadesCelda.length; i++) {
-					if (entidadesCelda[i] != null) {
-						entidadesCelda[i].aceptar(miVisitor);
-					}
-				}
-				
-			
-				if (seguirMoviendo) {
-	
-					miTablero.getCelda(x, y).eliminarEntidad(this);	
-					
-					if( y + 1 == miTablero.getFilas()-1 )
-						y = 0;
-					else
-						y = y + 1;
-					
-					miTablero.getCelda(x, y).agregarEntidad(this);
-					miCelda = miTablero.getCelda(x, y);
-					entidadgrafica.actualizar(miCelda);		
-					
-				}
-			}
-		
+		MovimientoEnemigo m = new MovimientoEnemigo(this.miTablero, this.miCelda, this);
+		this.setMovimiento(m);
+
+//		if (miTablero.getCelda(x , y + 1).cantEntidades() == 0) {
+//
+//
+//			miTablero.getCelda(x, y).eliminarEntidad(this);	
+//
+//			if( y + 1 == miTablero.getFilas()-1 )
+//				y = 0;
+//			else
+//				y = y + 1;
+//
+//			miTablero.getCelda(x, y).agregarEntidad(this);
+//			miCelda = miTablero.getCelda(x, y);
+//			entidadgrafica.actualizar(miCelda);		
+//		}else
+//		{ 
+//			Entidad[] entidadesCelda = miTablero.getCelda(x, y+1).getArregloEntidades();
+//
+//			for (int i=0; i < entidadesCelda.length; i++) {
+//				if (entidadesCelda[i] != null) {
+//					entidadesCelda[i].aceptar(miVisitor);
+//				}
+//			}
+//
+//
+//			if (seguirMoviendo) {
+//
+//				miTablero.getCelda(x, y).eliminarEntidad(this);	
+//
+//				if( y + 1 == miTablero.getFilas()-1 )
+//					y = 0;
+//				else
+//					y = y + 1;
+//
+//				miTablero.getCelda(x, y).agregarEntidad(this);
+//				miCelda = miTablero.getCelda(x, y);
+//				entidadgrafica.actualizar(miCelda);		
+//
+//			}
+//		}
 	}
-	
-	
-	
+
+
+
 	public void morir() {
-		
+
 		super.morir();
-		
+
 		//suelta premios al morir
 		int n = new Random().nextInt(4);
-		
+
 		switch (n){
-		
+
 		case 1 : //premio pocion vida
 			FabricaPremioPocion fpp = new FabricaPremioPocion(this.miTablero, this.miCelda);
 			System.out.println("SOLTE PREMIO VIDA.");		
@@ -101,7 +104,7 @@ public abstract class Enemigo extends Personaje{
 			miTablero.getLogica().agregarEntidad(pv, miCelda);
 			pv.mover();
 			break;
-			
+
 		case 2 : //premio pocion congelar
 			FabricaPocionCongelamiento fpc = new FabricaPocionCongelamiento(miTablero, miCelda);
 			System.out.println("SOLTE PREMIO CONGELAR.");		
@@ -118,7 +121,7 @@ public abstract class Enemigo extends Personaje{
 			pf.mover();
 			break;
 		}
-		
+
 	}
 
 
@@ -131,5 +134,5 @@ public abstract class Enemigo extends Personaje{
 		this.tiempo = tiempo;
 	}
 
-	
+
 }

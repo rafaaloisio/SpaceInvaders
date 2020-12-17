@@ -30,7 +30,6 @@ public class VisitorPremioSuperArma implements Visitor {
 
 	@Override
 	public void visitDisparoJugador(DisparoJugador dj) {
-		// TODO Auto-generated method stub
 
 	}
 

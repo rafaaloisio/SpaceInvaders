@@ -12,12 +12,10 @@ import tablero.*;
 public class Logica {
 
 	protected ArrayList<Entidad> misEntidades;
-	
+	protected ArrayList<Entidad> misEntidades_aux;
 	protected HiloEntidades hiloEntidades;
 	protected GUI grafica;
-
 	protected Tablero tablero;
-	
 	protected boolean perdi;
 
 	public Logica(GUI grafica) 
@@ -42,13 +40,20 @@ public class Logica {
 	}
 	
 	
-	public void ejecutarEntidades() 
-	{
+	public void ejecutarEntidades()	{
 		
 		for (int i = 0; i<misEntidades.size();i++) {
 			misEntidades.get(i).ejecutar();
 		}
 		
+	}
+	
+	public void desplazarEntidades() {
+		for (Entidad e: misEntidades) {
+			if (!e.equals(this.tablero.getJugador())) {
+				e.getMovimiento().desplazar();
+			}
+		}
 	}
 	
 	

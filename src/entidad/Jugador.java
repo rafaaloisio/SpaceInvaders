@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.util.Iterator;
 
 import disparo.*;
+import estrategia.MovimientoEnemigo;
 import grafica.EntidadGraficaJugador;
 import tablero.*;
 import visitor.*;
@@ -21,7 +22,7 @@ public class Jugador extends Personaje{
 		this.miVisitor = new VisitorJugador(this);
 		entidadgrafica = new EntidadGraficaJugador("/recursos/jugador/nave.png");
 		entidadgrafica.getImagen().setBounds(x, y, PIXEL, PIXEL);
-		
+		this.movimiento = new MovimientoEnemigo(this.miTablero, this.miCelda, this);
 	}
 	
 	public void consumirPremio(Premio p) {

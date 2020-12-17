@@ -12,10 +12,10 @@ public class PremioSuperArma extends PremioTemporal {
 	
 	public PremioSuperArma(Tablero tablero, Celda celda) {
 		super(tablero, celda);
-		//falta ponerle nuevo sprite
 		this.entidadgrafica = new EntidadGraficaPremio("/recursos/premios/pocion_fuerza.png");
 		entidadgrafica.getImagen().setBounds(x, y, PIXEL, PIXEL);
 		this.miVisitor = new VisitorPremioSuperArma(this);
+		this.golpe = 50;
 	}
 
 	@Override

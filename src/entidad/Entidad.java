@@ -1,5 +1,6 @@
 package entidad;
 
+import estrategia.Movimiento;
 import grafica.EntidadGrafica;
 import tablero.*;
 import visitor.*; 
@@ -7,10 +8,8 @@ import visitor.*;
 public abstract class Entidad {
 	
 	public static final int PIXEL = 64;
-	
 	protected Celda miCelda;
 	protected Tablero miTablero;
-
 	protected EntidadGrafica entidadgrafica;
 	protected int x;
 	protected int y;
@@ -18,6 +17,7 @@ public abstract class Entidad {
 	protected int vida;
 	protected boolean seguirMoviendo;
 	protected Visitor miVisitor;
+	protected Movimiento movimiento;
 	
 	protected Entidad(Tablero tablero, Celda celda)
 	{
@@ -116,6 +116,16 @@ public abstract class Entidad {
 		this.entidadgrafica = e;
 	}
 	
-
+	public Visitor getVisitor() {
+		return this.miVisitor;
+	}
+	
+	public void setMovimiento(Movimiento movimiento) {
+		this.movimiento = movimiento;
+	}
+	
+	public Movimiento getMovimiento() {
+		return this.movimiento;
+	}
 	
 }
