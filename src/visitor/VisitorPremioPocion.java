@@ -20,6 +20,7 @@ public class VisitorPremioPocion implements Visitor {
 		miPremio = p;
 	}
 
+	//premio choca con jugador
 	@Override
 	public void visitJugador(Jugador j) {
 		j.setVida(j.getVida() + miPremio.getGolpe());

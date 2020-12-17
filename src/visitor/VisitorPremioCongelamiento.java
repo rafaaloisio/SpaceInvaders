@@ -21,6 +21,7 @@ public class VisitorPremioCongelamiento implements Visitor {
 		this.miPremio = p;
 	}
 
+	//premio choca con jugador
 	@Override
 	public void visitJugador(Jugador j) {
 		LinkedList<Enemigo> l = j.getTablero().getEnemigos();

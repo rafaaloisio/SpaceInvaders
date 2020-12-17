@@ -28,9 +28,24 @@ public class VisitorEnemigoBeta implements Visitor {
 		
 	}
 
+	
+	//enemigo choca con jugador
 	@Override
 	public void visitJugador(Jugador j) {
-		// TODO Auto-generated method stub
+		
+		System.out.println(miEnemigo.toString());		
+		
+		j.recibirGolpe( (int) Math.round(miEnemigo.getVida()*(0.15)));
+
+		if(j.getVida()<=0)
+		{
+			j.getCelda().eliminarEntidad(j);
+			System.out.println("JUGADOR MUERTO: "+j.getVida());
+		}
+		
+		
+		System.out.println("Vida JUGADOR CHOQUE BETA!!: "+j.getVida());
+		
 		
 	}
 

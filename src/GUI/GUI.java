@@ -41,6 +41,7 @@ public class GUI extends JFrame implements KeyListener {
 	private JPanel panelCentral;
 	private Logica logica;
 	private JLabel texto,vida;
+	private Timer actualizarVida;
 
 	/**
 	 * Launch the application.
@@ -99,7 +100,12 @@ public class GUI extends JFrame implements KeyListener {
 		panelPrincipal.add(panelCentral);
 		
 		logica = new Logica(this);
+		
+		
 		actualizarVida(vida);
+		
+		
+		
 		
 	}
 	
@@ -155,30 +161,30 @@ public class GUI extends JFrame implements KeyListener {
 		
 	}
 	
-	
-	private void actualizarVida(JLabel v) {
-		
-		Timer timer = new Timer(250, new ActionListener() {
+	private void actualizarVida(JLabel v)
+	{
+		actualizarVida = new Timer(250, new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
 				v.setText(""+logica.getTablero().getJugador().getVida());
+				
+				if(logica.isPerdi()) {
+					
+					actualizarVida.stop();
+					
+					JOptionPane.showMessageDialog(panelPrincipal, "El jugador perdió por malo.", "La nave hizo boom", JOptionPane.ERROR_MESSAGE);
+
+				}
+				
 			}
 			
 			
 		});
 		
-		timer.start();
-		
-		if(logica.isPerdi()) {
-			
-			timer.stop();
-			
-			JOptionPane.showMessageDialog(panelPrincipal, "El jugador perdió por malo.", "La nave hizo boom", JOptionPane.ERROR_MESSAGE);
-
-		}
-		
+		actualizarVida.start();
 	}
+
 }

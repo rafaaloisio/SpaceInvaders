@@ -31,12 +31,17 @@ public class Jugador extends Personaje{
 	@Override
 	public void morir() 
 	{
+		
+		
+		//detengo el hilo al perder
+		miTablero.getLogica().setPerdi(true);
+		
+		this.vida = 0;
 		super.morir();
 		
 		System.err.println("EL JUGADOR PERDIÓ.");
 		
-		//detengo el hilo al perder
-		miTablero.getLogica().setPerdi(true);
+		
 		
 	}
 

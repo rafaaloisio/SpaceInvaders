@@ -20,6 +20,7 @@ public class VisitorPremioSuperArma implements Visitor {
 	}
 
 
+	//premio choca con jugador
 	@Override
 	public void visitJugador(Jugador j) {
 		j.setGolpe(j.getGolpe() + this.miPremio.getGolpe());

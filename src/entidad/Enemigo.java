@@ -1,5 +1,6 @@
 package entidad;
 
+import java.awt.event.KeyEvent;
 import java.util.Random;
 
 import tablero.Celda;
@@ -88,19 +89,39 @@ public abstract class Enemigo extends Personaje{
 		//de añadir mas premios
 		//imagina que queres agregar un premio nuevo, habria que hacer otro if aca
 		//asi que creo que hay que usar un patron de diseño
-		Random r = new Random();
-		int n = r.nextInt(2);
 		
-		if (n == 1) {
-			Premio p = new PremioPocion(this.miTablero, this.miCelda);
-			miTablero.getLogica().agregarEntidad(p, miCelda);
-			p.mover();
+		
+		//creo que con este switch se solucina lo descripto arriba
+		int n = new Random().nextInt(10)+1;
+		
+		switch (n){
+		
+		case 1 : //premio pocion vida
+			
+			System.out.println("SOLTE PREMIO VIDA.");		
+			Premio pv = new PremioPocion(this.miTablero, this.miCelda);
+			miTablero.getLogica().agregarEntidad(pv, miCelda);
+			pv.mover();
+			break;
+			
+		case 2 : //premio pocion congelar
+			
+			System.out.println("SOLTE PREMIO CONGELAR.");		
+			Premio pc = new PremioCongelamiento(this.miTablero, this.miCelda);
+			miTablero.getLogica().agregarEntidad(pc, miCelda);
+			pc.mover();
+			break;
+
+		case 3 : //premio pocion fuerza
+			
+			System.out.println("SOLTE PREMIO FUERZA.");		
+			Premio pf = new PremioSuperArma(this.miTablero, this.miCelda);
+			miTablero.getLogica().agregarEntidad(pf, miCelda);
+			pf.mover();
+			break;
+			
 		}
-		if (n == 0) {
-			Premio p = new PremioCongelamiento(this.miTablero, this.miCelda);
-			miTablero.getLogica().agregarEntidad(p, miCelda);
-			p.mover();
-		}
+		
 	}
 
 
