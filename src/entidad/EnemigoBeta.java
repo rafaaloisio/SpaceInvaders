@@ -4,6 +4,8 @@ import disparo.*;
 import grafica.EntidadGraficaBeta;
 import tablero.Celda;
 import tablero.Tablero;
+import visitor.Visitor;
+import visitor.VisitorEnemigoBeta;
 
 public class EnemigoBeta extends Enemigo {
 
@@ -13,13 +15,19 @@ public class EnemigoBeta extends Enemigo {
 		entidadgrafica.getImagen().setBounds(x, y, PIXEL, PIXEL);
 		this.vida = vida;
 		this.golpe = golpe;
-		
+		this.miVisitor = new VisitorEnemigoBeta(this);
 	}
 
 
 	public Disparo crearDisparo() {
 		
 		return new DisparoBeta(miTablero,miCelda,this.getGolpe());
+	}
+
+
+	@Override
+	public void aceptar(Visitor visitor) {
+		visitor.visitEnemigoBeta(this);
 	} 
 
 }

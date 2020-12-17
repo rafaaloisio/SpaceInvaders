@@ -3,9 +3,13 @@ package visitor;
 import disparo.DisparoEnemigo;
 import disparo.DisparoJugador;
 import entidad.Enemigo;
+import entidad.EnemigoAlpha;
+import entidad.EnemigoBeta;
 import entidad.Jugador;
 import entidad.Premio;
+import entidad.PremioCongelamiento;
 import entidad.PremioPocion;
+import entidad.PremioSuperArma;
 
 public class VisitorJugador implements Visitor {
 
@@ -16,18 +20,6 @@ public class VisitorJugador implements Visitor {
 		this.miJugador = j;
 	}
 	
-	@Override
-	public void visitEnemigo(Enemigo e) {
-	
-		miJugador.recibirGolpe(miJugador.getVida());
-		
-		if(miJugador.getVida()<=0)
-		{
-			System.err.println("**YO JUGADOR - ENEMIGO Y MORÍ");
-		}	
-		
-	}
-
 	@Override
 	public void visitJugador(Jugador j) {
 		
@@ -63,10 +55,35 @@ public class VisitorJugador implements Visitor {
 	
 		
 	}
-	
-	public void visitPremio(Premio p) {
-		System.out.println("YO JUGADOR CHOQUE CONTRA PREMIO");
-		this.miJugador.consumirPremio(p);
+
+	@Override
+	public void visitPremioPocion(PremioPocion p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitPremioCongelamiento(PremioCongelamiento p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitPremioSuperArma(PremioSuperArma p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitEnemigoAlpha(EnemigoAlpha ea) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitEnemigoBeta(EnemigoBeta eb) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

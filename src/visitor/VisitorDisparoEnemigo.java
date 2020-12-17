@@ -2,37 +2,27 @@ package visitor;
 
 import disparo.*;
 import entidad.Enemigo;
+import entidad.EnemigoAlpha;
+import entidad.EnemigoBeta;
 import entidad.Entidad;
 import entidad.Jugador;
 import entidad.Premio;
+import entidad.PremioCongelamiento;
 import entidad.PremioPocion;
+import entidad.PremioSuperArma;
 
 public class VisitorDisparoEnemigo implements Visitor {
 
-	protected Disparo miDisparo;
+	private DisparoEnemigo miDisparo;
 	
-	public VisitorDisparoEnemigo(Disparo d)
-	{
+	public VisitorDisparoEnemigo(DisparoEnemigo d) {
 		this.miDisparo = d;
 	}
 	
-	
-	@Override
-	public void visitEnemigo(Enemigo e) {
-		System.out.println("YO DISPARO ENEMIGO - ENEMIGO");
-
-	}
-
 	@Override
 	public void visitJugador(Jugador j) {
-		
-		System.out.println("YO DISPARO ENEMIGO - JUGADOR");
-		
 		j.recibirGolpe(miDisparo.getGolpe());
 		miDisparo.morir();
-		
-		System.out.println("Vida JUGADOR: "+j.getVida());
-	
 	}
 
 	@Override
@@ -47,9 +37,40 @@ public class VisitorDisparoEnemigo implements Visitor {
 
 		
 	}
-	
-	public void visitPremio(Premio p) {
-		System.out.println("YO DISPARO ENEMIGO - PREMIO");
+
+
+	@Override
+	public void visitPremioPocion(PremioPocion p) {
+		// TODO Auto-generated method stub
+		
 	}
 
+
+	@Override
+	public void visitPremioCongelamiento(PremioCongelamiento p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void visitPremioSuperArma(PremioSuperArma p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void visitEnemigoAlpha(EnemigoAlpha ea) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void visitEnemigoBeta(EnemigoBeta eb) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }

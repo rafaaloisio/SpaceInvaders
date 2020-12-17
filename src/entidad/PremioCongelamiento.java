@@ -3,6 +3,7 @@ package entidad;
 import grafica.EntidadGraficaPremio;
 import tablero.Celda;
 import tablero.Tablero;
+import visitor.Visitor;
 import visitor.VisitorPremioCongelamiento;
 
 public class PremioCongelamiento extends PremioTemporal {
@@ -17,6 +18,11 @@ public class PremioCongelamiento extends PremioTemporal {
 	@Override
 	protected void hacerEfecto(Jugador j) {
 		this.aceptar(miVisitor);
+	}
+
+	@Override
+	public void aceptar(Visitor visitor) {
+		visitor.visitPremioCongelamiento(this);
 	}
 
 }

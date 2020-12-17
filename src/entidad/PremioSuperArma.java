@@ -3,6 +3,7 @@ package entidad;
 import grafica.EntidadGraficaPremio;
 import tablero.Celda;
 import tablero.Tablero;
+import visitor.Visitor;
 import visitor.VisitorPremioCongelamiento;
 import visitor.VisitorPremioSuperArma;
 
@@ -20,5 +21,11 @@ public class PremioSuperArma extends PremioTemporal {
 	@Override
 	protected void hacerEfecto(Jugador j) {
 		this.aceptar(miVisitor);
+	}
+
+	@Override
+	public void aceptar(Visitor visitor) {
+		// TODO Auto-generated method stub
+		visitor.visitPremioSuperArma(this);
 	}
 }

@@ -3,9 +3,10 @@ package entidad;
 import grafica.EntidadGraficaPremio;
 import tablero.Celda;
 import tablero.Tablero;
+import visitor.Visitor;
 import visitor.VisitorPremioPocion;
 
-public class PremioPocion extends PremioPrecioso {
+public class PremioPocion extends PremioPrecioso { 
 
 	public PremioPocion(Tablero tablero, Celda celda) {
 		super(tablero, celda);
@@ -19,5 +20,9 @@ public class PremioPocion extends PremioPrecioso {
 	protected void hacerEfecto(Jugador j) {
 
 		this.aceptar(this.miVisitor);
+	}
+	
+	public void aceptar(Visitor v) {
+		v.visitPremioPocion(this);
 	}
 }

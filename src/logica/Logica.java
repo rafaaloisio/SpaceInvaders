@@ -49,7 +49,6 @@ public class Logica {
 			misEntidades.get(i).ejecutar();
 		}
 		
-	
 	}
 	
 	

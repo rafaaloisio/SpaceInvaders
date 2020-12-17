@@ -51,8 +51,4 @@ public abstract class Premio extends Entidad {
 		}
 	}
 
-	@Override
-	public void aceptar(Visitor visitor) {
-		visitor.visitPremio(this);
-	}
 }

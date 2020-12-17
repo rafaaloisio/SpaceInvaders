@@ -11,6 +11,8 @@ import visitor.*;
 
 public class Jugador extends Personaje{
 
+	private final int MAXIMA_VIDA = 500;
+	private final int MAXIMO_GOLPE = 50;
 	
 	public Jugador(Tablero miTablero, Celda celda, int vida, int golpe) {
 		super(miTablero, celda);
@@ -67,22 +69,17 @@ public class Jugador extends Personaje{
 		switch (dir){
 		case KeyEvent.VK_A : //Izquierda
 			this.moverIzq();
-			System.out.println("izquierda!");
 			break;
 		case KeyEvent.VK_D : //Derecha
 			this.moverDer();
-			System.out.println("derecha!");
 			break;
 		case KeyEvent.VK_W : //Arriba
 			this.moverArr();
-			System.out.println("arriba!");
 			break;
 		case KeyEvent.VK_S : //Abajo
 			this.moverAb();
-			System.out.println("abajo!");
 			break;
 		case KeyEvent.VK_SPACE :
-			System.out.println("Disparo!");
 			this.disparar(this);
 			break;
 		}
@@ -186,8 +183,11 @@ public class Jugador extends Personaje{
 
 		//esto genera disparos fantasma cuando se disparan
 //		return new DisparoJugador(miTablero,miTablero.getCelda(miCelda.getX(), miCelda.getY()-1),this.getGolpe());
-		return new DisparoJugador(miTablero,miTablero.getCelda(miCelda.getX(), miCelda.getY()),this.getGolpe());
-		
+		Disparo toReturn = new DisparoJugador(miTablero,miTablero.getCelda(miCelda.getX(), miCelda.getY()),this.getGolpe());
+		if (this.golpe > this.MAXIMO_GOLPE) {
+			this.golpe = this.MAXIMO_GOLPE;
+		}
+		return toReturn;
 	}
 
 	public void aceptar(Visitor visitor) {

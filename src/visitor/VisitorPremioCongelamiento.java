@@ -5,9 +5,13 @@ import java.util.LinkedList;
 import disparo.DisparoEnemigo;
 import disparo.DisparoJugador;
 import entidad.Enemigo;
+import entidad.EnemigoAlpha;
+import entidad.EnemigoBeta;
 import entidad.Jugador;
 import entidad.Premio;
 import entidad.PremioCongelamiento;
+import entidad.PremioPocion;
+import entidad.PremioSuperArma;
 
 public class VisitorPremioCongelamiento implements Visitor {
 
@@ -15,11 +19,6 @@ public class VisitorPremioCongelamiento implements Visitor {
 	
 	public VisitorPremioCongelamiento(PremioCongelamiento p) {
 		this.miPremio = p;
-	}
-
-	@Override
-	public void visitEnemigo(Enemigo e) {
-		
 	}
 
 	@Override
@@ -44,7 +43,33 @@ public class VisitorPremioCongelamiento implements Visitor {
 	}
 
 	@Override
-	public void visitPremio(Premio p) {
+	public void visitPremioPocion(PremioPocion p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitPremioCongelamiento(PremioCongelamiento p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitPremioSuperArma(PremioSuperArma p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitEnemigoAlpha(EnemigoAlpha ea) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitEnemigoBeta(EnemigoBeta eb) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

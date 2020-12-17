@@ -2,8 +2,7 @@ package entidad;
 
 import grafica.EntidadGrafica;
 import tablero.*;
-import visitor.*;
-
+import visitor.*; 
 
 public abstract class Entidad {
 	
@@ -18,9 +17,6 @@ public abstract class Entidad {
 	protected int golpe;
 	protected int vida;
 	protected boolean seguirMoviendo;
-	
-
-
 	protected Visitor miVisitor;
 	
 	public Entidad(Tablero tablero, Celda celda)

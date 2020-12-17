@@ -15,9 +15,7 @@ public abstract class Enemigo extends Personaje{
 		super(tablero, celda);
 		this.vida = vida;
 		this.golpe = golpe;
-		
 		this.tiempo = 4;
-		this.miVisitor = new VisitorEnemigo(this);
 	}
 
 	public void ejecutar()
@@ -81,10 +79,6 @@ public abstract class Enemigo extends Personaje{
 	}
 	
 	
-	
-	public void aceptar(Visitor visitor) {
-		visitor.visitEnemigo(this);
-	}
 	
 	public void morir() {
 		

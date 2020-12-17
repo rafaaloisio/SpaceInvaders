@@ -4,6 +4,8 @@ package entidad;
 import disparo.*;
 import grafica.EntidadGraficaAlpha;
 import tablero.*;
+import visitor.Visitor;
+import visitor.VisitorEnemigoAlpha;
 
 public class EnemigoAlpha extends Enemigo {
 
@@ -16,7 +18,7 @@ public class EnemigoAlpha extends Enemigo {
 		entidadgrafica.getImagen().setBounds(x, y, PIXEL, PIXEL);
 		this.vida = vida;
 		this.golpe = golpe;
-		
+		this.miVisitor = new VisitorEnemigoAlpha(this);
 	}
 
 
@@ -24,6 +26,12 @@ public class EnemigoAlpha extends Enemigo {
 	public Disparo crearDisparo() {
 		
 		return new DisparoAlpha(miTablero,miCelda,this.getGolpe());
+	}
+
+
+	@Override
+	public void aceptar(Visitor visitor) {
+		visitor.visitEnemigoAlpha(this);
 	} 
 
 }

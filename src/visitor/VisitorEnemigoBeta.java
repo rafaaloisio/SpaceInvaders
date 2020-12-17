@@ -1,42 +1,50 @@
 package visitor;
 
-import disparo.*;
+import disparo.DisparoEnemigo;
+import disparo.DisparoJugador;
 import entidad.Enemigo;
 import entidad.EnemigoAlpha;
 import entidad.EnemigoBeta;
-import entidad.Entidad;
 import entidad.Jugador;
-import entidad.Premio;
 import entidad.PremioCongelamiento;
 import entidad.PremioPocion;
 import entidad.PremioSuperArma;
 
-public class VisitorDisparoJugador implements Visitor {
-
-	protected Disparo miDisparo;
+public class VisitorEnemigoBeta implements Visitor {
 	
-	public VisitorDisparoJugador(Disparo d) {
-		this.miDisparo = d;
+	private EnemigoBeta miEnemigo;
+	
+	public VisitorEnemigoBeta(EnemigoBeta e) {
+		this.miEnemigo = e;
 	}
-	
-	
+
+	@Override
+	public void visitEnemigoAlpha(EnemigoAlpha ea) {
+		
+	}
+
+	@Override
+	public void visitEnemigoBeta(EnemigoBeta eb) {
+		
+	}
+
 	@Override
 	public void visitJugador(Jugador j) {
-		this.miDisparo.morir();
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void visitDisparoJugador(DisparoJugador dj) {
-		miDisparo.morir();
+		this.miEnemigo.recibirGolpe(dj.getGolpe());
+		dj.morir();
 	}
 
 	@Override
 	public void visitDisparoEnemigo(DisparoEnemigo de) {
-		//sin interacción
-
+		// TODO Auto-generated method stub
 		
 	}
-
 
 	@Override
 	public void visitPremioPocion(PremioPocion p) {
@@ -44,13 +52,11 @@ public class VisitorDisparoJugador implements Visitor {
 		
 	}
 
-
 	@Override
 	public void visitPremioCongelamiento(PremioCongelamiento p) {
 		// TODO Auto-generated method stub
 		
 	}
-
 
 	@Override
 	public void visitPremioSuperArma(PremioSuperArma p) {
@@ -59,18 +65,5 @@ public class VisitorDisparoJugador implements Visitor {
 	}
 
 
-	@Override
-	public void visitEnemigoAlpha(EnemigoAlpha ea) {
-		ea.recibirGolpe(this.miDisparo.getGolpe());
-		this.miDisparo.morir();
-	}
 
-
-	@Override
-	public void visitEnemigoBeta(EnemigoBeta eb) {
-		// TODO Auto-generated method stub
-		eb.recibirGolpe(this.miDisparo.getGolpe());
-		this.miDisparo.morir();
-	}
-	
 }
