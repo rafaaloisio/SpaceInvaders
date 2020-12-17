@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 
@@ -81,10 +82,12 @@ public class GUI extends JFrame implements KeyListener {
 		
 		texto = new JLabel("Vida:");
 		texto.setFont(new Font("DejaVu Sans", Font.PLAIN, 20));
+		texto.setForeground(Color.WHITE);
 		panelSuperior.add(texto);
 		
 		vida = new JLabel("500");
 		vida.setFont(new Font("DejaVu Sans", Font.PLAIN, 20));
+		vida.setForeground(Color.WHITE);
 		panelSuperior.add(vida);
 		
 		panelSuperior.setOpaque(false);

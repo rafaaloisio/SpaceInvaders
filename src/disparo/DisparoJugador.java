@@ -22,6 +22,7 @@ public class DisparoJugador extends Disparo {
 
 		if (y == 0) {
 			morir();
+			
 		} else {
 			if (miTablero.getCelda(x, y-1).cantEntidades() == 0) {
 				miTablero.getCelda(x, y).eliminarEntidad(this);
