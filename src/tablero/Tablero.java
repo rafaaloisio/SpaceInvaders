@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 import entidad.*;
 import logica.Logica;
+import fabrica.*;
 
 public class Tablero 
 {
@@ -25,6 +26,7 @@ public class Tablero
 		
 		for (int i = 0; i < columnas;i++)
 		{
+	
 			for (int j = 0; j < filas ; j++)
 			{
 				tablero[i][j] = new Celda(this,i,j);
@@ -34,8 +36,7 @@ public class Tablero
 					this.jugador = new Jugador(this,tablero[i][j],500,50);
 					logica.agregarEntidad(jugador, jugador.getCelda());
 				}
-				
-				if((i==2 && j == 0))
+			/*	if((i==2 && j == 0))
 				{
 					Enemigo al = new EnemigoAlpha(this,tablero[i][j],150,60);
 					logica.agregarEntidad(al, al.getCelda());
@@ -65,9 +66,32 @@ public class Tablero
 				}
 				
 				
+				*/
 				
 			}
 		}
+		
+		fabricaEnemigo fa = new fabricaEnemigoAlpha(this);
+		fabricaEnemigo fb = new fabricaEnemigoBeta(this);
+		
+		
+		Enemigo alpha = fa.crearEnemigo();
+		logica.agregarEntidad(alpha, alpha.getCelda());
+		this.misEnemigos.add(alpha);
+	
+		Enemigo alpha1 = fa.crearEnemigo();
+		logica.agregarEntidad(alpha1, alpha1.getCelda());
+		this.misEnemigos.add(alpha1);
+		
+		Enemigo beta = fb.crearEnemigo();
+		logica.agregarEntidad(beta, beta.getCelda());
+		this.misEnemigos.add(beta);
+		
+		Enemigo beta1 = fb.crearEnemigo();
+		logica.agregarEntidad(beta1, beta1.getCelda());
+		this.misEnemigos.add(beta1);
+		
+		
 		
 		
 	}
