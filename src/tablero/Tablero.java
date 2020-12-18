@@ -27,6 +27,7 @@ public class Tablero
 		this.miTablero = new Celda[columnas][filas];
 
 		for (int i = 0; i < columnas;i++) {
+			
 			for (int j = 0; j < filas ; j++) {
 				
 				miTablero[i][j] = new Celda(this,i,j);
@@ -39,44 +40,8 @@ public class Tablero
 			}
 		}
 		
-		miNivel = new Nivel1(this,cantEnemigosOleada);
-	
-		miNivel.crearOleada(6, miNivel.getPrimeraOleada());
-
+		this.miNivel = new Nivel1(this,3);
 		
-		while (!miNivel.getPrimeraOleada().isEmpty())
-		{	
-			Enemigo e = miNivel.getEnemigo(1);				
-			logica.agregarEntidad(e, e.getCelda());
-			this.misEnemigos.add(e);
-		
-		}
-		
-		
-		/*
-		
-		FabricaEnemigo fa = new FabricaEnemigoAlpha(this);
-		FabricaEnemigo fb = new FabricaEnemigoBeta(this);
-
-
-		Enemigo alpha = fa.crearEnemigo();
-		logica.agregarEntidad(alpha, alpha.getCelda());
-		this.misEnemigos.add(alpha);
-
-		Enemigo alpha1 = fa.crearEnemigo();
-		logica.agregarEntidad(alpha1, alpha1.getCelda());
-		this.misEnemigos.add(alpha1);
-
-		Enemigo beta = fb.crearEnemigo();
-		logica.agregarEntidad(beta, beta.getCelda());
-		this.misEnemigos.add(beta);
-
-		Enemigo beta1 = fb.crearEnemigo();
-		logica.agregarEntidad(beta1, beta1.getCelda());
-		this.misEnemigos.add(beta1);
-
-
-		*/
 	}
 
 	public int getFilas()

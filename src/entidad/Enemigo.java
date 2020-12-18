@@ -72,12 +72,14 @@ public abstract class Enemigo extends Personaje{
 				}
 			}
 
+			
+			miTablero.getCelda(x, y).eliminarEntidad(this);	
+			
+			if (seguirMoviendo) {
 
-		if (seguirMoviendo) {
+				
 
-				miTablero.getCelda(x, y).eliminarEntidad(this);	
-
-			if( y + 1 == miTablero.getFilas()-1 )
+				if( y + 1 == miTablero.getFilas()-1 )
 					y = 0;
 				else
 				y = y + 1;
@@ -93,9 +95,11 @@ public abstract class Enemigo extends Personaje{
 
 	public void morir() {
 
+		//no sacar, sin esto, no se elimina de la misma celda en la que está y quedan fantasmas
+		miCelda.eliminarEntidad(this);
 		super.morir();
 
-		//suelta premios al morir
+		//algunas veces suelta premios al morir
 		int n = new Random().nextInt(10);
 
 		switch (n){

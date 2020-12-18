@@ -38,10 +38,12 @@ public class GUI extends JFrame implements KeyListener {
 	private static final int PIXEL = 64;
 	
 	private FondoPanel panelPrincipal;
-	private JPanel panelCentral;
-	private Logica logica;
-	private JLabel texto,vida;
-	private Timer actualizarVida;
+	private JPanel panelSuperior, panelCentral, panelInferior;
+	private Logica miLogica;
+	private JLabel textoVida,vida;
+	private JLabel textoNivel,nivel;
+	private JLabel textoOleada,oleada;
+	private Timer actualizarLabels;
 
 	/**
 	 * Launch the application.
@@ -68,7 +70,7 @@ public class GUI extends JFrame implements KeyListener {
 	public GUI() 
 	{
 		
-		setSize(480, 850);
+		setSize(480, 900);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setTitle("Space Invaders");
@@ -78,30 +80,72 @@ public class GUI extends JFrame implements KeyListener {
 		
 		this.addKeyListener(this);
 		
-		JPanel panelSuperior = new JPanel();
+		//Panel Superior
+		panelSuperior = new JPanel();
 		panelSuperior.setBounds(0, 0, 100, 50);
 		
-		texto = new JLabel("Vida:");
-		texto.setFont(new Font("DejaVu Sans", Font.PLAIN, 20));
-		texto.setForeground(Color.WHITE);
-		panelSuperior.add(texto);
+		textoVida = new JLabel("Vida:");
+		textoVida.setFont(new Font("DejaVu Sans", Font.PLAIN, 20));
+		textoVida.setForeground(Color.WHITE);
+		panelSuperior.add(textoVida);
 		
 		vida = new JLabel("500");
 		vida.setFont(new Font("DejaVu Sans", Font.PLAIN, 20));
 		vida.setForeground(Color.WHITE);
 		panelSuperior.add(vida);
 		
+
 		panelSuperior.setOpaque(false);
 		panelPrincipal.add(panelSuperior, BorderLayout.NORTH);
 		
+		
+		//Panel Central
 		panelCentral = new JPanel();
 		panelCentral.setOpaque(false);
 		panelCentral.setLayout(null);
 		panelPrincipal.add(panelCentral);
 		
-		logica = new Logica(this);
+		miLogica = new Logica(this);
+				
+		//Panel Inferior
 		
-		actualizarVida(vida);
+		panelInferior = new JPanel();
+		panelInferior.setBounds(0, 0, 100, 50);
+		
+		textoNivel = new JLabel("Nivel:");
+		textoNivel.setFont(new Font("DejaVu Sans", Font.PLAIN, 20));
+		textoNivel.setForeground(Color.WHITE);
+		panelInferior.add(textoNivel);
+		
+		nivel = new JLabel("0");
+		nivel.setFont(new Font("DejaVu Sans", Font.PLAIN, 20));
+		nivel.setForeground(Color.WHITE);
+		panelInferior.add(nivel);
+		
+		
+		JLabel separador = new JLabel("  -  ");
+		separador.setFont(new Font("DejaVu Sans", Font.PLAIN, 20));
+		separador.setForeground(Color.WHITE);
+		panelInferior.add(separador);
+		
+		
+		textoOleada = new JLabel("Oleada:");
+		textoOleada.setFont(new Font("DejaVu Sans", Font.PLAIN, 20));
+		textoOleada.setForeground(Color.WHITE);
+		panelInferior.add(textoOleada);
+		
+		
+		oleada = new JLabel("0");
+		oleada.setFont(new Font("DejaVu Sans", Font.PLAIN, 20));
+		oleada.setForeground(Color.WHITE);
+		panelInferior.add(oleada);
+		
+		panelInferior.setOpaque(false);
+		panelPrincipal.add(panelInferior, BorderLayout.SOUTH);
+		
+		
+		actualizarLabels(vida,nivel,oleada);
+
 		
 		
 		
@@ -146,10 +190,10 @@ public class GUI extends JFrame implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		
-		//para que no siga detectando las entradas por teclado cuado pierde
-		if(!logica.isPerdi())
+		//para que no siga detectando las entradas por teclado cuado pierde o gana
+		if(!miLogica.isPerdi() ||!miLogica.isGane() )
 		{
-			logica.getTablero().getJugador().mover(e.getKeyCode());
+			miLogica.getTablero().getJugador().mover(e.getKeyCode());
 		}
 	}
 
@@ -159,30 +203,42 @@ public class GUI extends JFrame implements KeyListener {
 		
 	}
 	
-	private void actualizarVida(JLabel v)
+	
+	private void actualizarLabels(JLabel v,JLabel n,JLabel o)
 	{
-		actualizarVida = new Timer(250, new ActionListener() {
+		actualizarLabels = new Timer(250, new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
-				v.setText(""+logica.getTablero().getJugador().getVida());
+				v.setText(""+miLogica.getTablero().getJugador().getVida());
+				n.setText(""+miLogica.getTablero().getMiNivel().getNivel());
+				o.setText(""+miLogica.getTablero().getMiNivel().getOleadaActual());
 				
-				if(logica.isPerdi()) {
+				if(miLogica.isPerdi()) {
 					
-					actualizarVida.stop();
+					actualizarLabels.stop();
 					
 					JOptionPane.showMessageDialog(panelPrincipal, "El jugador perdió por malo.", "La nave hizo boom", JOptionPane.ERROR_MESSAGE);
 
 				}
+				
+				if(miLogica.isGane()) {
+					
+					actualizarLabels.stop();
+					
+					JOptionPane.showMessageDialog(panelPrincipal, "El jugador ganó, es muy groso!", "Los enemigos fueron derrotados", JOptionPane.INFORMATION_MESSAGE);
+
+				}
+				
 				
 			}
 			
 			
 		});
 		
-		actualizarVida.start();
+		actualizarLabels.start();
 	}
 
 }

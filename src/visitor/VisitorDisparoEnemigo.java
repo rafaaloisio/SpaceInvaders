@@ -33,7 +33,7 @@ public class VisitorDisparoEnemigo implements Visitor {
 
 	@Override
 	public void visitDisparoEnemigo(DisparoEnemigo de) {
-		System.out.println("YO DISPARO ENEMIGO - DISPARO ENEMIGO");
+		//System.out.println("YO DISPARO ENEMIGO - DISPARO ENEMIGO");
 
 		
 	}

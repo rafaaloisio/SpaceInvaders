@@ -10,13 +10,11 @@ public abstract class Nivel
 {
 
 	protected Tablero miTablero;
-	protected Nivel siguienteNivel;
 	protected Stack<Enemigo> primeraOleada;
 	protected Stack<Enemigo> segundaOleada;
-	protected FabricaEnemigo fa;
-	protected FabricaEnemigo fb;
-	protected int cantEnemigosEnTablero;
-
+	protected FabricaEnemigo fa,fb;
+	protected int cantEnemigosOleada;
+	protected int oleadaActual;
 
 	protected Nivel(Tablero miTablero) 
 	{
@@ -25,11 +23,10 @@ public abstract class Nivel
 		segundaOleada = new Stack<Enemigo>();
 		this.fa = new FabricaEnemigoAlpha(miTablero);
 		this.fb = new FabricaEnemigoBeta(miTablero);
-		this.cantEnemigosEnTablero = 0;
 	}
 
 
-	protected void crearOleada(int cantEnemigos, Stack<Enemigo> oleada) 
+	public void crearOleada(int cantEnemigos, Stack<Enemigo> oleada) 
 	{
 		
 		for(int i = 0; i < cantEnemigos; i++) 
@@ -52,14 +49,12 @@ public abstract class Nivel
 		if(!primeraOleada.isEmpty() && numOleada ==1)
 		{
 			e = this.primeraOleada.pop();
-			cantEnemigosEnTablero++;
 			
 		}else {
 			
 			if(!segundaOleada.isEmpty() && numOleada ==2) 
 			{
 				e = this.segundaOleada.pop();
-				cantEnemigosEnTablero++;
 			}
 		}
 		return e;
@@ -78,12 +73,27 @@ public abstract class Nivel
 	}
 
 	
-	public Nivel getSiguienteNivel() {
-		return this.siguienteNivel;
-	}
-
 	
 	public abstract int getNivel();
+
+	
+	public int getCantEnemigosOleada() {
+		return cantEnemigosOleada;
+	}
+
+
+	public void setCantEnemigosOleada(int cantEnemigosOleada) {
+		this.cantEnemigosOleada = cantEnemigosOleada;
+	}
+	
+	public int getOleadaActual() {
+		return oleadaActual;
+	}
+
+
+	public void setOleadaActual(int oleadaActual) {
+		this.oleadaActual = oleadaActual;
+	}
 
 
 }
