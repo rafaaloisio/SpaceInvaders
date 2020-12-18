@@ -62,6 +62,7 @@ public class VisitorDisparoJugador implements Visitor {
 	@Override
 	public void visitEnemigoAlpha(EnemigoAlpha ea) {
 		ea.recibirGolpe(this.miDisparo.getGolpe());
+		System.out.println(ea.toString() + " VIDA ALPHA: "+ea.getVida());
 		this.miDisparo.morir();
 	}
 
@@ -70,6 +71,8 @@ public class VisitorDisparoJugador implements Visitor {
 	public void visitEnemigoBeta(EnemigoBeta eb) {
 		// TODO Auto-generated method stub
 		eb.recibirGolpe(this.miDisparo.getGolpe());
+		System.out.println(eb.toString() + " VIDA BETA: "+eb.getVida());
+
 		this.miDisparo.morir();
 	}
 	

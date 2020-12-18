@@ -9,13 +9,6 @@ public abstract class Personaje extends Entidad {
 		super(tablero, celda);
 	}
 	
-
-	public void recibirGolpe(int golpe) {
-		this.vida = vida - golpe;
-		if (vida <= 0) {
-			this.morir();
-		}
-	}
 	
 	public void disparar(Entidad e) {
 
@@ -23,5 +16,12 @@ public abstract class Personaje extends Entidad {
 	}
 	
 	public abstract Disparo crearDisparo();
+	
+	public void recibirGolpe(int golpe) {
+		this.vida = vida - golpe;
+		if (vida <= 0) {
+			this.morir();
+		}
+	}
 	
 }

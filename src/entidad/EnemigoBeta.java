@@ -1,7 +1,6 @@
 package entidad;
 
 import disparo.*;
-import estrategia.MovimientoEnemigo;
 import grafica.EntidadGraficaBeta;
 import tablero.Celda;
 import tablero.Tablero;
@@ -17,7 +16,6 @@ public class EnemigoBeta extends Enemigo {
 		this.vida = vida;
 		this.golpe = golpe;
 		this.miVisitor = new VisitorEnemigoBeta(this);
-		this.movimiento = new MovimientoEnemigo(this.miTablero, this.miCelda, this);
 	}
 
 
@@ -31,5 +29,6 @@ public class EnemigoBeta extends Enemigo {
 	public void aceptar(Visitor visitor) {
 		visitor.visitEnemigoBeta(this);
 	} 
+	
 
 }

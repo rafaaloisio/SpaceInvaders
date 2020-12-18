@@ -37,9 +37,9 @@ public class FabricaEnemigoBeta extends FabricaEnemigo{
 				}
 		}
 
-		System.out.println("Cree Beta X: "+x+" Y: 1");
+		System.out.println("Cree Alpha X: "+x+" Y: "+y);
 		
-		return new EnemigoBeta(miTablero, miTablero.getCelda(x,y),300,30);
+		return new EnemigoBeta(miTablero, miTablero.getCelda(x,y),330,30);
 	}
 
 }

@@ -1,6 +1,5 @@
 package entidad;
 
-import estrategia.Movimiento;
 import grafica.EntidadGrafica;
 import tablero.*;
 import visitor.*; 
@@ -17,7 +16,6 @@ public abstract class Entidad {
 	protected int vida;
 	protected boolean seguirMoviendo;
 	protected Visitor miVisitor;
-	protected Movimiento movimiento;
 	
 	protected Entidad(Tablero tablero, Celda celda)
 	{
@@ -121,12 +119,6 @@ public abstract class Entidad {
 		return this.miVisitor;
 	}
 	
-	public void setMovimiento(Movimiento movimiento) {
-		this.movimiento = movimiento;
-	}
 	
-	public Movimiento getMovimiento() {
-		return this.movimiento;
-	}
 	
 }

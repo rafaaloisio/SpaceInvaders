@@ -2,40 +2,36 @@ package entidad;
 
 import java.util.Random;
 
-import estrategia.Movimiento;
-import estrategia.MovimientoEnemigo;
-import fabrica.FabricaPocionCongelamiento;
-import fabrica.FabricaPremio;
-import fabrica.FabricaPremioPocion;
-import fabrica.FabricaPremioSuperArma;
-import tablero.Celda;
-import tablero.Tablero;
-import visitor.*;
+import fabrica.*;
+import tablero.*;
 
 public abstract class Enemigo extends Personaje{
 
-
-	private int tiempo;
+	protected int tiempo;
+	protected int ejecutarMover;
 	
 	protected Enemigo(Tablero tablero, Celda celda,int vida,int golpe) {
 		super(tablero, celda);
 		this.vida = vida;
 		this.golpe = golpe;
-		this.tiempo = 4;
+		this.tiempo = 6;
+		this.ejecutarMover = 0;
 	}
 
+	
 	public void ejecutar()
 	{
-		if (tiempo == 4) {
+		
+		if (tiempo == 6) {
 			disparar(this);
 		}
 
 		tiempo--;
 
-		if (tiempo == 0) {
-			tiempo = 4;
-			//movimiento.desplazar();
-			
+		if (tiempo == ejecutarMover) {
+			tiempo = 6;
+			System.out.println(" EJECUTAR MOVER: "+ejecutarMover);
+
 			mover();
 		}
 	}
@@ -76,8 +72,6 @@ public abstract class Enemigo extends Personaje{
 			miTablero.getCelda(x, y).eliminarEntidad(this);	
 			
 			if (seguirMoviendo) {
-
-				
 
 				if( y + 1 == miTablero.getFilas()-1 )
 					y = 0;
@@ -139,6 +133,15 @@ public abstract class Enemigo extends Personaje{
 
 	public void setTiempo(int tiempo) {
 		this.tiempo = tiempo;
+	}
+
+	
+	public int getEjecutarMover() {
+		return ejecutarMover;
+	}
+
+	public void setEjecutarMover(int ejecutarMover) {
+		this.ejecutarMover = ejecutarMover;
 	}
 
 

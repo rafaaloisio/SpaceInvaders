@@ -47,12 +47,11 @@ public abstract class DisparoEnemigo extends Disparo {
 				}
 
 				miTablero.getCelda(x, y).eliminarEntidad(this);
-				if (seguirMoviendo) {	
-					y = y + 1;
-					miTablero.getCelda(x, y).agregarEntidad(this);
-					miCelda = miTablero.getCelda(x, y);
-					entidadgrafica.getImagen().setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);
-				}
+				y = y + 1;
+				miTablero.getCelda(x, y).agregarEntidad(this);
+				miCelda = miTablero.getCelda(x, y);
+				entidadgrafica.getImagen().setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);
+				
 			}
 		}
 	}

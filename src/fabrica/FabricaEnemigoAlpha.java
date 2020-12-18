@@ -36,9 +36,9 @@ public class FabricaEnemigoAlpha extends FabricaEnemigo{
 				}
 		}
 
-		System.out.println("Cree Alpha X: "+x+" Y: 1");
+		System.out.println("Cree Alpha X: "+x+" Y: "+y);
 		
-		return new EnemigoAlpha(miTablero, miTablero.getCelda(x,y),150,60);
+		return new EnemigoAlpha(miTablero, miTablero.getCelda(x,y),180,60);
 	}
 
 }

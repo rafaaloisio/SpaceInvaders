@@ -3,7 +3,6 @@ package entidad;
 import java.awt.event.KeyEvent;
 
 import disparo.*;
-import estrategia.MovimientoEnemigo;
 import grafica.EntidadGraficaJugador;
 import tablero.*;
 import visitor.*;
@@ -11,8 +10,8 @@ import visitor.*;
 
 public class Jugador extends Personaje{
 
-	private final int MAXIMA_VIDA = 50000;
-	private final int MAXIMO_GOLPE = 50;
+	private final int MAXIMA_VIDA = 1000;
+	private final int MAXIMO_GOLPE = 40;
 	
 	public Jugador(Tablero miTablero, Celda celda) {
 		super(miTablero, celda);
@@ -21,7 +20,6 @@ public class Jugador extends Personaje{
 		this.miVisitor = new VisitorJugador(this);
 		entidadgrafica = new EntidadGraficaJugador("/recursos/jugador/nave.png");
 		entidadgrafica.getImagen().setBounds(x, y, PIXEL, PIXEL);
-		this.movimiento = new MovimientoEnemigo(this.miTablero, this.miCelda, this);
 	}
 	
 	public void consumirPremio(Premio p) {
@@ -229,6 +227,7 @@ public class Jugador extends Personaje{
 	public void aceptar(Visitor visitor) {
 		visitor.visitJugador(this);
 	}
+	
 
 
 }

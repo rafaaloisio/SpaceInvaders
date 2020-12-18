@@ -17,11 +17,13 @@ public class HiloEntidades extends Thread {
 	
 	
 	public void run() {
-		while (!miLogica.isPerdi() || !miLogica.isGane()) {
+		while (!miLogica.isPerdi() && !miLogica.isGane()) {
 			try {
+				
 				Thread.sleep(250);
+				
 				miLogica.ejecutarEntidades();
-				//miLogica.desplazarEntidades();
+			
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

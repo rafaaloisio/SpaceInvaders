@@ -19,10 +19,8 @@ public class Logica {
 	protected Tablero miTablero;
 	protected boolean perdi;
 	protected boolean gane;
-	protected boolean ganeNivel;
+	protected boolean ganeOleada;
 	protected Timer hiloOleadas;
-	protected int mutex;
-
 	
 	public Logica(GUI grafica) 
 	{
@@ -36,10 +34,8 @@ public class Logica {
 		
 		gane = false;
 		
-		ganeNivel = false;
-		
-		cargarOleada();
-		
+		ganeOleada = false;
+				
 		crearHilos();
 	}
 	
@@ -51,21 +47,82 @@ public class Logica {
 	}
 	
 	
-	public void ejecutarEntidades()	{
+	public void ejecutarEntidades() throws InterruptedException	{
 		
 		for (int i = 0; i<misEntidades.size();i++) {
 			misEntidades.get(i).ejecutar();
+		
+		}
+		
+		Nivel miNivel = miTablero.getMiNivel();
+		
+		if((miTablero.getEnemigos().size() == 0) && (miNivel.getOleadaActual() == 1)) 
+		{
+			System.out.println("----COMIENZO DE LA PRIMER OLEADA---- NIVEL: "+miNivel.getNivel());
+			
+			while (!miNivel.getPrimeraOleada().isEmpty())
+			{	
+				Enemigo en = miNivel.getEnemigo(1);				
+				agregarEntidad(en, en.getCelda());
+				miTablero.getEnemigos().add(en);
+			
+			}
+			
+		}
+		
+		if((miTablero.getEnemigos().size() == 0) && (miNivel.getOleadaActual() == 1)) 
+		{
+			
+			ganeOleada = true;
+			
+			//espero 3 segundos cuando gano una oleada
+			Thread.sleep(3000);
+			
+			System.out.println("----FIN PRIMERA OLEADA---- NIVEL: "+miNivel.getNivel());
+			
+			miNivel.setOleadaActual(2);
+			
+			miNivel.crearOleada(miNivel.getCantEnemigosOleada(),miNivel.getSegundaOleada());
+
+			System.out.println("----COMIENZO DE LA SEGUNDA OLEADA---- NIVEL: "+miNivel.getNivel());
+		}
+		
+		
+		if((miTablero.getEnemigos().size() == 0) && (miNivel.getOleadaActual() == 2) && (ganeOleada)) {
+			
+			while (!miNivel.getSegundaOleada().isEmpty())
+			{	
+				Enemigo en = miNivel.getEnemigo(2);				
+				agregarEntidad(en, en.getCelda());
+				miTablero.getEnemigos().add(en);
+				
+			}
+			
+			ganeOleada = false;
+			
+		}
+		
+		
+		if((miTablero.getEnemigos().size() == 0) && (miNivel.getOleadaActual() == 2))
+		{
+			
+			System.out.println("----FIN SEGUNDA OLEADA---- NIVEL: "+miNivel.getNivel());
+			
+			if(miNivel.getNivel() == 1) {
+				
+				//espero 5 segundos cuando gano un nuvel
+				Thread.sleep(5000);
+				miTablero.setMiNivel(new Nivel2(miTablero,5));		
+			}
+			else
+			{
+				System.out.println("----GANE!!!!---- ");
+				miTablero.getLogica().setGane(true);
+			}
 		}
 		
 	}
 	
-	public void desplazarEntidades() {
-		for (Entidad e: misEntidades) {
-			if (!e.equals(this.miTablero.getJugador())) {
-				e.getMovimiento().desplazar();
-			}
-		}
-	}
 	
 	
 	public void agregarEntidad(Entidad e, Celda celda) 
@@ -132,99 +189,14 @@ public class Logica {
 		this.gane = gane;
 	}
 	
-	public int getMutex() {
-		return mutex;
+	public boolean isGaneOleada() {
+		return ganeOleada;
 	}
 
 
-	public void setMutex(int mutex) {
-		this.mutex = mutex;
+	public void setGaneOleada(boolean ganeOleada) {
+		this.ganeOleada = ganeOleada;
 	}
 	
-	private void cargarOleada() {
-	
-		Nivel miNivel = miTablero.getMiNivel();
-		
-		miNivel.setOleadaActual(1);
-		
-		mutex = 0;
-				
-		System.out.println("----COMIENZO DE LA PRIMER OLEADA---- NIVEL: "+miNivel.getNivel());
-		
-		while (!miNivel.getPrimeraOleada().isEmpty() && mutex == 0)
-		{	
-			Enemigo en = miNivel.getEnemigo(1);				
-			agregarEntidad(en, en.getCelda());
-			miTablero.getEnemigos().add(en);
-		
-		}
-		
-		System.out.println("CANT ENEMIGOS: "+miTablero.getEnemigos().size()+" NIVEL: "+miNivel.getNivel());
-		
-		
-		mutex = 1;
-		
-		hiloOleadas = new Timer(250, new ActionListener() {
-		
-			
-			public void actionPerformed(ActionEvent e) {
-				
-				
-				if(miTablero.getEnemigos().size() == 0 )
-				{
-					if(mutex == 1) {
-						System.out.println("----FIN PRIMERA OLEADA---- NIVEL: "+miNivel.getNivel());
-						
-						miNivel.setOleadaActual(2);
-						System.out.println("----COMIENZO DE LA SEGUNDA OLEADA---- NIVEL: "+miNivel.getNivel());
-						
-						miNivel.crearOleada(miNivel.getCantEnemigosOleada(),miNivel.getSegundaOleada());
-						
-						mutex = 0;
-						
-						while (!miNivel.getSegundaOleada().isEmpty())
-						{	
-							Enemigo ene = miNivel.getEnemigo(2);
-							agregarEntidad(ene, ene.getCelda());
-							miTablero.getEnemigos().add(ene);
-						
-						}
-					}else {
-					
-				
-							if(miTablero.getEnemigos().size() == 0)
-							{
-								System.out.println("----FIN SEGUNDA OLEADA---- NIVEL: "+miNivel.getNivel());
-								ganeNivel = true;
-								hiloOleadas.stop();
-								
-								if(miNivel.getNivel() == 1) {
-									
-									miTablero.setMiNivel(new Nivel2(miTablero,4));
-									
-									cargarOleada();
-									
-								}else
-								{
-									
-									miTablero.getLogica().setGane(true);
-									
-									System.out.println("----GANE!!!!---- ");
-								}
-							}
-						
-					}
-					
-				}
-			}
-			
-			
-		});
-		
-		hiloOleadas.start();
-		
-		
-	}
-
 	
 }

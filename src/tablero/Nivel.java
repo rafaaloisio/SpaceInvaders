@@ -23,6 +23,7 @@ public abstract class Nivel
 		segundaOleada = new Stack<Enemigo>();
 		this.fa = new FabricaEnemigoAlpha(miTablero);
 		this.fb = new FabricaEnemigoBeta(miTablero);
+		this.oleadaActual = 1;
 	}
 
 
