@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 
 import GUI.GUI;
-import entidad.Entidad;
 import entidad.*;
 import hilos.HiloEntidades;
 import tablero.*;
@@ -12,7 +11,7 @@ import tablero.*;
 public class Logica {
 
 	protected ArrayList<Entidad> misEntidades;
-	protected ArrayList<Entidad> misEntidades_aux;
+	//protected ArrayList<Entidad> misEntidades_aux;
 	protected HiloEntidades hiloEntidades;
 	protected GUI grafica;
 	protected Tablero tablero;
@@ -60,7 +59,7 @@ public class Logica {
 	public void agregarEntidad(Entidad e, Celda celda) 
 	{
 		misEntidades.add(e);
-		celda.agregarEntidad(e);
+		//celda.agregarEntidad(e); ahora lo agrega a la celda cuando la entidad es creada, por eso no es necesario esto
 		e.setCelda(celda);
 		grafica.graficarEntidad(e);
 		
@@ -72,6 +71,7 @@ public class Logica {
 		//cuando anden las oleadas, hay que eliminar de misEnemigos de tablero tambien
 		
 		grafica.eliminarEntidad(e);
+		
 		e.getCelda().eliminarEntidad(e);
 		
 		

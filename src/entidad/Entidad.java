@@ -26,6 +26,7 @@ public abstract class Entidad {
 		miCelda = celda;
 		miTablero = tablero;
 		seguirMoviendo = true;
+		miCelda.agregarEntidad(this);
 		
 	}
 	

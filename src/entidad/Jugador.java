@@ -1,7 +1,6 @@
 package entidad;
 
 import java.awt.event.KeyEvent;
-import java.util.Iterator;
 
 import disparo.*;
 import estrategia.MovimientoEnemigo;
@@ -35,6 +34,8 @@ public class Jugador extends Personaje{
 		
 		
 		//detengo el hilo al perder
+		miCelda.eliminarEntidad(this);
+		
 		miTablero.getLogica().setPerdi(true);
 		
 		this.vida = 0;
@@ -49,18 +50,7 @@ public class Jugador extends Personaje{
 	@Override
 	public void ejecutar() 
 	{
-//		if(miTablero.getCelda(x, y).cantEntidades()>1)
-//		{	
-//			System.out.println("ME FIJE.");
-//			
-//			Entidad[] entidadesCelda = miTablero.getCelda(x, y).getArregloEntidades();
-//			
-//			for (int i=0; i < entidadesCelda.length; i++) {
-//				if (entidadesCelda[i] != null) {
-//					entidadesCelda[i].aceptar(miVisitor);
-//				}
-//			}
-//		}	
+
 	} 
 
 	public void mover() 
@@ -79,6 +69,9 @@ public class Jugador extends Personaje{
 		case KeyEvent.VK_D : //Derecha
 			this.moverDer();
 			break;
+	
+		
+		//sirve para mover a la nave para arriba y abajo, no se pide en el enunciado.
 	/*		
 		case KeyEvent.VK_W : //Arriba
 			this.moverArr();
@@ -167,6 +160,8 @@ public class Jugador extends Personaje{
 
 	}
 
+	
+	//no se pide en el enunciado
 	public void moverArr() 
 	{
 		if (miTablero.getCelda(x  , y - 1) != null) {
@@ -191,6 +186,7 @@ public class Jugador extends Personaje{
 
 	}
 
+	//no se pide en el enunciado
 	public void moverAb() 
 	{
 		if (miTablero.getCelda(x  , y + 1) != null) {
@@ -213,16 +209,21 @@ public class Jugador extends Personaje{
 		}
 	}
 	
-	//crea disparo en la siguiente celda
 	public Disparo crearDisparo() {
 
-		//esto genera disparos fantasma cuando se disparan
-//		return new DisparoJugador(miTablero,miTablero.getCelda(miCelda.getX(), miCelda.getY()-1),this.getGolpe());
+		/*
+		
 		Disparo toReturn = new DisparoJugador(miTablero,miTablero.getCelda(miCelda.getX(), miCelda.getY()),this.getGolpe());
 		if (this.golpe > this.MAXIMO_GOLPE) {
 			this.golpe = this.MAXIMO_GOLPE;
 		}
+	
 		return toReturn;
+		
+		*/
+		
+		return new DisparoJugador(miTablero,miCelda,this.getGolpe());
+		
 	}
 
 	public void aceptar(Visitor visitor) {

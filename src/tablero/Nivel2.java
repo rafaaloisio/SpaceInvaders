@@ -1,18 +1,20 @@
 package tablero;
 
-import entidad.Enemigo;
-
 public class Nivel2 extends Nivel {
 
-	public Nivel2(Tablero miTablero) {
+	protected final int nivel = 2;
+	
+	public Nivel2(Tablero miTablero, int cantEnemigosOleada) {
 		super(miTablero);
-		// TODO Auto-generated constructor stub
+		this.siguienteNivel = null;
+		crearOleada(cantEnemigosOleada,this.primeraOleada);
+		crearOleada(cantEnemigosOleada,this.segundaOleada);
 	}
 
+	
 	@Override
-	public Enemigo getEnemigo(int oleada) {
-		// TODO Auto-generated method stub
-		return null;
+	public int getNivel() {
+		return nivel;
 	}
 
 }

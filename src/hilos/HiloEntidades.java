@@ -21,7 +21,7 @@ public class HiloEntidades extends Thread {
 			try {
 				Thread.sleep(200);
 				miLogica.ejecutarEntidades();
-				miLogica.desplazarEntidades();
+				//miLogica.desplazarEntidades();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

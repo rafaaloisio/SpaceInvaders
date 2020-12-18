@@ -11,52 +11,79 @@ public abstract class Nivel
 
 	protected Tablero miTablero;
 	protected Nivel siguienteNivel;
-	protected Stack<Entidad> primeraOleada = new Stack<Entidad>();
-	protected Stack<Entidad> segundaOleada = new Stack<Entidad>();;
+	protected Stack<Enemigo> primeraOleada;
+	protected Stack<Enemigo> segundaOleada;
+	protected FabricaEnemigo fa;
+	protected FabricaEnemigo fb;
+	protected int cantEnemigosEnTablero;
 
 
 	protected Nivel(Tablero miTablero) 
 	{
 		this.miTablero = miTablero;
+		primeraOleada = new Stack<Enemigo>();
+		segundaOleada = new Stack<Enemigo>();
+		this.fa = new FabricaEnemigoAlpha(miTablero);
+		this.fb = new FabricaEnemigoBeta(miTablero);
+		this.cantEnemigosEnTablero = 0;
 	}
 
 
-	protected void crearOleada(int cantEnemigos, Stack<Entidad> oleada) 
+	protected void crearOleada(int cantEnemigos, Stack<Enemigo> oleada) 
 	{
-		Enemigo e;
-		Random ran = new Random();
-		int valor;
-		FabricaEnemigo fa = new FabricaEnemigoAlpha(miTablero);
-		FabricaEnemigo fb = new FabricaEnemigoBeta(miTablero);
+		
 		for(int i = 0; i < cantEnemigos; i++) 
 		{
-			valor = ran.nextInt(2);
-			if(valor % 2 == 0) 
-			{
-				e = fa.crearEnemigo();
-				oleada.push(e);
-			}
+			int valor = new Random().nextInt(2);
+			
+			if(valor == 1) 
+				oleada.push(fa.crearEnemigo());
 			else
-			{
-				e = fb.crearEnemigo();
-				oleada.push(e);
-			}			
+				oleada.push(fb.crearEnemigo());		
 		}
 	}
 
+	
+	public Enemigo getEnemigo(int numOleada) 
+	{
+		
+		Enemigo e = null;
+		
+		if(!primeraOleada.isEmpty() && numOleada ==1)
+		{
+			e = this.primeraOleada.pop();
+			cantEnemigosEnTablero++;
+			
+		}else {
+			
+			if(!segundaOleada.isEmpty() && numOleada ==2) 
+			{
+				e = this.segundaOleada.pop();
+				cantEnemigosEnTablero++;
+			}
+		}
+		return e;
+	}
 
-	public abstract Enemigo getEnemigo(int oleada);
-
-	public Stack<Entidad> getPrimeraOleada() 
+	
+	public Stack<Enemigo> getPrimeraOleada() 
 	{
 		return primeraOleada;
 	}
 
-
-	public Stack<Entidad> getSegundaOleada()
+	
+	public Stack<Enemigo> getSegundaOleada()
 	{
 		return segundaOleada;
 	}
+
+	
+	public Nivel getSiguienteNivel() {
+		return this.siguienteNivel;
+	}
+
+	
+	public abstract int getNivel();
 
 
 }

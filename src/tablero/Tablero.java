@@ -8,35 +8,53 @@ import fabrica.*;
 
 public class Tablero 
 {
-	protected Celda[][] tablero;
+	protected Celda[][] miTablero;
 	protected int filas;
 	protected int columnas;
-	protected Jugador jugador;
+	protected Jugador miJugador;
 	protected LinkedList<Enemigo> misEnemigos;
-	protected Logica logica;
+	protected Logica miLogica;
+	protected Nivel miNivel;
+	protected int cantEnemigosOleada;
 
 	public Tablero(Logica logica)
 	{
 		this.filas = 12;
 		this.columnas = 7;
-		this.logica = logica;
+		this.miLogica = logica;
 		misEnemigos = new LinkedList<Enemigo>();
 
-		this.tablero = new Celda[columnas][filas];
+		this.miTablero = new Celda[columnas][filas];
 
 		for (int i = 0; i < columnas;i++) {
 			for (int j = 0; j < filas ; j++) {
 				
-				tablero[i][j] = new Celda(this,i,j);
+				miTablero[i][j] = new Celda(this,i,j);
 				System.out.println("X: "+i+" Y: "+j);
 
 				if(i==3 && j == 10) {
-					this.jugador = new Jugador(this,tablero[i][j]);
-					logica.agregarEntidad(jugador, jugador.getCelda());
+					this.miJugador = new Jugador(this,miTablero[i][j]);
+					logica.agregarEntidad(miJugador, miJugador.getCelda());
 				}				
 			}
 		}
+		
+		miNivel = new Nivel1(this,cantEnemigosOleada);
+	
+		miNivel.crearOleada(6, miNivel.getPrimeraOleada());
 
+		
+		while (!miNivel.getPrimeraOleada().isEmpty())
+		{	
+			Enemigo e = miNivel.getEnemigo(1);				
+			logica.agregarEntidad(e, e.getCelda());
+			this.misEnemigos.add(e);
+		
+		}
+		
+		
+		/*
+		
 		FabricaEnemigo fa = new FabricaEnemigoAlpha(this);
 		FabricaEnemigo fb = new FabricaEnemigoBeta(this);
 
@@ -57,6 +75,8 @@ public class Tablero
 		logica.agregarEntidad(beta1, beta1.getCelda());
 		this.misEnemigos.add(beta1);
 
+
+		*/
 	}
 
 	public int getFilas()
@@ -73,29 +93,45 @@ public class Tablero
 	public Celda getCelda(int x, int y) 
 	{
 		if ((x < this.columnas) && (x >= 0) && (y < this.filas) && (y >= 0))
-			return this.tablero[x][y];
+			return this.miTablero[x][y];
 		else
 			return null;
 	}
 
 	public Logica getLogica() {
-		return logica;
+		return miLogica;
 	}
 
 	public void setLogica(Logica logica) {
-		this.logica = logica;
+		this.miLogica = logica;
 	}
 
 	public Jugador getJugador() {
-		return jugador;
+		return miJugador;
 	}
 
 	public void setJugador(Jugador jugador) {
-		this.jugador = jugador;
+		this.miJugador = jugador;
 	}
 
 	public LinkedList<Enemigo> getEnemigos() {
 		return misEnemigos;
+	}
+	
+	public Nivel getMiNivel() {
+		return miNivel;
+	}
+
+	public void setMiNivel(Nivel miNivel) {
+		this.miNivel = miNivel;
+	}
+
+	public int getCantEnemigosOleada() {
+		return cantEnemigosOleada;
+	}
+
+	public void setCantEnemigosOleada(int cantEnemigosOleada) {
+		this.cantEnemigosOleada = cantEnemigosOleada;
 	}
 
 

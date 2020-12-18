@@ -101,9 +101,7 @@ public class GUI extends JFrame implements KeyListener {
 		
 		logica = new Logica(this);
 		
-		
 		actualizarVida(vida);
-		
 		
 		
 		
@@ -119,6 +117,7 @@ public class GUI extends JFrame implements KeyListener {
 	}
 	
 	public void graficarEntidad(Entidad e) {
+		
 		EntidadGrafica eg = e.getEntidadGrafica();
 		panelCentral.add(eg.getImagen());
 		eg.getImagen().setBounds((e.getCelda().getX() * PIXEL), e.getCelda().getY() * PIXEL, PIXEL, PIXEL);
@@ -136,7 +135,6 @@ public class GUI extends JFrame implements KeyListener {
 		panelCentral.repaint();
 		
 
-		
 	}
 
 	@Override
@@ -148,6 +146,7 @@ public class GUI extends JFrame implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		
+		//para que no siga detectando las entradas por teclado cuado pierde
 		if(!logica.isPerdi())
 		{
 			logica.getTablero().getJugador().mover(e.getKeyCode());

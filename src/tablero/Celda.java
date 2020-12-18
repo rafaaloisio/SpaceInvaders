@@ -1,12 +1,9 @@
 package tablero;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import entidad.Entidad;
-import entidad.Premio;
-import entidad.PremioPocion;
+import entidad.*;
 
 public class Celda 
 {
@@ -48,11 +45,11 @@ public class Celda
 	
 	public void agregarEntidad(Entidad e) 
 	{
-		
 
 	  boolean agrego = entidades.add(e);
 		
 	  if(agrego){
+		  
 			cantEntidades++;
 //			System.out.println("AGREGUE: Entidades en celda ("+x+","+y+") :"+cantEntidades);
 		}

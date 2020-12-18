@@ -14,9 +14,31 @@ public class FabricaEnemigoAlpha extends FabricaEnemigo{
 	@Override
 	public Enemigo crearEnemigo() {
 		
-		System.out.println("Cree Alpha");
 		
-		return new EnemigoAlpha(miTablero, miTablero.getCelda(new Random().nextInt(7),1),150,60);
+		//para disminuir las colisiones de crear enemigos en la misma celda
+
+		int x = new Random().nextInt(7);
+		
+		int y = new Random().nextInt(3);
+		
+		boolean encontre = false;
+		
+		if(miTablero.getCelda(x,y).cantEntidades() > 0)
+		{
+			for (int i = 0; i < 7 & !encontre ;i++)
+			{
+				if(miTablero.getCelda(i,y).cantEntidades() == 0)
+					{
+						encontre = true;
+						x = i;
+					}
+					
+				}
+		}
+
+		System.out.println("Cree Alpha X: "+x+" Y: 1");
+		
+		return new EnemigoAlpha(miTablero, miTablero.getCelda(x,y),150,60);
 	}
 
 }

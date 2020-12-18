@@ -24,7 +24,4 @@ public abstract class Personaje extends Entidad {
 	
 	public abstract Disparo crearDisparo();
 	
-	
-	
-
 }

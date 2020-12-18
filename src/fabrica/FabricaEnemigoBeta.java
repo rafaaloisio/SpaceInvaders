@@ -16,8 +16,30 @@ public class FabricaEnemigoBeta extends FabricaEnemigo{
 	public Enemigo crearEnemigo() {
 		
 
-		System.out.println("Cree Beta");
-		return new EnemigoBeta(miTablero, miTablero.getCelda(new Random().nextInt(7),0),300,30);
+		//para disminuir las colisiones de crear enemigos en la misma celda
+
+		int x = new Random().nextInt(miTablero.getColumnas());
+		
+		int y = new Random().nextInt(3);
+		
+		boolean encontre = false;
+		
+		if(miTablero.getCelda(x,y).cantEntidades() > 0)
+		{
+			for (int i = 0; i < 7 & !encontre ;i++)
+			{
+				if(miTablero.getCelda(i,y).cantEntidades() == 0)
+					{
+						encontre = true;
+						x = i;
+					}
+					
+				}
+		}
+
+		System.out.println("Cree Beta X: "+x+" Y: 1");
+		
+		return new EnemigoBeta(miTablero, miTablero.getCelda(x,y),300,30);
 	}
 
 }
