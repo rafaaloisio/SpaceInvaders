@@ -221,7 +221,7 @@ public class GUI extends JFrame implements KeyListener {
 					actualizarLabels.stop();
 					
 					JOptionPane.showMessageDialog(panelPrincipal, "El jugador perdió por malo.", "La nave hizo boom", JOptionPane.ERROR_MESSAGE);
-
+					System.exit(1);
 				}
 				
 				if(miLogica.isGane()) {
@@ -229,7 +229,7 @@ public class GUI extends JFrame implements KeyListener {
 					actualizarLabels.stop();
 					
 					JOptionPane.showMessageDialog(panelPrincipal, "El jugador ganó, es muy groso!", "Los enemigos fueron derrotados", JOptionPane.INFORMATION_MESSAGE);
-
+					System.exit(0);
 				}
 				
 				
