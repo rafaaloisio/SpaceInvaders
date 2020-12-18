@@ -5,15 +5,21 @@ import tablero.Tablero;
 import visitor.Visitor;
 
 public abstract class Premio extends Entidad {
-	
 
+	private int tiempo;
+	
 	protected Premio(Tablero tablero, Celda celda) {
 		super(tablero, celda);
+		this.tiempo = 4;
 	}
-
+ 
 	@Override
 	public void ejecutar() {
-		mover();
+		if (tiempo == 0) {
+			mover();
+			tiempo = 4;
+		}
+		tiempo --;
 	}
 
 	@Override

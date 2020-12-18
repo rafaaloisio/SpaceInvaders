@@ -1,12 +1,9 @@
 package visitor;
 
 import disparo.*;
-import entidad.Enemigo;
 import entidad.EnemigoAlpha;
 import entidad.EnemigoBeta;
-import entidad.Entidad;
 import entidad.Jugador;
-import entidad.Premio;
 import entidad.PremioCongelamiento;
 import entidad.PremioPocion;
 import entidad.PremioSuperArma;
