@@ -8,7 +8,7 @@ import visitor.*;
 
 public abstract class DisparoEnemigo extends Disparo {
 
-	public DisparoEnemigo(Tablero miTablero, Celda miCelda, int golpe) {
+	protected DisparoEnemigo(Tablero miTablero, Celda miCelda, int golpe) {
 		super(miTablero, miCelda, golpe);
 		this.miVisitor = new VisitorDisparoEnemigo(this);
 
