@@ -1,6 +1,7 @@
 package tablero;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import entidad.*;
 import logica.Logica;
@@ -12,7 +13,7 @@ public class Tablero
 	protected int filas;
 	protected int columnas;
 	protected Jugador miJugador;
-	protected LinkedList<Enemigo> misEnemigos;
+	protected List<Enemigo> misEnemigos;
 	protected Logica miLogica;
 	protected Nivel miNivel;
 	protected int cantEnemigosOleada;
@@ -79,7 +80,7 @@ public class Tablero
 		this.miJugador = jugador;
 	}
 
-	public LinkedList<Enemigo> getEnemigos() {
+	public List<Enemigo> getEnemigos() {
 		return misEnemigos;
 	}
 	

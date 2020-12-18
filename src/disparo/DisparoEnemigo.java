@@ -28,6 +28,7 @@ public abstract class DisparoEnemigo extends Disparo {
 	public void mover() {
 		if(y == miTablero.getFilas()-1) {
 			morir();
+			miTablero.getCelda(x, y).eliminarEntidad(this);
 		}
 		else {
 			if(miTablero.getCelda(x , y+1).cantEntidades()==0 ) {

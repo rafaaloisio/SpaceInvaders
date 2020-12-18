@@ -2,6 +2,7 @@ package tablero;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 
 import entidad.*;
 
@@ -13,7 +14,7 @@ public class Celda
 	
 	protected Tablero tablero;
 	
-	protected LinkedList<Entidad> entidades;
+	protected List<Entidad> entidades;
 
 	protected int cantEntidades;
 	
@@ -74,7 +75,7 @@ public class Celda
 	}
 	
 	
-	public LinkedList<Entidad> getEntidades()
+	public List<Entidad> getEntidades()
 	{
 		return entidades;
 	}

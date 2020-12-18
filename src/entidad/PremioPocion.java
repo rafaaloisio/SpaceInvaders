@@ -16,12 +16,6 @@ public class PremioPocion extends PremioPrecioso {
 		this.miVisitor = new VisitorPremioPocion(this);
 	}
 
-	@Override
-	protected void hacerEfecto(Jugador j) {
-
-		this.aceptar(this.miVisitor);
-	}
-	
 	public void aceptar(Visitor v) {
 		v.visitPremioPocion(this);
 	}

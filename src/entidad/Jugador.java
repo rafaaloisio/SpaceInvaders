@@ -22,10 +22,6 @@ public class Jugador extends Personaje{
 		entidadgrafica.getImagen().setBounds(x, y, PIXEL, PIXEL);
 	}
 	
-	public void consumirPremio(Premio p) {
-		p.hacerEfecto(this);
-	}
-
 	@Override
 	public void morir() 
 	{
@@ -157,7 +153,6 @@ public class Jugador extends Personaje{
 		}
 
 	}
-
 	
 	//no se pide en el enunciado
 	public void moverArr() 

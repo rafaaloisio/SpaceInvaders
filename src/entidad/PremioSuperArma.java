@@ -19,11 +19,6 @@ public class PremioSuperArma extends PremioTemporal {
 	}
 
 	@Override
-	protected void hacerEfecto(Jugador j) {
-		this.aceptar(miVisitor);
-	}
-
-	@Override
 	public void aceptar(Visitor visitor) {
 		visitor.visitPremioSuperArma(this);
 	}
