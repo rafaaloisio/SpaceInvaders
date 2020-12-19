@@ -15,7 +15,7 @@ public class VisitorPremioPocion implements Visitor {
 	public void visitJugador(Jugador j) {
 		
 		
-		j.setVida(j.getVida() + miPremio.getGolpe());
+		j.setVida(j.getVida() + miPremio.getVida());
 		
 		
 		this.miPremio.getCelda().eliminarEntidad(this.miPremio);

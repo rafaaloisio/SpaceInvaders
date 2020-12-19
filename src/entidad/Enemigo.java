@@ -30,7 +30,7 @@ public abstract class Enemigo extends Personaje{
 
 		if (tiempo == ejecutarMover) {
 			tiempo = 6;
-			System.out.println(" EJECUTAR MOVER: "+ejecutarMover);
+			//System.out.println(" EJECUTAR MOVER: "+ejecutarMover);
 
 			mover();
 		}

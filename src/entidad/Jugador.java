@@ -10,7 +10,7 @@ import visitor.*;
 
 public class Jugador extends Personaje{
 
-	private final int MAXIMA_VIDA = 100000;
+	private final int MAXIMA_VIDA = 1000;
 	private final int MAXIMO_GOLPE = 40;
 
 	public Jugador(Tablero miTablero, Celda celda) {
@@ -216,6 +216,8 @@ public class Jugador extends Personaje{
 
 		DisparoJugador retorno = new DisparoJugador(miTablero,miCelda,this.getGolpe());
 
+		
+		// con cada disparo, hace que el valor del golpe se vaya normalizando luego de haber tomado el premio de super arma
 		if (this.golpe > this.MAXIMO_GOLPE) {
 			this.golpe -= 5;
 		}
