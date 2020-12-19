@@ -9,4 +9,6 @@ Los disparos se realizan con la barra espaciadora.
 Para ganar, tenés que derrotar a todas las naves enemigas que te aparezcan. 
 Al eliminar un enemigo, existe la posiblidad de que te salgan premios que te ayuden con tu travesía!
 
+Cada vez que ganes una oleada o un nivel, vas a tener unos segundos para descansar y prepararte para la siguiente aventura!
+
 Buena Suerte!
