@@ -11,10 +11,4 @@ public abstract class Disparo extends Entidad {
 		this.golpe = golpe;
 
 	}
-	
-	
-	
-
-
-
 }

@@ -27,9 +27,9 @@ public class Tablero
 		this.miTablero = new Celda[columnas][filas];
 
 		for (int i = 0; i < columnas;i++) {
-			
+
 			for (int j = 0; j < filas ; j++) {
-				
+
 				miTablero[i][j] = new Celda(this,i,j);
 				System.out.println("X: "+i+" Y: "+j);
 
@@ -39,9 +39,9 @@ public class Tablero
 				}				
 			}
 		}
-		
+
 		this.miNivel = new Nivel1(this,3);
-		
+
 	}
 
 	public int getFilas()
@@ -82,7 +82,7 @@ public class Tablero
 	public List<Enemigo> getEnemigos() {
 		return misEnemigos;
 	}
-	
+
 	public Nivel getMiNivel() {
 		return miNivel;
 	}

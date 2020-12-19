@@ -5,7 +5,7 @@ import tablero.*;
 import visitor.*; 
 
 public abstract class Entidad {
-	
+
 	public static final int PIXEL = 64;
 	protected Celda miCelda;
 	protected Tablero miTablero;
@@ -16,7 +16,7 @@ public abstract class Entidad {
 	protected int vida;
 	protected boolean seguirMoviendo;
 	protected Visitor miVisitor;
-	
+
 	protected Entidad(Tablero tablero, Celda celda)
 	{
 		this.x = celda.getX();
@@ -25,13 +25,13 @@ public abstract class Entidad {
 		miTablero = tablero;
 		seguirMoviendo = true;
 		miCelda.agregarEntidad(this);
-		
+
 	}
-	
+
 	public Tablero getTablero() {
 		return miTablero;
 	}
-	
+
 	public void setSeguirMoviendo(boolean b) {
 		seguirMoviendo = b;
 	}
@@ -40,7 +40,7 @@ public abstract class Entidad {
 	 * La entidad muere
 	 */
 	public void morir() {
-		
+
 		miTablero.getLogica().eliminarEntidad(this);
 	}
 	/**
@@ -52,7 +52,7 @@ public abstract class Entidad {
 	 * La entidad se mueve
 	 */
 	public abstract void mover();
-	
+
 	public abstract void aceptar(Visitor visitor);
 
 	public void setCelda(Celda c) 
@@ -106,7 +106,7 @@ public abstract class Entidad {
 	{
 		this.vida = vida;
 	}
-	
+
 	public EntidadGrafica getEntidadGrafica() {
 		return entidadgrafica;
 	}
@@ -114,11 +114,11 @@ public abstract class Entidad {
 	public void setEntidadGrafica(EntidadGrafica e) {
 		this.entidadgrafica = e;
 	}
-	
+
 	public Visitor getVisitor() {
 		return this.miVisitor;
 	}
-	
-	
-	
+
+
+
 }

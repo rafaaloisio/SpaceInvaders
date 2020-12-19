@@ -11,7 +11,7 @@ public class DisparoJugador extends Disparo {
 		super(miTablero, miCelda, golpe);
 		this.miVisitor = new VisitorDisparoJugador(this);
 		entidadgrafica = new EntidadGraficaJugador("/recursos/jugador/disparo.png");
-		
+
 	}
 
 	public void ejecutar() {
@@ -21,13 +21,13 @@ public class DisparoJugador extends Disparo {
 	public void mover() {
 
 		if (y == 0) {
-			
+
 			morir();
-			
+
 		} else {
-			
+
 			if (miTablero.getCelda(x, y-1).cantEntidades() == 0) {
-				
+
 				miTablero.getCelda(x, y).eliminarEntidad(this);
 				y = y - 1;
 				miTablero.getCelda(x, y).agregarEntidad(this);

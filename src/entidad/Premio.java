@@ -2,17 +2,16 @@ package entidad;
 
 import tablero.Celda;
 import tablero.Tablero;
-import visitor.Visitor;
 
 public abstract class Premio extends Entidad {
 
 	private int tiempo;
-	
+
 	protected Premio(Tablero tablero, Celda celda) {
 		super(tablero, celda);
 		this.tiempo = 4;
 	}
- 
+
 	@Override
 	public void ejecutar() {
 		if (tiempo == 0) {
@@ -24,7 +23,7 @@ public abstract class Premio extends Entidad {
 
 	@Override
 	public void mover() {
-		
+
 		if(y == miTablero.getFilas()-1) {
 			morir();
 		}

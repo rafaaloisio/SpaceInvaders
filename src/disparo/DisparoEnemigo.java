@@ -15,7 +15,7 @@ public abstract class DisparoEnemigo extends Disparo {
 	}
 
 	public void morir() {
-		
+
 		seguirMoviendo = false;
 		miTablero.getCelda(x, y).eliminarEntidad(this);
 		miTablero.getLogica().eliminarEntidad(this);
@@ -52,7 +52,7 @@ public abstract class DisparoEnemigo extends Disparo {
 				miTablero.getCelda(x, y).agregarEntidad(this);
 				miCelda = miTablero.getCelda(x, y);
 				entidadgrafica.getImagen().setBounds(miCelda.getX() * PIXEL, miCelda.getY() * PIXEL, PIXEL, PIXEL);
-				
+
 			}
 		}
 	}

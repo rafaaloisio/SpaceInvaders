@@ -215,7 +215,7 @@ public class Jugador extends Personaje{
 		 */
 
 		DisparoJugador retorno = new DisparoJugador(miTablero,miCelda,this.getGolpe());
-		
+
 		if (this.golpe > this.MAXIMO_GOLPE) {
 			this.golpe -= 5;
 		}

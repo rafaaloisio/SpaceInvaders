@@ -20,7 +20,7 @@ public class EnemigoBeta extends Enemigo {
 
 
 	public Disparo crearDisparo() {
-		
+
 		return new DisparoBeta(miTablero,miCelda,this.getGolpe());
 	}
 
@@ -29,6 +29,6 @@ public class EnemigoBeta extends Enemigo {
 	public void aceptar(Visitor visitor) {
 		visitor.visitEnemigoBeta(this);
 	} 
-	
+
 
 }

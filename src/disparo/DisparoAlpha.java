@@ -10,8 +10,4 @@ public class DisparoAlpha extends DisparoEnemigo{
 		super(miTablero, miCelda, golpe);
 		entidadgrafica = new EntidadGraficaAlpha("/recursos/enemigos/disparo_alpha.png");
 	}
-
-
-
-
 }

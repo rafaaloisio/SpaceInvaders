@@ -9,7 +9,7 @@ public abstract class Enemigo extends Personaje{
 
 	protected int tiempo;
 	protected int ejecutarMover;
-	
+
 	protected Enemigo(Tablero tablero, Celda celda,int vida,int golpe) {
 		super(tablero, celda);
 		this.vida = vida;
@@ -18,10 +18,10 @@ public abstract class Enemigo extends Personaje{
 		this.ejecutarMover = 0;
 	}
 
-	
+
 	public void ejecutar()
 	{
-		
+
 		if (tiempo == 6) {
 			disparar(this);
 		}
@@ -40,10 +40,10 @@ public abstract class Enemigo extends Personaje{
 	@Override
 	public void mover()
 	{
-	
-		
-	//	MovimientoEnemigo m = new MovimientoEnemigo(this.miTablero, this.miCelda, this);
-	//	this.setMovimiento(m);
+
+
+		//	MovimientoEnemigo m = new MovimientoEnemigo(this.miTablero, this.miCelda, this);
+		//	this.setMovimiento(m);
 
 		if (miTablero.getCelda(x , y + 1).cantEntidades() == 0) {
 
@@ -51,7 +51,7 @@ public abstract class Enemigo extends Personaje{
 			miTablero.getCelda(x, y).eliminarEntidad(this);	
 
 			if( y + 1 == miTablero.getFilas()-1 )
-		y = 0;
+				y = 0;
 			else
 				y = y + 1;
 
@@ -68,21 +68,21 @@ public abstract class Enemigo extends Personaje{
 				}
 			}
 
-			
+
 			miTablero.getCelda(x, y).eliminarEntidad(this);	
-			
+
 			if (seguirMoviendo) {
 
 				if( y + 1 == miTablero.getFilas()-1 )
 					y = 0;
 				else
-				y = y + 1;
+					y = y + 1;
 
 				miTablero.getCelda(x, y).agregarEntidad(this);
 				miCelda = miTablero.getCelda(x, y);
 				entidadgrafica.actualizar(miCelda);		
 			}
-   	}
+		}
 	}
 
 
@@ -135,7 +135,7 @@ public abstract class Enemigo extends Personaje{
 		this.tiempo = tiempo;
 	}
 
-	
+
 	public int getEjecutarMover() {
 		return ejecutarMover;
 	}
