@@ -5,7 +5,6 @@ import java.util.List;
 
 import entidad.*;
 import logica.Logica;
-import fabrica.*;
 
 public class Tablero 
 {

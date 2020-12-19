@@ -5,8 +5,6 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -17,15 +15,8 @@ import javax.swing.border.EmptyBorder;
 import entidad.Entidad;
 import grafica.EntidadGrafica;
 import logica.Logica;
-import tablero.*;
-
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -43,7 +34,7 @@ public class GUI extends JFrame implements KeyListener {
 	private JLabel textoVida,vida;
 	private JLabel textoNivel,nivel;
 	private JLabel textoOleada,oleada;
-	private Timer actualizarLabels;
+	private Timer actualizadorLabels;
 
 	/**
 	 * Launch the application.
@@ -206,7 +197,7 @@ public class GUI extends JFrame implements KeyListener {
 	
 	private void actualizarLabels(JLabel v,JLabel n,JLabel o)
 	{
-		actualizarLabels = new Timer(250, new ActionListener() {
+		actualizadorLabels = new Timer(250, new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -218,7 +209,7 @@ public class GUI extends JFrame implements KeyListener {
 				
 				if(miLogica.isPerdi()) {
 					
-					actualizarLabels.stop();
+					actualizadorLabels.stop();
 					
 					JOptionPane.showMessageDialog(panelPrincipal, "El jugador perdió por malo.", "La nave hizo boom", JOptionPane.ERROR_MESSAGE);
 					System.exit(1);
@@ -226,7 +217,7 @@ public class GUI extends JFrame implements KeyListener {
 				
 				if(miLogica.isGane()) {
 					
-					actualizarLabels.stop();
+					actualizadorLabels.stop();
 					
 					JOptionPane.showMessageDialog(panelPrincipal, "El jugador ganó, es muy groso!", "Los enemigos fueron derrotados", JOptionPane.INFORMATION_MESSAGE);
 					System.exit(0);
@@ -238,7 +229,7 @@ public class GUI extends JFrame implements KeyListener {
 			
 		});
 		
-		actualizarLabels.start();
+		actualizadorLabels.start();
 	}
 
 }

@@ -107,7 +107,7 @@ public abstract class Enemigo extends Personaje{
 			break;
 
 		case 2 : //premio pocion congelar
-			FabricaPocionCongelamiento fpc = new FabricaPocionCongelamiento(miTablero, miCelda);
+			FabricaPremioCongelamiento fpc = new FabricaPremioCongelamiento(miTablero, miCelda);
 			System.out.println("SOLTE PREMIO CONGELAR.");		
 			Premio pc = fpc.crearPremio();
 			miTablero.getLogica().agregarEntidad(pc, miCelda);

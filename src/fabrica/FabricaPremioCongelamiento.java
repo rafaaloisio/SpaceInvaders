@@ -5,9 +5,9 @@ import entidad.PremioCongelamiento;
 import tablero.Celda;
 import tablero.Tablero;
 
-public class FabricaPocionCongelamiento extends FabricaPremio {
+public class FabricaPremioCongelamiento extends FabricaPremio {
 
-	public FabricaPocionCongelamiento(Tablero miTablero, Celda miCelda) {
+	public FabricaPremioCongelamiento(Tablero miTablero, Celda miCelda) {
 		super(miTablero, miCelda);
 		// TODO Auto-generated constructor stub
 	}
